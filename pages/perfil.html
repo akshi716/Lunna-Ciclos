@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil | Lunna</title>
+  </head>
+
+
+  <body>
+    <main class="pagina">
+      <header class="topo">
+        <div class="logo-area">
+          <div class="logo">
+            <span>Lunna</span>
+
+
+            <span class="logo-texto-pequeno">
+              • seu ritual de autocuidado
+            </span>
+          </div>
+
+
+          <h1 class="saudacao">
+            <span id="cumprimentoUser"></span>
+            <span class="estrela">✦</span>
+          </h1>
+        </div>
+
+
+        <div class="acoes-topo">
+          <button class="notificacao" type="button">
+            <span>♧</span>
+          </button>
+
+
+          <div class="avatar-mini">
+            <img id="avatarMini" alt="Foto de perfil" />
+          </div>
+        </div>
+      </header>
+
+
+      <div class="barra-navegacao">
+        <a href="#" class="voltar"> ← &nbsp; Voltar ao início </a>
+
+
+        <div class="breadcrumb">
+          <span>Lunna</span>
+          <span class="ponto">•</span>
+          <span>Perfil</span>
+        </div>
+      </div>
+
+
+      <section class="titulo-area">
+        <div class="subtitulo">
+          <span>◔</span>
+          <span>Espaço de autocuidado</span>
+        </div>
+
+
+        <h2 class="titulo-principal">Meu perfil de saúde</h2>
+
+
+        <p class="descricao">
+          Tudo o que importa para cuidar de você, reunido em um só lugar.
+        </p>
+
+
+        <div class="icone-lua">◔</div>
+      </section>
+
+
+      <section class="conteudo">
+        <article class="card">
+          <div class="perfil-topo">
+            <div class="perfil-info">
+              <div class="avatar" id="avatarUsuario"></div>
+
+
+              <div>
+                <p class="label">Seu perfil</p>
+
+
+                <h3 class="nome" id="userName"></h3>
+
+
+                <p class="texto-suave">Seu espaço é só seu.</p>
+              </div>
+            </div>
+
+
+            <button class="btn-editar" id="editarPerfil" type="button">
+              Editar perfil
+            </button>
+          </div>
+
+
+          <div class="estatisticas">
+            <div class="estatistica">
+              <strong id="idadeUsuario"></strong>
+              <span>anos</span>
+            </div>
+
+
+            <div class="estatistica">
+              <strong id="pesoUsuario"></strong>
+              <span>kg</span>
+            </div>
+
+
+            <div class="estatistica">
+              <strong id="alturaUsuario"></strong>
+              <span>m</span>
+            </div>
+
+
+            <div class="estatistica">
+              <strong id="imcUsuario"></strong>
+              <span>IMC</span>
+            </div>
+          </div>
+
+
+          <!-- SUS -->
+          <div class="sus">
+            <div class="sus-info">
+              <span class="cadeado">♙</span>
+              <span>Número do SUS protegido</span>
+            </div>
+
+
+            <div class="numero-sus" id="numeroSus"></div>
+          </div>
+        </article>
+
+
+        <article class="card">
+          <div class="historico-topo">
+            <div>
+              <p class="label">♧ Histórico</p>
+
+
+              <h3 class="historico-titulo">Seus exames</h3>
+            </div>
+
+
+            <button class="adicionar" id="adicionarExame" type="button">
+              Adicionar &nbsp;＋
+            </button>
+          </div>
+
+
+          <!-- LISTA DE EXAMES -->
+          <div class="exames" id="listaExames"></div>
+        </article>
+      </section>
+    </main>
+
+
+    <script src="perfil.js"></script>
+  </body>
+</html>
