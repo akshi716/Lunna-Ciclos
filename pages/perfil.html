@@ -3,61 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Perfil | Lunna</title>
+
     <link rel="stylesheet" href="../Style/style.css" />
     <link rel="stylesheet" href="../Style/responsivo.css" />
-    <script src="https://unpkg.com/lucide@latest"></script>
   </head>
 
   <body>
     <main class="pagina">
+      <!-- Cabeçalho -->
       <header class="topo">
         <div class="logo-area">
-          <div class="logo">
-            <span>Lunna</span>
-
+          <p class="logo">
+            Lunna
             <span class="logo-texto-pequeno">
               • seu ritual de autocuidado
             </span>
-          </div>
+          </p>
 
           <p class="saudacao">
             <span id="cumprimentoUser">Bem-vinda ao seu espaço</span>
-            <span class="estrela">✦</span>
           </p>
         </div>
 
-        <div class="acoes-topo">
-          <button
-            class="notificacao"
-            type="button"
-            aria-label="Notificações (em breve)"
-            disabled
-          >
-            <span>♧</span>
-          </button>
+        <div class="avatar-mini">
 
-          <div class="avatar-mini">
-            <span id="avatarMini" aria-label="Sem foto de perfil">◔</span>
-          </div>
         </div>
       </header>
 
-      <div class="barra-navegacao">
-        <a href="index.html" class="voltar"> ← &nbsp; Voltar ao início </a>
+      <!-- Navegação -->
+      <nav class="barra-navegacao" aria-label="Navegação do perfil">
+        <a class="voltar" href="index.html">← Voltar ao início</a>
 
-        <div class="breadcrumb">
+        <p class="breadcrumb">
           <span>Lunna</span>
-          <span class="ponto">•</span>
-          <span>Perfil</span>
-        </div>
-      </div>
+          <span class="ponto" aria-hidden="true">•</span>
+          <span aria-current="page">Perfil</span>
+        </p>
+      </nav>
 
-      <section class="titulo-area">
-        <div class="subtitulo">
-          <span>◔</span>
-          <span>Espaço de autocuidado</span>
-        </div>
+      <!-- Apresentação da página -->
+      <header class="titulo-area">
+        <p class="subtitulo">
+
+          Espaço de autocuidado
+        </p>
 
         <h1 class="titulo-principal">Meu perfil de saúde</h1>
 
@@ -65,20 +56,19 @@
           Tudo o que importa para cuidar de você, reunido em um só lugar.
         </p>
 
-        <div class="icone-lua">◔</div>
-      </section>
 
-      <section class="conteudo">
-        <article class="card">
-          <div class="perfil-topo">
+      </header>
+
+      <div class="conteudo">
+        <!-- Dados pessoais -->
+        <section class="card" aria-labelledby="userName">
+          <header class="perfil-topo">
             <div class="perfil-info">
               <div class="avatar" id="avatarUsuario"></div>
 
               <div>
                 <p class="label">Seu perfil</p>
-
                 <h2 class="nome" id="userName">Seu nome</h2>
-
                 <p class="texto-suave">Seu espaço é só seu.</p>
               </div>
             </div>
@@ -86,73 +76,67 @@
             <button class="btn-editar" id="editarPerfil" type="button">
               Editar perfil
             </button>
-          </div>
+          </header>
 
+          <!-- Medidas corporais -->
           <div class="estatisticas">
-            <div class="estatistica">
+            <p class="estatistica">
               <strong id="idadeUsuario" aria-label="Não informado">—</strong>
               <span>Idade (anos)</span>
-            </div>
+            </p>
 
-            <div class="estatistica">
+            <p class="estatistica">
               <strong id="pesoUsuario" aria-label="Não informado">—</strong>
               <span>Peso (kg)</span>
-            </div>
+            </p>
 
-            <div class="estatistica">
+            <p class="estatistica">
               <strong id="alturaUsuario" aria-label="Não informado">—</strong>
               <span>Altura (m)</span>
-            </div>
+            </p>
 
-            <div class="estatistica">
+            <p class="estatistica">
               <strong id="imcUsuario" aria-label="Não informado">—</strong>
               <span>IMC</span>
-            </div>
+            </p>
           </div>
 
-          <!-- SUS -->
+          <!-- Cartão do SUS -->
           <div class="sus">
-            <div class="sus-info">
-              <span class="cadeado">♙</span>
-              <span>Cartão Nacional de Saúde (SUS)</span>
-            </div>
+            <p class="sus-info">
+              Cartão Nacional de Saúde (SUS)
+            </p>
 
-            <div class="numero-sus" id="numeroSus">Não informado</div>
+            <p class="numero-sus" id="numeroSus">Não informado</p>
           </div>
-        </article>
+        </section>
 
-        <article class="card">
-          <div class="historico-topo">
+        <!-- Histórico de exames -->
+        <section class="card" aria-labelledby="tituloExames">
+          <header class="historico-topo">
             <div>
-              <p class="label">♧ Histórico</p>
-
-              <h2 class="historico-titulo">Seus exames</h2>
+              <p class="label">Histórico</p>
+              <h2 class="historico-titulo" id="tituloExames">Seus exames</h2>
             </div>
 
-            <button
-              class="adicionar"
-              id="adicionarExame"
-              type="button"
-              disabled
-            >
-              Adicionar (em breve) &nbsp;＋
+            <button class="adicionar" id="adicionarExame" type="button" disabled>
+              Adicionar (em breve) ＋
             </button>
-          </div>
+          </header>
 
-          <!-- LISTA DE EXAMES -->
           <div class="exames" id="listaExames">
             <p>Nenhum exame adicionado.</p>
           </div>
-        </article>
-      </section>
+        </section>
+      </div>
     </main>
 
-    <!-- Codigo para o editar perfil funcionar sem css -->
+    <!-- Formulário de edição -->
     <dialog id="modalPerfil" aria-labelledby="tituloEditarPerfil">
       <form id="formPerfil">
         <h2 id="tituloEditarPerfil">Editar perfil</h2>
 
-        <div>
+        <p>
           <label for="nomePerfil">Nome</label>
           <input
             id="nomePerfil"
@@ -162,9 +146,9 @@
             maxlength="100"
             required
           />
-        </div>
+        </p>
 
-        <div>
+        <p>
           <label for="idadePerfil">Idade (anos)</label>
           <input
             id="idadePerfil"
@@ -174,9 +158,9 @@
             max="120"
             step="1"
           />
-        </div>
+        </p>
 
-        <div>
+        <p>
           <label for="pesoPerfil">Peso (kg)</label>
           <input
             id="pesoPerfil"
@@ -186,9 +170,9 @@
             max="500"
             step="0.1"
           />
-        </div>
+        </p>
 
-        <div>
+        <p>
           <label for="alturaPerfil">Altura (m)</label>
           <input
             id="alturaPerfil"
@@ -197,13 +181,16 @@
             min="0.5"
             max="2.5"
             step="0.01"
+            aria-describedby="ajudaAltura"
           />
+        </p>
+
+        <p id="ajudaAltura">Use metros para a altura. Exemplo: 1,65.</p>
+
+        <div class="acoes-formulario">
+          <button id="cancelarEdicao" type="button">Cancelar</button>
+          <button type="submit">Salvar alterações</button>
         </div>
-
-        <p>Use metros para a altura. Exemplo: 1,65.</p>
-
-        <button id="cancelarEdicao" type="button">Cancelar</button>
-        <button type="submit">Salvar alterações</button>
       </form>
     </dialog>
 
