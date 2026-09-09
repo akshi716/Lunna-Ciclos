@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,9 @@
 
     <!-- biblioteca de icones -->
     <!-- chama uma biblioteca de icones -->
-
+<link rel="stylesheet" href="/Style/style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<<<<<<< HEAD
-
-
 
 
 
@@ -50,173 +48,170 @@
     <a href="index.html" class="logo">
 
 
-=======
-<body>
-    <a href="inicio">
->>>>>>> f6d456ec48fe116cba2c7f2d75384749848fefd0
-        <img src="#" alt="logo">
-    </a>
-    <span id="dataAtualLogo"></span>
 
-    <span id="cumprimentoUser"></span>
+        <a href="inicio">
+            <img src="#" alt="logo">
+        </a>
+        <span id="dataAtualLogo"></span>
 
-    <span id="icon"></span>
+        <span id="cumprimentoUser"></span>
 
-    <h3> ESPAÇO DE AUTOCUIDADO </h3>
+        <span id="icon"></span>
 
-    <h2>Seu ciclo, no seu ritmo</h2>
+        <h3> ESPAÇO DE AUTOCUIDADO </h3>
 
-    <p>
-        Acompanhe as fases e reconheça os sinais
-        do seu corpo com mais clareza.
-    </p>
+        <h2>Seu ciclo, no seu ritmo</h2>
 
-    <div id="faseAtual">
+        <p>
+            Acompanhe as fases e reconheça os sinais
+            do seu corpo com mais clareza.
+        </p>
 
-        <h3>FASE ATUAL</h3>
+        <div id="faseAtual">
 
-        <span id="tituloFaseAtual">Fase folicular</span>
+            <h3>FASE ATUAL</h3>
 
-        <span id="textoFaseAtual"></span>
+            <span id="tituloFaseAtual">Fase folicular</span>
 
-        <button id="maisFase">Entender esta fase </button>
+            <span id="textoFaseAtual"></span>
 
-        <div id="diaCiclo">
+            <button id="maisFase">Entender esta fase </button>
 
-            <img src="#" alt="efeitoDia">
+            <div id="diaCiclo">
 
-            <span></span>
+                <img src="#" alt="efeitoDia">
 
-            <p>dia do ciclo</p>
+                <span></span>
+
+                <p>dia do ciclo</p>
+
+            </div>
 
         </div>
 
-    </div>
+        <main class="calendar-card">
 
-    <main class="calendar-card">
+            <div class="calendar-header">
 
-        <div class="calendar-header">
+                <div>
+                    <span class="calendar-label">VISÃO MENSAL</span>
 
-            <div>
-                <span class="calendar-label">VISÃO MENSAL</span>
+                    <h1>
+                        <span id="month"></span>
+                        <span id="year"></span>
+                    </h1>
+                </div>
 
-                <h1>
-                    <span id="month"></span>
-                    <span id="year"></span>
-                </h1>
-            </div>
+                <div class="navigation">
 
-            <div class="navigation">
-
-                <!-- adicionar o type button ao botão faz com que seu
+                    <!-- adicionar o type button ao botão faz com que seu
                  funcionamento se mantenha caso seja usado a forma de
                  submit do formulário -->
 
-                <button id="previousMonth" type="button"></button>
-                <button id="nextMonth" type="button"></button>
+                    <button id="previousMonth" type="button"></button>
+                    <button id="nextMonth" type="button"></button>
+                </div>
+
             </div>
 
-        </div>
-
-        <div class="weekdays">
-            <span>SEG</span>
-            <span>TER</span>
-            <span>QUA</span>
-            <span>QUI</span>
-            <span>SEX</span>
-            <span>SÁB</span>
-            <span>DOM</span>
-        </div>
-
-        <div id="calendar" class="calendar">
-            <!-- Os dias serão criados pelo JavaScript -->
-        </div>
-
-        <div class="legend">
-
-            <div>
-                <span class="dot period"></span>
-                Menstruação
+            <div class="weekdays">
+                <span>SEG</span>
+                <span>TER</span>
+                <span>QUA</span>
+                <span>QUI</span>
+                <span>SEX</span>
+                <span>SÁB</span>
+                <span>DOM</span>
             </div>
 
-            <div>
-                <span class="dot fertile"></span>
-                Fase Fértil
+            <div id="calendar" class="calendar">
+                <!-- Os dias serão criados pelo JavaScript -->
             </div>
 
-            <div>
-                <span class="dot ovulation"></span>
-                Ovulação
+            <div class="legend">
+
+                <div>
+                    <span class="dot period"></span>
+                    Menstruação
+                </div>
+
+                <div>
+                    <span class="dot fertile"></span>
+                    Fase Fértil
+                </div>
+
+                <div>
+                    <span class="dot ovulation"></span>
+                    Ovulação
+                </div>
+
+                <div>
+                    <span class="dot today"></span>
+                    Hoje
+                </div>
+
             </div>
 
-            <div>
-                <span class="dot today"></span>
-                Hoje
-            </div>
+        </main>
 
-        </div>
+        <main class="emocional">
 
-    </main>
+            <h4>
 
-    <main class="emocional">
+                <!-- adicionando icone da biblioteca chamada no head -->
 
-        <h4>
+                <i data-lucide="sparkles"></i>
+                REGISTRO EMOCIONAL
+            </h4>
 
-            <!-- adicionando icone da biblioteca chamada no head -->
+            <h2>Como você está se sentindo hoje?</h2>
 
-            <i data-lucide="sparkles"></i>
-            REGISTRO EMOCIONAL
-        </h4>
+            <div class="humores">
 
-        <h2>Como você está se sentindo hoje?</h2>
+                <button type="button" class="humor" data-humor="feliz">
+                    <span class="humorIcon">
+                        <i data-lucide="sun"></i>
+                    </span>
+                    <span>Feliz</span>
+                </button>
 
-        <div class="humores">
-
-            <button type="button" class="humor" data-humor="feliz">
-                <span class="humorIcon">
-                    <i data-lucide="sun"></i>
-                </span>
-                <span>Feliz</span>
-            </button>
-
-<!-- data- guarda a informação de forma mais organizada 
+                <!-- data- guarda a informação de forma mais organizada 
 no html -->
 
-            <button type="button" class="humor" data-humor="calma">
-                <span class="humorIcon">
-                    <i data-lucide="smile"></i>
-                </span>
-                <span>Calma</span>
-            </button>
+                <button type="button" class="humor" data-humor="calma">
+                    <span class="humorIcon">
+                        <i data-lucide="smile"></i>
+                    </span>
+                    <span>Calma</span>
+                </button>
 
-            <button type="button" class="humor" data-humor="ansiosa">
-                <span class="humorIcon">
-                    <i data-lucide="wind"></i>
-                </span>
-                <span>Ansiosa</span>
-            </button>
+                <button type="button" class="humor" data-humor="ansiosa">
+                    <span class="humorIcon">
+                        <i data-lucide="wind"></i>
+                    </span>
+                    <span>Ansiosa</span>
+                </button>
 
-            <button type="button" class="humor" data-humor="irritada">
-                <span class="humor-icon">
-                    <i data-lucide="zap"></i>
-                </span>
-                <span>Irritada</span>
-            </button>
+                <button type="button" class="humor" data-humor="irritada">
+                    <span class="humor-icon">
+                        <i data-lucide="zap"></i>
+                    </span>
+                    <span>Irritada</span>
+                </button>
 
-        </div>
-
-
-
-    </main>
+            </div>
 
 
-    <script>
-        lucide.createIcons();
-    </script>
+
+        </main>
+
+
+        <script>
+            lucide.createIcons();
+        </script>
+
+        <script src="/Script/calendario.js"></script>
 
 </body>
 
-
-</html>
-</body>
 </html>
