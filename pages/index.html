@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início | Lunna</title>
+</head>
+
+<body>
+
+    <div class="header">
+
+        <div class="logo">
+            <a href="index.html">
+                <img src="#" alt="logo">
+            </a>
+            <span id="dataAtualLogo"></span>
+
+            <span id="cumprimentoUser"></span>
+        </div>
+
+        <main class="inicio">
+
+            <div class="bannerCarrossel">
+
+                <span class="cicloAtual"></span>
+
+                <img src="#" alt="carrossel">
+                <img src="#" alt="carrossel">
+                <img src="#" alt="carrossel">
+                <img src="#" alt="carrossel">
+                <img src="#" alt="carrossel">
+                <img src="#" alt="carrossel">
+
+            </div>
+
+            <div class="calendar-card">
+
+                <div class="calendar-header">
+
+                    <div>
+                        <h1>
+                            <span><i data-lucide="calendar"></i></span>
+                            Calendário do ciclo
+                        </h1>
+                    </div>
+
+                    <button type="button">
+                        Ler o ciclo
+                    </button>
+
+                    <div class="navigation">
+
+                        <!-- adicionar o type button ao botão faz com que seu
+                     funcionamento se mantenha caso seja usado a forma de
+                     submit do formulário -->
+
+                        <button id="previousMonth" type="button"><i data-lucide="chevron-left"></i></button>
+
+                        <span id="month"></span>
+                        <span id="year"></span>
+
+                        <button id="nextMonth" type="button"><i data-lucide="chevron-right"></i></button>
+                    </div>
+
+                </div>
+
+                <div class="weekdays">
+                    <span>SEG</span>
+                    <span>TER</span>
+                    <span>QUA</span>
+                    <span>QUI</span>
+                    <span>SEX</span>
+                    <span>SÁB</span>
+                    <span>DOM</span>
+                </div>
+
+                <div id="calendar" class="calendar">
+                    <!-- Os dias serão criados pelo JavaScript -->
+                </div>
+
+                <div class="legend">
+
+                    <div>
+                        <span class="menstruacao"></span>
+
+                        <i data-lucide="droplet"></i>
+                        Menstruação
+                    </div>
+
+                    <div>
+                        <span class="fertil"></span>
+
+                        <i data-lucide="sprout"></i>
+                        Fase Fértil
+                    </div>
+
+                    <div>
+                        <span class="ovulacao"></span>
+
+                        <i data-lucide="sun"></i>
+                        Ovulação
+                    </div>
+
+                    <div>
+                        <span class="hoje"></span>
+                        Hoje
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="emocional">
+
+                <h4>
+                    <!-- adicionando icone da biblioteca chamada no head -->
+                    <i data-lucide="sparkles"></i>
+                    REGISTRO EMOCIONAL
+                </h4>
+
+                <h2>Como você está se sentindo hoje?</h2>
+
+                <div class="humores">
+
+                    <button type="button" class="humor" data-humor="feliz">
+                        <span class="humorIcon">
+                            <i data-lucide="sun"></i>
+                        </span>
+                        <span>Feliz</span>
+                    </button>
+
+                    <!-- data- guarda a informação de forma mais organizada no html -->
+
+                    <button type="button" class="humor" data-humor="calma">
+                        <span class="humorIcon">
+                            <i data-lucide="smile"></i>
+                        </span>
+                        <span>Calma</span>
+                    </button>
+
+                    <button type="button" class="humor" data-humor="ansiosa">
+                        <span class="humorIcon">
+                            <i data-lucide="wind"></i>
+                        </span>
+                        <span>Ansiosa</span>
+                    </button>
+
+                    <button type="button" class="humor" data-humor="irritada">
+                        <span class="humor-icon">
+                            <i data-lucide="zap"></i>
+                        </span>
+                        <span>Irritada</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- Dispositivo -->
+    <section class="secaoDispositivo">
+
+        <div class="introDispositivo">
+
+            <div class="textoDispositivo">
+
+                <span class="etiqueta">
+                    Dispositivo
+                </span>
+
+                <h2>
+                    Conecte seu Lunna
+                </h2>
+
+                <p>
+                    Configure seu dispositivo em poucos passos
+                    e deixe seus sinais mais próximos de você.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="listaEtapas">
+
+            <div class="etapaConexao">
+
+                <div class="icone-etapa">
+                    ✓
+                </div>
+
+                <div class="textoEtapa">
+                    <h3>Ative o Bluetooth</h3>
+                    <p>No seu celular</p>
+                </div>
+
+            </div>
+
+            <div class="etapaConexao">
+
+                <div class="icone-etapa">
+                    ✓
+                </div>
+
+                <div class="textoEtapa">
+                    <h3>Abra o aplicativo</h3>
+                    <p>Toque em conectar</p>
+                </div>
+
+            </div>
+
+            <div class="etapaConexao">
+
+                <div class="icone-etapa">
+                    ✓
+                </div>
+
+                <div class="textoEtapa">
+                    <h3>Escaneie o código</h3>
+                    <p>Na embalagem</p>
+                </div>
+
+            </div>
+
+            <div class="etapaConexao">
+
+                <div class="icone-etapa">
+                    ✓
+                </div>
+
+                <div class="textoEtapa">
+                    <h3>Aguarde o pareamento</h3>
+                    <p>Só alguns segundos</p>
+                </div>
+
+            </div>
+
+            <div class="etapaConexao etapaFinal">
+
+                <div class="icone-etapa">
+                    <span>5</span>
+                    <span>✓</span>
+                </div>
+
+                <div class="textoEtapa">
+                    <h3>Conexão concluída</h3>
+                    <p>Tudo pronto</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Sessao saude -->
+    <section class="secaoSaude">
+
+        <div class="resumoSaude">
+
+            <div class="tituloSecao">
+
+                <div>
+                    <h2>
+                        Resumo da sua saúde
+                    </h2>
+                </div>
+            </div>
+
+            <div class="lista-saude">
+
+                <!-- EXAMES -->
+                <a href="exames.html" class="card-saude">
+
+                    <div class="texto-card">
+
+                        <h3>
+                            Exames
+                        </h3>
+
+                        <p>
+                            2 resultados novos
+                        </p>
+
+                    </div>
+
+                    <span class="seta-card">
+                        ›
+                    </span>
+
+                </a>
+
+                <!-- DADOS DO CORPO -->
+                <a href="perfil.html" class="cardSaude">
+
+                    <div class="texto-card">
+
+                        <h3>
+                            Dados do corpo
+                        </h3>
+
+                        <p>
+                            Sono 7h42 de média
+                        </p>
+
+                    </div>
+
+                    <span class="seta-card">
+                        ›
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="farmacias">
+
+            <div class="mapa-farmacias">
+
+                <img src="../img/mapa.webp" alt="Mapa com farmácias próximas em Brasília">
+
+                <span class="localizacao">
+                    Brasília - DF
+                </span>
+
+            </div>
+
+            <div class="textoFarmacias">
+
+                <span class="etiqueta">
+                    ⌖ Por perto
+                </span>
+
+                <h2>
+                    Farmácias próximas
+                </h2>
+
+                <p>
+                    Encontre cuidados e itens essenciais
+                    no seu caminho.
+                </p>
+
+                <a href="#" class="botaoFarmacias">
+                    Encontrar por perto
+                    <span>›</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Sessao seguranca -->
+    <section class="secaoSeguranca">
+
+        <div class="textoSeguranca">
+
+            <div>
+
+                <span class="etiqueta">
+                    Cuidado que respeita você
+                </span>
+
+                <h2>
+                    Seus dados estão protegidos
+                </h2>
+
+                <p>
+                    Seu histórico é criptografado
+                    e permanece sempre sob seu controle.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="acaoSeguranca">
+
+            <a href="#">
+                <p>Sua segurança, nossa prioridade!</p>
+            </a>
+
+        </div>
+
+    </section>
+
+    <script src="/Script/index.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+
+</html>
