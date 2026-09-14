@@ -12,177 +12,183 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
+<div class="header">
 
-
-    <a href="index.html" class="logo">
-
-
-
-        <a href="inicio">
+    <div class="logo">
+        <a href="index.html">
             <img src="#" alt="logo">
         </a>
         <span id="dataAtualLogo"></span>
 
         <span id="cumprimentoUser"></span>
 
-        <span id="icon"></span>
+    </div>
 
-        <h3> ESPAÇO DE AUTOCUIDADO </h3>
 
-        <h2>Seu ciclo, no seu ritmo</h2>
+</div>
+<h3> ESPAÇO DE AUTOCUIDADO </h3>
 
-        <p>
-            Acompanhe as fases e reconheça os sinais
-            do seu corpo com mais clareza.
-        </p>
+<h2>Seu ciclo, no seu ritmo</h2>
 
-        <div id="faseAtual">
+<p>
+    Acompanhe as fases e reconheça os sinais
+    do seu corpo com mais clareza.
+</p>
 
-            <h3>FASE ATUAL</h3>
+<div id="faseAtual">
 
-            <span id="tituloFaseAtual">Fase folicular</span>
+    <h3>FASE ATUAL</h3>
 
-            <span id="textoFaseAtual"></span>
+    <span id="tituloFaseAtual">Fase folicular</span>
 
-            <button id="maisFase">Entender esta fase </button>
 
-            <div id="diaCiclo">
+    <button id="maisFase">Entender esta fase </button>
 
-                <img src="#" alt="efeitoDia">
+    <div id="diaCiclo">
 
-                <span></span>
+        <img src="#" alt="efeitoDia">
 
-                <p>dia do ciclo</p>
+        <span></span>
 
-            </div>
+        <p>dia do ciclo</p>
 
+    </div>
+
+</div>
+
+<main class="calendar-card">
+
+    <div class="calendar-header">
+
+        <div>
+
+
+            <h1>
+                <span><i data-lucide="calendar"></i></span>
+                <span id="month"></span>
+                <span id="year"></span>
+            </h1>
         </div>
 
-        <main class="calendar-card">
+        <div class="navigation">
 
-            <div class="calendar-header">
-
-                <div>
-
-
-                    <h1>
-                        <span><i data-lucide="calendar"></i></span>
-                        <span id="month"></span>
-                        <span id="year"></span>
-                    </h1>
-                </div>
-
-                <div class="navigation">
-
-                    <!-- adicionar o type button ao botão faz com que seu
+            <!-- adicionar o type button ao botão faz com que seu
                  funcionamento se mantenha caso seja usado a forma de
                  submit do formulário -->
 
-                    <button id="previousMonth" type="button"><i data-lucide="chevron-left"></i></button>
-                    <button id="nextMonth" type="button"><i data-lucide="chevron-right"></i></button>
-                </div>
+            <button id="previousMonth" type="button"><i data-lucide="chevron-left"></i></button>
+            <button id="nextMonth" type="button"><i data-lucide="chevron-right"></i></button>
+        </div>
 
-            </div>
+    </div>
 
-            <div class="weekdays">
-                <span>SEG</span>
-                <span>TER</span>
-                <span>QUA</span>
-                <span>QUI</span>
-                <span>SEX</span>
-                <span>SÁB</span>
-                <span>DOM</span>
-            </div>
+    <div class="weekdays">
+        <span>SEG</span>
+        <span>TER</span>
+        <span>QUA</span>
+        <span>QUI</span>
+        <span>SEX</span>
+        <span>SÁB</span>
+        <span>DOM</span>
+    </div>
 
-            <div id="calendar" class="calendar">
-                <!-- Os dias serão criados pelo JavaScript -->
-            </div>
+    <div id="calendar" class="calendar">
+        <!-- Os dias serão criados pelo JavaScript -->
+    </div>
 
-            <div class="legend">
+    <div class="legend">
 
-                <div>
-                    <span class="dot period"></span>
-                    Menstruação
-                </div>
+        <div>
+            <span class="menstruacao"></span>
 
-                <div>
-                    <span class="dot fertile"></span>
-                    Fase Fértil
-                </div>
+            <i data-lucide="droplet"></i>
+            Menstruação
+        </div>
 
-                <div>
-                    <span class="dot ovulation"></span>
-                    Ovulação
-                </div>
+        <div>
+            <span class="fertil"></span>
 
-                <div>
-                    <span class="dot today"></span>
-                    Hoje
-                </div>
+            <i data-lucide="sprout"></i>
+            Fase Fértil
+        </div>
 
-            </div>
+        <div>
 
-        </main>
+            <span class="ovulacao"></span>
 
-        <main class="emocional">
+            <i data-lucide="sun"></i>
 
-            <h4>
+            Ovulação
+        </div>
 
-                <!-- adicionando icone da biblioteca chamada no head -->
+        <div>
+            <span class="hoje"></span>
+            Hoje
+        </div>
 
-                <i data-lucide="sparkles"></i>
-                REGISTRO EMOCIONAL
-            </h4>
+    </div>
 
-            <h2>Como você está se sentindo hoje?</h2>
+</main>
 
-            <div class="humores">
+<main class="emocional">
 
-                <button type="button" class="humor" data-humor="feliz">
-                    <span class="humorIcon">
-                        <i data-lucide="sun"></i>
-                    </span>
-                    <span>Feliz</span>
-                </button>
+    <h4>
 
-                <!-- data- guarda a informação de forma mais organizada 
+        <!-- adicionando icone da biblioteca chamada no head -->
+
+        <i data-lucide="sparkles"></i>
+        REGISTRO EMOCIONAL
+    </h4>
+
+    <h2>Como você está se sentindo hoje?</h2>
+
+    <div class="humores">
+
+        <button type="button" class="humor" data-humor="feliz">
+            <span class="humorIcon">
+                <i data-lucide="sun"></i>
+            </span>
+            <span>Feliz</span>
+        </button>
+
+        <!-- data- guarda a informação de forma mais organizada 
 no html -->
 
-                <button type="button" class="humor" data-humor="calma">
-                    <span class="humorIcon">
-                        <i data-lucide="smile"></i>
-                    </span>
-                    <span>Calma</span>
-                </button>
+        <button type="button" class="humor" data-humor="calma">
+            <span class="humorIcon">
+                <i data-lucide="smile"></i>
+            </span>
+            <span>Calma</span>
+        </button>
 
-                <button type="button" class="humor" data-humor="ansiosa">
-                    <span class="humorIcon">
-                        <i data-lucide="wind"></i>
-                    </span>
-                    <span>Ansiosa</span>
-                </button>
+        <button type="button" class="humor" data-humor="ansiosa">
+            <span class="humorIcon">
+                <i data-lucide="wind"></i>
+            </span>
+            <span>Ansiosa</span>
+        </button>
 
-                <button type="button" class="humor" data-humor="irritada">
-                    <span class="humor-icon">
-                        <i data-lucide="zap"></i>
-                    </span>
-                    <span>Irritada</span>
-                </button>
+        <button type="button" class="humor" data-humor="irritada">
+            <span class="humor-icon">
+                <i data-lucide="zap"></i>
+            </span>
+            <span>Irritada</span>
+        </button>
 
-            </div>
-            <label>Adicionar observações</label>
-            <input type="textearea" placeholder="Escreva aqui como você está se sentindo..." id="registroEmocional">
+    </div>
+    <label>Adicionar observações</label>
+    <input type="textearea" placeholder="Escreva aqui como você está se sentindo..." id="registroEmocional">
 
-            <button id="salvarRegistro">Salvar registro</button>
+    <button id="salvarRegistro">Salvar registro</button>
 
-        </main>
+</main>
 
 
-        <script>
-            lucide.createIcons();
-        </script>
+<script>
+    lucide.createIcons();
+</script>
 
-        <script src="/Script/calendario.js"></script>
+<script src="/Script/index.js"></script>
 
 </body>
 
