@@ -1,0 +1,69 @@
+/* ---- Responsivo ---- */
+@media (max-width: 640px) {
+    .cardDispositivo {
+        flex-wrap: wrap;
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .infoDispositivo {
+        border-left: none;
+        border-top: 1px solid #f0ddc0;
+        padding: 10px 0 0;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 640px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .paginas {
+        margin: 0; /* Em celulares, centraliza naturalmente */
+    }
+
+    .cardDispositivo {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .infoPrincipal {
+        min-width: auto;
+    }
+
+    .infoDispositivo {
+        border-left: none;
+        border-top: 1px solid #f0ddc0;
+        padding-left: 0;
+        padding-top: 12px;
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   7. RESPONSIVIDADE (MOBILE)
+   ========================================================================== */
+@media (max-width: 600px) {
+  .topo, .perfil-topo, .historico-topo, .sus {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .btn-editar, .adicionar {
+    width: 100%;
+  }
+
+  .logo-area {
+    margin-bottom: 8px;
+  }
+
+  .estatisticas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
