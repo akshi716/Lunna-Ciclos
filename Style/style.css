@@ -1,1038 +1,930 @@
-/* Base compartilhada. As regras de cada tela ficam isoladas abaixo. */
 :root {
-  --cor-primaria: #d88f8f;
-  --cor-primaria-escura: #c47e7e;
-  --cor-rosa: #b64343;
-  --cor-rosa-suave: #fdf0e6;
-  --cor-dourado-borda: #f0ddc0;
-  --cor-fundo-pagina: #f5f5f5;
-  --cor-fundo-card: #fff;
-  --cor-texto: #4a2c2a;
-  --cor-texto-secundario: #6b5544;
-  --cor-texto-mutado: #8c7f7f;
-  --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --fonte-titulos: Cambria, Georgia, serif;
-  --sombra-card: 0 4px 12px rgb(182 67 67 / 8%);
-  --transicao: all .25s ease;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { min-height: 100vh; font-family: var(--fonte-principal); color: var(--cor-texto); background: var(--cor-fundo-pagina); line-height: 1.5; }
-button, input, textarea, select { font: inherit; }
-button { cursor: pointer; }
-button:disabled { cursor: not-allowed; opacity: .6; }
-img { max-width: 100%; }
-:focus-visible { outline: 3px solid #b64343; outline-offset: 3px; }
-
-/* Início e calendário não possuem CSS de referência no PROJETO LUNNA.
-   Integração com a paleta transferida e com as classes já existentes. */
-body:has(.calendar-card) { max-width: 1240px; margin: auto; padding: 32px 24px; }
-.header > .logo { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 24px; color: #c47e7e; }
-.inicio { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px; align-items: start; }
-.calendar-card, .emocional, .secaoDispositivo, .resumoSaude, .farmacias, .secaoSeguranca, #faseAtual { background: #fff; border: 1px solid #eee5d9; border-radius: 20px; padding: 28px; box-shadow: var(--sombra-card); min-width: 0; }
-.calendar-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
-.calendar-header h1 { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-family: var(--fonte-titulos); font-size: 1.5rem; color: #c47e7e; }
-.navigation { display: flex; align-items: center; gap: 8px; }
-.calendar-header button, #maisFase, #salvarRegistro { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 10px 14px; border: 0; border-radius: 10px; background: #d88f8f; color: #fff; }
-.calendar-header button:hover, #maisFase:hover, #salvarRegistro:hover { background: #c47e7e; }
-/* Fallback visual caso o Lucide externo não carregue. O script, quando
-   disponível, substitui estes elementos i por SVG automaticamente. */
-i[data-lucide] { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; font-style: normal; }
-i[data-lucide="chevron-left"]::before { content: '‹'; font-size: 24px; }
-i[data-lucide="chevron-right"]::before { content: '›'; font-size: 24px; }
-i[data-lucide="calendar"]::before { content: '▦'; }
-i[data-lucide="sparkles"]::before { content: '✦'; }
-i[data-lucide="sun"]::before { content: '☀'; }
-i[data-lucide="smile"]::before { content: '☺'; }
-i[data-lucide="wind"]::before { content: '≋'; }
-i[data-lucide="zap"]::before { content: 'ϟ'; }
-i[data-lucide="droplet"]::before { content: '♦'; }
-i[data-lucide="sprout"]::before { content: '❧'; }
-.weekdays, .calendar { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
-.weekdays { margin-bottom: 8px; text-align: center; color: var(--cor-texto-secundario); font-size: .75rem; font-weight: 600; }
-.calendar-day { min-width: 0; min-height: 42px; padding: 8px 2px; border: 1px solid transparent; border-radius: 10px; background: #fff8f1; color: var(--cor-texto); }
-.calendar-day:hover { border-color: #d88f8f; background: #fdf0e6; }
-.calendar-day.empty { background: transparent; }
-.calendar-day.today { background: #d88f8f; color: #fff; font-weight: 700; }
-.legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; font-size: .75rem; color: var(--cor-texto-secundario); }
-.legend > div { display: flex; align-items: center; gap: 4px; }
-.legend svg { width: 16px; height: 16px; }
-.legend span { width: 8px; height: 8px; border-radius: 50%; }
-.menstruacao { background: #eeb2b2; }
-.fertil { background: #b5cfac; }
-.ovulacao { background: #edcd8b; }
-.hoje { background: #d88f8f; }
-.emocional h4 { display: flex; align-items: center; gap: 8px; color: #c47e7e; font-size: .8rem; margin-bottom: 16px; }
-.emocional h2 { font-family: var(--fonte-titulos); font-size: 1.4rem; margin-bottom: 20px; }
-.humores { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-.humor { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 4px; border: 1px solid #eee5d9; border-radius: 12px; background: #fff8f1; color: var(--cor-texto); font-size: .8rem; }
-.humor:hover, .humor[aria-pressed="true"], .humor.active, .humor.selected { background: #fdf0e6; border-color: #d88f8f; }
-.humorIcon, .humor-icon { display: inline-flex; color: #c47e7e; }
-.emocional label { display: block; margin-top: 20px; }
-#registroEmocional { display: block; width: 100%; min-height: 90px; margin: 8px 0 16px; padding: 12px; border: 1px solid #eee5d9; border-radius: 10px; background: #fffdfa; }
-body:has(> .calendar-card) > :is(h2,h3,p) { margin-bottom: 12px; }
-body:has(> .calendar-card) > :is(.calendar-card,.emocional,#faseAtual) { margin-top: 24px; }
-#faseAtual { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; background: #fdf0e6; }
-#tituloFaseAtual { font-size: 1.4rem; font-family: var(--fonte-titulos); }
-#diaCiclo { margin-left: auto; text-align: center; }
-.secaoDispositivo, .secaoSaude, .secaoSeguranca { margin-top: 24px; }
-.etiqueta { display: inline-block; margin-bottom: 8px; color: #b64343; font-size: .8rem; font-weight: 600; }
-:is(.textoDispositivo,.resumoSaude,.textoFarmacias,.textoSeguranca) h2 { font-family: var(--fonte-titulos); color: #c47e7e; margin-bottom: 8px; }
-.listaEtapas { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 12px; margin-top: 24px; }
-.etapaConexao { padding: 16px; border: 1px solid #e8c39e; border-radius: 16px; background: #fdf0e6; }
-.icone-etapa { display: flex; align-items: center; justify-content: center; gap: 4px; width: 36px; height: 36px; margin-bottom: 12px; border-radius: 50%; background: #d88f8f; color: #fff; }
-.textoEtapa h3 { font-size: .95rem; }
-.textoEtapa p { font-size: .85rem; color: var(--cor-texto-secundario); }
-.secaoSaude { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
-.lista-saude { display: grid; gap: 12px; margin-top: 20px; }
-.card-saude, .cardSaude { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px; background: #fff8f1; border: 1px solid #f0ddc0; border-radius: 12px; text-decoration: none; color: var(--cor-texto); }
-.texto-card p { font-size: .9rem; color: var(--cor-texto-secundario); }
-.seta-card { font-size: 1.6rem; color: #c47e7e; }
-.mapa-farmacias { min-height: 100px; padding: 16px; margin-bottom: 16px; background: #fdf0e6; border-radius: 12px; }
-.mapa-farmacias img { display: block; }
-.localizacao { display: block; margin-top: 8px; font-size: .85rem; }
-.botaoFarmacias { display: inline-block; margin-top: 16px; color: #b64343; }
-.secaoSeguranca { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.acaoSeguranca a { color: #b64343; }
-
-
-/* PROJETO LUNNA / LOGIN — isolado para não sobrescrever outras telas. */
-:where(body:has(#titulo-login)) * {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Arial, sans-serif;
+    /* Cores do Tema */
+    --cor-primaria: #d88f8f;
+    --cor-primaria-escura: #b85151;
+    --cor-rosa: #b64343;
+    --cor-rosa-suave: #fdf0e6;
+    --cor-dourado-borda: #d4a574;
+    --cor-fundo-pagina: #fff3e6;
+    --cor-fundo-card-alt: #fff8ec;
+
+    /* Cores de Texto */
+    --cor-texto: #4a2c2a;
+    --cor-texto-secundario: #6b5544;
+    --cor-texto-mutado: #7e5463;
+    --cor-sucesso: #48743f;
+
+    /* Fontes */
+    --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --fonte-titulos: Cambria, Georgia, serif;
+
+    /* Efeitos */
+    --sombra-card: 0 4px 12px rgba(182, 67, 67, 0.08);
+    --sombra-card-hover: 0 8px 20px rgba(182, 67, 67, 0.15);
+    --transicao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    --sombra-card: 0 4px 16px rgba(0, 0, 0, 0.06);
+
+    --primary-color: #bd6680;
+    /* Lilás suave principal */
+    --primary-hover: #e66671;
+    --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    --card-bg: #ffffff;
+    --text-color: #2d3748;
+    --text-muted: #718096;
+    --border-color: #edf2f7;
+    --accent-soft: #f3f0f7;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 8px 24px rgba(123, 94, 167, 0.08);
+
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-principal);
+}
+
+body {
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto);
+    background-color: #fff8f1;
+    padding: 40px 20px;
+    min-height: 100vh;
+    background-color: whitesmoke;
+    color: var(--cor-texto);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    font-family: var(--fonte-principal);
+    background-color: whitesmoke;
+    color: var(--cor-texto);
+    min-height: 100vh;
+    font-family: 'Segoe UI', syste m-ui, -apple-system, sans-serif;
+    background-color: whitesmoke;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+}
+
+.paginas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 0 0 auto;
+}
+
+.coluna-conexao,
+.coluna-dispositivos {
+    width: 100%;
+    border-radius: 20px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.coluna-conexao {
+    max-width: 480px;
+}
+
+.coluna-dispositivos {
+    max-width: 580px;
+}
+
+/* ===== Títulos ===== */
+.tituloDispositivo,
+.coluna-dispositivos h1 {
+    font-family: var(--fonte-titulos);
+    font-size: 1.8rem;
+    color: #c47e7e;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.coluna-dispositivos .subtitulo {
+    font-size: 0.95rem;
+    color: var(--cor-texto-secundario);
+    text-align: center;
+    margin-top: -10px;
+}
+
+/* ===== Etapa de Conexão ===== */
+.etapa {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--cor-rosa-suave);
+    border: 1px solid #e8c39e;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--sombra-card);
+    transition: var(--transicao);
+}
+
+.etapa:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-card-hover);
+}
+
+.etapa h3 {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background-color: var(--cor-primaria);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.etapa img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.etapa p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* ===== Cards e Status ===== */
+.cardStatus {
+    width: 100%;
+    min-height: 220px;
+    background-color: var(--cor-rosa-suave);
+    border: 1px solid #e8c39e;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 17px;
+    box-shadow: var(--sombra-card);
+}
+
+.cardStatus img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.statusConectado {
+    font-size: 0.85rem;
+    color: var(--cor-rosa);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.cardStatus h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.cardStatus p {
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario);
+    line-height: 1.4;
+}
+
+.botoesStatus {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 8px;
+    width: 100%;
+}
+
+/* ===== Botão ===== */
+button {
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    cursor: pointer;
+    background-color: var(--cor-primaria);
+    user-select: none;
+    touch-action: manipulation;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 0 4px 12px rgba(211, 78, 78, 0.3);
+    transition: var(--transicao);
+}
+
+button:hover {
+    box-shadow: 0 6px 16px rgba(211, 78, 78, 0.4);
+}
+
+button span:first-child {
+    position: relative;
+    transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 10;
+}
+
+button span:last-child {
+    color: var(--cor-primaria);
+    display: block;
+    position: absolute;
+    bottom: 0;
+    transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 100;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateY(225%) translateX(-50%);
+    white-space: nowrap;
+}
+
+button::after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    transform-origin: bottom center;
+    transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    transform: skewY(9.3deg) scaleY(0);
+    z-index: 50;
+}
+
+button:hover::after {
+    transform: skewY(9.3deg) scaleY(2);
+}
+
+button:hover span:last-child {
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 1;
+    transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+}
+
+/* ===== Card de Dispositivo Individual ===== */
+.cardDispositivo {
+    width: 100%;
+    background-color: var(--cor-fundo-card-alt);
+    border: 1px solid var(--cor-dourado-borda);
+    border-radius: 16px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--sombra-card);
+    transition: var(--transicao);
+}
+
+.cardDispositivo:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-card-hover);
+    border-color: var(--cor-rosa);
+}
+
+/* ---- Ícone com fundo próprio ---- */
+.iconeDispositivo {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(253, 172, 172, 0.12);
+    /* tom suave da cor-rosa */
+    border-radius: 10px;
+    transition: var(--transicao);
+}
+
+.cardDispositivo:hover .iconeDispositivo {
+    background-color: rgba(253, 172, 172, 0.2);
+}
+
+.cardDispositivo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* ---- Nome + status ---- */
+.infoPrincipal {
+    flex-shrink: 0;
+    min-width: 130px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cardDispositivo h3 {
+    font-size: 1.05rem;
+    color: var(--cor-texto);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.statusOnline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--cor-sucesso);
+    font-weight: 700;
+}
+
+.statusOnline::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--cor-sucesso);
+    box-shadow: 0 0 0 3px rgba(72, 199, 116, 0.2);
+}
+
+/* ---- Bloco de dado (valor + rótulo) ---- */
+.infoDispositivo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 4px 1px;
+    text-align: center;
+}
+
+.infoDispositivo .valor {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--cor-rosa);
+}
+
+.infoDispositivo .rotulo {
+    font-size: 0.78rem;
+    color: var(--cor-texto-mutado);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* ===== Header ===== */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+header div[aria-label="Logo Lunna"] {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cor-rosa-escuro);
+    margin-bottom: 4px;
+}
+
+header h1 {
+    font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    color: var(--cor-texto);
+}
+
+header h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    color: #c47e7e;
+}
+
+
+header p {
+    font-size: 0.95rem;
+    color: var(--cor-texto-mutado);
+    max-width: 320px;
+}
+
+/* ===== Card de login ===== */
+section {
+    width: 100%;
+    background-color: #f3f3f3d5;
+    border: 1px solid #eee5d9;
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: var(--sombra-card);
+    text-align: left;
+}
+
+section h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    text-align: center;
+    color: var(--cor-texto);
+    margin-bottom: 9px;
+}
+
+section>p {
+    font-size: 0.85rem;
+    color: var(--cor-texto-mutado);
+    margin-bottom: 20px;
+}
+
+/* ===== Formulário ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+form>div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-body:where(body:has(#titulo-login)) {
-  --cor-fundo-pagina: #fff8f1;
-  --cor-fundo-card: #fffaf3;
-  --cor-dourado-borda: #f0ddc0;
-  --cor-rosa: #FDACAC;
-  --cor-rosa-escuro: #f08c8c;
-  --cor-texto: #3a2e2e;
-  --cor-texto-mutado: #8c7f7f;
-  --sombra-card: 0 4px 16px rgba(0, 0, 0, 0.06);
-  --transicao: all 0.25s ease;
+label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cor-texto);
 }
 
-body:where(body:has(#titulo-login)) {
-  background-color: whitesmoke;
-  color: var(--cor-texto);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 16px;
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid#eee5d9;
+    border-radius: 10px;
+    background-color: #fffdfa;
+    font-size: 0.95rem;
+    color: var(--cor-texto);
+    transition: var(--transicao);
 }
 
-:where(body:has(#titulo-login)) main {
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  text-align: center;
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #f8c2c2;
+    box-shadow: 0 0 0 3px rgba(253, 172, 172, 0.2);
 }
 
-:where(body:has(#titulo-login)) header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+input::placeholder {
+    color: #c9bcbc;
 }
 
-:where(body:has(#titulo-login)) header div[aria-label="Logo Lunna"] {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--cor-rosa-escuro);
-  margin-bottom: 4px;
+/* ---- Linha "Lembrar de mim" ---- */
+form>div:has(input[type="checkbox"]) {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
 }
 
-:where(body:has(#titulo-login)) header h1 {
-  font-family: Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 1.5rem;
-  color: var(--cor-texto);
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #f3f3f3d5;
 }
 
-:where(body:has(#titulo-login)) header h2 {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 1.5rem;
-  color: rgb(196, 126, 126);
-}
-
-:where(body:has(#titulo-login)) header p {
-  font-size: 0.95rem;
-  color: var(--cor-texto-mutado);
-  max-width: 320px;
-}
-
-:where(body:has(#titulo-login)) section {
-  width: 100%;
-  background-color: rgba(243, 243, 243, 0.835);
-  border: 1px solid rgb(238, 229, 217);
-  border-radius: 16px;
-  padding: 28px 24px;
-  box-shadow: var(--sombra-card);
-  text-align: left;
-}
-
-:where(body:has(#titulo-login)) section h2 {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 1.1rem;
-  text-align: center;
-  color: var(--cor-texto);
-  margin-bottom: 9px;
-}
-
-:where(body:has(#titulo-login)) section > p {
-  font-size: 0.85rem;
-  color: var(--cor-texto-mutado);
-  margin-bottom: 20px;
-}
-
-:where(body:has(#titulo-login)) form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-:where(body:has(#titulo-login)) form > div {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-:where(body:has(#titulo-login)) label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--cor-texto);
-}
-
-:where(body:has(#titulo-login)) input[type="email"],
-:where(body:has(#titulo-login)) input[type="password"] {
-  width: 100%;
-  padding: 10px 14px;
-  border: 1px solid rgb(238, 229, 217);
-  border-radius: 10px;
-  background-color: rgb(255, 253, 250);
-  font-size: 0.95rem;
-  color: var(--cor-texto);
-  transition: var(--transicao);
-}
-
-:where(body:has(#titulo-login)) input[type="email"]:focus,
-:where(body:has(#titulo-login)) input[type="password"]:focus {
-  outline: none;
-  border-color: rgb(248, 194, 194);
-  box-shadow: rgba(253, 172, 172, 0.2) 0px 0px 0px 3px;
-}
-
-:where(body:has(#titulo-login)) input::placeholder {
-  color: rgb(201, 188, 188);
-}
-
-:where(body:has(#titulo-login)) form > div:has(input[type="checkbox"]) {
-  flex-flow: wrap;
-  align-items: center;
-  gap: 8px;
-  justify-content: space-between;
-}
-
-:where(body:has(#titulo-login)) input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  accent-color: rgba(243, 243, 243, 0.835);
-}
-
-:where(body:has(#titulo-login)) form > div:has(input[type="checkbox"]) label {
-  font-weight: 400;
-  color: var(--cor-texto-mutado);
-  margin-right: auto;
-}
-
-:where(body:has(#titulo-login)) form > div:has(input[type="checkbox"]) a {
-  font-size: 0.82rem;
-  color: rgb(182, 67, 67);
-  text-decoration: none;
-}
-
-:where(body:has(#titulo-login)) form > div:has(input[type="checkbox"]) a:hover {
-  text-decoration: underline;
-}
-
-:where(body:has(#titulo-login)) button[type="submit"] {
-  margin-top: 4px;
-  padding: 12px;
-  border-width: medium;
-  border-style: none;
-  border-color: currentcolor;
-  border-image: none;
-  border-radius: 10px;
-  background-color: rgb(216, 143, 143);
-  color: rgb(255, 255, 255);
-  font-size: 0.95rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: var(--transicao);
-}
-
-:where(body:has(#titulo-login)) button[type="submit"]:hover {
-  background-color: rgb(221, 132, 132);
-}
-
-:where(body:has(#titulo-login)) main > div[aria-hidden="true"] {
-  font-size: 1.2rem;
-  color: var(--cor-rosa);
-}
-
-:where(body:has(#titulo-login)) main > p {
-  font-size: 0.9rem;
-  color: var(--cor-texto-mutado);
-}
-
-:where(body:has(#titulo-login)) main > p a {
-  color: rgb(182, 67, 67);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-:where(body:has(#titulo-login)) main > p a:hover {
-  text-decoration: underline;
-}
-
-:where(body:has(#titulo-login)) footer {
-  margin-top: 8px;
-}
-
-:where(body:has(#titulo-login)) footer p {
-  font-size: 0.75rem;
-  color: var(--cor-texto-mutado);
-}
-
-/* PROJETO LUNNA / PERFIL — isolado para não sobrescrever outras telas. */
-body:where(body:has(> .pagina)) {
-  --primary-color: #bd6680;
-  --primary-hover: #e66671;
-  --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-  --card-bg: #ffffff;
-  --text-color: #2d3748;
-  --text-muted: #718096;
-  --border-color: #edf2f7;
-  --accent-soft: #f3f0f7;
-  --radius-lg: 16px;
-  --radius-md: 10px;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 8px 24px rgba(123, 94, 167, 0.08);
-}
-
-:where(body:has(> .pagina)) * {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
-}
-
-body:where(body:has(> .pagina)) {
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-  background-color: whitesmoke;
-  color: var(--text-color);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
-:where(body:has(> .pagina)) .pagina {
-  width: 100%;
-  max-width: 900px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-:where(body:has(> .pagina)) .topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-}
-
-:where(body:has(> .pagina)) .saudacao {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-top: 4px;
-}
-
-:where(body:has(> .pagina)) .avatar-mini {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 0.7px solid var(--primary-color);
-}
-
-:where(body:has(> .pagina)) .avatar-mini img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-:where(body:has(> .pagina)) .barra-navegacao {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.9rem;
-  padding: 0px 24px;
-}
-
-:where(body:has(> .pagina)) .voltar {
-  color: rgb(199, 111, 111);
-  text-decoration: none;
-  font-weight: 500;
-  transition: opacity 0.2s;
-}
-
-:where(body:has(> .pagina)) .voltar:hover {
-  opacity: 0.6;
-}
-
-:where(body:has(> .pagina)) .breadcrumb {
-  color: var(--text-muted);
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-:where(body:has(> .pagina)) .breadcrumb .ponto {
-  font-size: 0.6rem;
-}
-
-:where(body:has(> .pagina)) .titulo-principal {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 1.9rem;
-  font-weight: 700;
-  color: rgb(196, 126, 126);
-}
-
-:where(body:has(> .pagina)) .conteudo {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-:where(body:has(> .pagina)) .card {
-  background: var(--card-bg);
-  border-radius: var(--radius-lg);
-  padding: 38px;
-  box-shadow: var(--shadow-md);
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-:where(body:has(> .pagina)) .perfil-topo,
-:where(body:has(> .pagina)) .historico-topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-:where(body:has(> .pagina)) .perfil-info {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-:where(body:has(> .pagina)) .label {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: rgb(118, 118, 122);
-  font-weight: 500;
-}
-
-:where(body:has(> .pagina)) .nome {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text-color);
-}
-
-:where(body:has(> .pagina)) .texto-suave {
-  font-size: 0.8rem;
-  color: rgba(173, 122, 122, 0.882);
-}
-
-:where(body:has(> .pagina)) .btn-editar,
-:where(body:has(> .pagina)) .adicionar {
-  background-color: rgb(216, 143, 143);
-  color: rgb(255, 255, 255);
-  border-width: medium;
-  border-style: none;
-  border-color: currentcolor;
-  border-image: none;
-  padding: 10px 18px;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-}
-
-:where(body:has(> .pagina)) .btn-editar:hover,
-:where(body:has(> .pagina)) .adicionar:hover {
-  background-color: rgb(221, 132, 132);
-}
-
-:where(body:has(> .pagina)) .btn-editar:active,
-:where(body:has(> .pagina)) .adicionar:active {
-  transform: scale(0.98);
-}
-
-:where(body:has(> .pagina)) .estatisticas {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 26px;
-  padding: 16px;
-  background: rgba(221, 197, 197, 0.882);
-  border-radius: 12px;
-}
-
-:where(body:has(> .pagina)) .estatistica {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--card-bg);
-  padding: 12px;
-  border-radius: 12px;
-  box-shadow: var(--shadow-sm);
-}
-
-:where(body:has(> .pagina)) .estatistica strong {
-  font-size: 1.9rem;
-  color: var(--primary-color);
-}
-
-:where(body:has(> .pagina)) .estatistica span {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-:where(body:has(> .pagina)) .sus {
-  background: rgba(221, 197, 197, 0.882);
-  padding: 16px;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+form>div:has(input[type="checkbox"]) label {
+    font-weight: 400;
+    color: var(--cor-texto-mutado);
+    margin-right: auto;
+}
 
-:where(body:has(> .pagina)) .sus-info {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  color: rgb(253, 252, 252);
-  font-weight: 500;
+form>div:has(input[type="checkbox"]) a {
+    font-size: 0.82rem;
+    color: #b64343;
+    text-decoration: none;
 }
-
-:where(body:has(> .pagina)) .numero-sus {
-  font-family: monospace;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--text-color);
+
+form>div:has(input[type="checkbox"]) a:hover {
+    text-decoration: underline;
 }
 
-:where(body:has(> .pagina)) .historico-titulo {
-  font-size: 0.8rem;
-  color: rgba(173, 122, 122, 0.882);
-  font-weight: 400;
+/* ---- Botão ---- */
+button[type="submit"] {
+    margin-top: 4px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #d88f8f;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transicao);
 }
 
-:where(body:has(> .pagina)) .exames {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+button[type="submit"]:hover {
+    background-color: #dd8484;
 }
 
-:where(body:has(> .pagina)) .exames .exame-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  transition: background-color 0.2s;
+/* ===== Elementos fora do card ===== */
+main>div[aria-hidden="true"] {
+    font-size: 1.2rem;
+    color: var(--cor-rosa);
 }
 
-:where(body:has(> .pagina)) .exames .exame-item:hover {
-  background-color: var(--accent-soft);
+main>p {
+    font-size: 0.9rem;
+    color: var(--cor-texto-mutado);
 }
 
-@media (max-width: 600px) {
-:where(body:has(> .pagina)) .topo,
-:where(body:has(> .pagina)) .perfil-topo,
-:where(body:has(> .pagina)) .historico-topo,
-:where(body:has(> .pagina)) .sus {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
+main>p a {
+    color: #b64343;
+    font-weight: 600;
+    text-decoration: none;
 }
 
-:where(body:has(> .pagina)) .btn-editar,
-:where(body:has(> .pagina)) .adicionar {
-  width: 100%;
+main>p a:hover {
+    text-decoration: underline;
 }
 
-:where(body:has(> .pagina)) .logo-area {
-  margin-bottom: 8px;
+/* ===== Footer ===== */
+footer {
+    margin-top: 8px;
 }
 
-:where(body:has(> .pagina)) .estatisticas {
-  grid-template-columns: repeat(2, 1fr);
+footer p {
+    font-size: 0.75rem;
+    color: var(--cor-texto-mutado);
 }
-}
 
-/* PROJETO LUNNA / DISPOSITIVO PG1 — isolado para não sobrescrever outras telas. */
-body:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) {
-  --cor-primaria: #d88f8f;
-  --cor-primaria-escura: #b85151;
-  --cor-rosa: #b64343;
-  --cor-rosa-suave: #fdf0e6;
-  --cor-dourado-borda: #d4a574;
-  --cor-fundo-pagina: #fff3e6;
-  --cor-fundo-card-alt: #fdf8ef;
-  --cor-texto: #4a2c2a;
-  --cor-texto-secundario: #6b5544;
-  --cor-texto-mutado: #7e5463;
-  --cor-sucesso: #48743f;
-  --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --fonte-titulos: Cambria, Georgia, serif;
-  --sombra-card: 0 4px 12px rgba(182, 67, 67, 0.08);
-  --sombra-card-hover: 0 8px 20px rgba(182, 67, 67, 0.15);
-  --transicao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+.app {
+    display: flex;
+    min-height: 100vh;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) * {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
+/* ===== Menu lateral ===== */
+.sidebar {
+    width: var(--sidebar-largura);
+    flex-shrink: 0;
+    background-color: var(--cor-fundo-card);
+    border-right: 1px solid var(--cor-dourado-borda);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
 }
 
-body:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) {
-  font-family: var(--fonte-principal);
-  color: var(--cor-texto);
-  background-color: rgb(255, 248, 241);
-  padding: 40px 20px;
-  min-height: 100vh;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--fonte-titulos);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #c47e7e;
+    padding: 0 8px;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .paginas {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  max-width: 1200px;
-  margin: 0px 0px 0px auto;
+/* Perfil*/
+.pagina {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .coluna-conexao,
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .coluna-dispositivos {
-  width: 100%;
-  border-radius: 20px;
-  padding: 35px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 16px;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .coluna-conexao {
-  max-width: 480px;
+.saudacao {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 4px;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .coluna-dispositivos {
-  max-width: 580px;
+.avatar-mini {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 0.7px solid var(--primary-color);
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .tituloDispositivo,
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .coluna-dispositivos h1 {
-  font-family: var(--fonte-titulos);
-  font-size: 1.8rem;
-  color: rgb(196, 126, 126);
-  text-align: center;
-  margin-bottom: 5px;
+.avatar-mini img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .coluna-dispositivos .subtitulo {
-  font-size: 0.95rem;
-  color: var(--cor-texto-secundario);
-  text-align: center;
-  margin-top: -10px;
+.barra-navegacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    padding: 0 24px;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .etapa {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background-color: var(--cor-rosa-suave);
-  border: 1px solid rgb(232, 195, 158);
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: var(--sombra-card);
-  transition: var(--transicao);
+.voltar {
+    color: #c76f6f;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .etapa:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--sombra-card-hover);
+.voltar:hover {
+    opacity: 0.6;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .etapa h3 {
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  background-color: var(--cor-primaria);
-  color: rgb(255, 255, 255);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  font-weight: 600;
+.breadcrumb {
+    color: var(--text-muted);
+    display: flex;
+    gap: 6px;
+    align-items: center;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .etapa img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  flex-shrink: 0;
+.breadcrumb .ponto {
+    font-size: 0.6rem;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .etapa p {
-  font-size: 0.95rem;
-  line-height: 1.4;
+.titulo-principal {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #c47e7e;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .cardStatus {
-  width: 100%;
-  min-height: 220px;
-  background-color: var(--cor-rosa-suave);
-  border: 1px solid rgb(232, 195, 158);
-  border-radius: 16px;
-  padding: 24px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 17px;
-  box-shadow: var(--sombra-card);
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .cardStatus img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 38px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .statusConectado {
-  font-size: 0.85rem;
-  color: var(--cor-rosa);
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+/* --- Perfil Topo --- */
+.perfil-topo,
+.historico-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .cardStatus h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
+.perfil-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .cardStatus p {
-  font-size: 0.9rem;
-  color: var(--cor-texto-secundario);
-  line-height: 1.4;
+.label {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: #76767a;
+    font-weight: 500;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .botoesStatus {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 8px;
-  width: 100%;
+.nome {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-color);
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) button {
-  position: relative;
-  overflow: hidden;
-  color: rgb(255, 255, 255);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 14px 28px;
-  cursor: pointer;
-  background-color: var(--cor-primaria);
-  user-select: none;
-  touch-action: manipulation;
-  border-radius: 25px;
-  border-width: medium;
-  border-style: none;
-  border-color: currentcolor;
-  border-image: none;
-  box-shadow: rgba(211, 78, 78, 0.3) 0px 4px 12px;
-  transition: var(--transicao);
+.texto-suave {
+    font-size: 0.80rem;
+    color: #ad7a7ae1;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) button:hover {
-  box-shadow: rgba(211, 78, 78, 0.4) 0px 6px 16px;
+/* Botões */
+.btn-editar,
+.adicionar {
+    background-color: #d88f8f;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) button span:first-child {
-  position: relative;
-  transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
-  z-index: 10;
+.btn-editar:hover,
+.adicionar:hover {
+    background-color: #dd8484;
+    ;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) button span:last-child {
-  color: var(--cor-primaria);
-  display: block;
-  position: absolute;
-  bottom: 0px;
-  transition: 500ms cubic-bezier(0.48, 0, 0.12, 1);
-  z-index: 100;
-  opacity: 0;
-  top: 50%;
-  left: 50%;
-  transform: translateY(225%) translateX(-50%);
-  white-space: nowrap;
+.btn-editar:active,
+.adicionar:active {
+    transform: scale(0.98);
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) button::after {
-  content: "";
-  position: absolute;
-  bottom: -50%;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(255, 255, 255);
-  transform-origin: center bottom;
-  transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
-  transform: skewY(9.3deg) scaleY(0);
-  z-index: 50;
+/* --- Estatísticas --- */
+.estatisticas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 26px;
+    padding: 16px;
+    background: #ddc5c5e1;
+    border-radius: 12px;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) button:hover::after {
-  transform: skewY(9.3deg) scaleY(2);
+.estatistica {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) button:hover span:last-child {
-  transform: translateX(-50%) translateY(-50%);
-  opacity: 1;
-  transition: 900ms cubic-bezier(0.48, 0, 0.12, 1);
+.estatistica strong {
+    font-size: 1.9rem;
+    color: var(--primary-color);
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .cardDispositivo {
-  width: 100%;
-  background-color: var(--cor-fundo-card-alt);
-  border: 1px solid var(--cor-dourado-borda);
-  border-radius: 16px;
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  box-shadow: var(--sombra-card);
-  transition: var(--transicao);
+.estatistica span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .cardDispositivo:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--sombra-card-hover);
-  border-color: var(--cor-rosa);
+/* --- Cartão do SUS --- */
+.sus {
+    background: #ddc5c5e1;
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .iconeDispositivo {
-  width: 56px;
-  height: 56px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(253, 172, 172, 0.12);
-  border-radius: 10px;
-  transition: var(--transicao);
+.sus-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: rgb(253, 252, 252);
+    font-weight: 500;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .cardDispositivo:hover .iconeDispositivo {
-  background-color: rgba(253, 172, 172, 0.2);
+.numero-sus {
+    font-family: monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-color);
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .cardDispositivo img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  flex-shrink: 0;
+/* --- Histórico e Exames --- */
+.historico-titulo {
+    font-size: 0.80rem;
+    color: #ad7a7ae1;
+    font-weight: 400;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .infoPrincipal {
-  flex-shrink: 0;
-  min-width: 130px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.exames {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .cardDispositivo h3 {
-  font-size: 1.05rem;
-  color: var(--cor-texto);
-  font-weight: 700;
-  line-height: 1.2;
+/* Estilo para itens inseridos via JS em #listaExames (exemplo) */
+.exames .exame-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: background-color 0.2s;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .statusOnline {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  color: var(--cor-sucesso);
-  font-weight: 700;
+.exames .exame-item:hover {
+    background-color: var(--accent-soft);
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .statusOnline::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--cor-sucesso);
-  box-shadow: rgba(72, 199, 116, 0.2) 0px 0px 0px 3px;
-}
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .infoDispositivo {
-  flex: 1 1 0%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  padding: 4px 1px;
-  text-align: center;
+.app {
+    display: flex;
+    min-height: 100vh;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .infoDispositivo .valor {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--cor-rosa);
+/* ===== Menu lateral ===== */
+.sidebar {
+    width: var(--sidebar-largura);
+    flex-shrink: 0;
+    background-color: var(--cor-fundo-card);
+    border-right: 1px solid var(--cor-dourado-borda);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .infoDispositivo .rotulo {
-  font-size: 0.78rem;
-  color: var(--cor-texto-mutado);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--fonte-titulos);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #c47e7e;
+    padding: 0 8px;
 }
 
-@media (max-width: 640px) {
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .cardDispositivo {
-  flex-wrap: wrap;
-  padding: 16px;
-  gap: 12px;
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .infoDispositivo {
-  border-left-width: medium;
-  border-left-style: none;
-  border-left-color: currentcolor;
-  border-top: 1px solid rgb(240, 221, 192);
-  padding: 10px 0px 0px;
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-around;
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--cor-texto-secundario);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transicao);
 }
-}
 
-@media (max-width: 640px) {
-body:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) {
-  padding: 20px 12px;
+/* Estilo para os ícones do Google Fonts */
+.material-symbols-outlined {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    user-select: none;
+    transition: var(--transicao);
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .paginas {
-  margin: 0px;
+.menu-item:hover {
+    background-color: #f7f2eb;
+    color: #d89797;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .cardDispositivo {
-  flex-direction: column;
-  text-align: center;
-  padding: 20px;
+/* Item Ativo (Destaque) */
+.menu-item.active {
+    background-color: var(--cor-primaria);
+    color: #ffffff;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .infoPrincipal {
-  min-width: auto;
+.menu-item.active .icon {
+    color: #ffffff;
 }
 
-:where(body:has(> main > section > img[alt="Imagem de bluetooth"])) .infoDispositivo {
-  border-left-width: medium;
-  border-left-style: none;
-  border-left-color: currentcolor;
-  border-top: 1px solid rgb(240, 221, 192);
-  padding-left: 0px;
-  padding-top: 12px;
-  width: 100%;
-}
+/* ===== Conteúdo principal ===== */
+.main-content {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
-
-/* Adaptações ao HTML da principal, sem mudar marcação ou JavaScript. */
-body:has(#titulo-login) { line-height: normal; }
-body:has(> .pagina) { line-height: normal; }
-.pagina .logo { color: #c47e7e; font-family: var(--fonte-titulos); font-size: 1.4rem; }
-.logo-texto-pequeno { font-family: var(--fonte-principal); font-size: .8rem; }
-.pagina .titulo-area { display: grid; gap: 12px; }
-.pagina .subtitulo, .pagina .descricao { color: var(--text-muted); }
-.pagina .avatar { display: grid; place-items: center; width: 64px; height: 64px; flex-shrink: 0; border-radius: 50%; background: var(--accent-soft); color: var(--primary-color); font-weight: 700; font-size: 1.25rem; }
-.pagina .avatar-mini:empty { background: var(--accent-soft); }
-.pagina .numero-sus, .pagina .nome { overflow-wrap: anywhere; }
-#modalPerfil { margin: auto; width: min(460px, calc(100% - 32px)); max-height: calc(100dvh - 32px); padding: 28px; overflow-y: auto; border: 1px solid #eee5d9; border-radius: 16px; background: #fff; color: var(--text-color); }
-#modalPerfil::backdrop { background: rgb(45 55 72 / 45%); }
-#formPerfil { display: grid; gap: 16px; }
-#formPerfil label { display: block; margin-bottom: 6px; }
-#formPerfil input { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; }
-#ajudaAltura { font-size: .85rem; color: var(--text-muted); }
-.acoes-formulario { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 12px; }
-.acoes-formulario button { padding: 10px 16px; border: 1px solid #d88f8f; border-radius: 10px; background: #fff; color: #b64343; }
-.acoes-formulario button[type="submit"] { background: #d88f8f; color: #fff; }
-
-/* Identifica a tela pelo elemento que já existe apenas no dispositivo. */
-body:has(> main > section > img[alt="Imagem de bluetooth"]) { line-height: normal; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) > main { width: 100%; max-width: 580px; margin: auto; display: flex; flex-direction: column; gap: 24px; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) > main > h1 { font-family: var(--fonte-titulos); font-size: 1.8rem; color: #c47e7e; text-align: center; margin-bottom: 5px; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) > main > p { text-align: center; color: var(--cor-texto-secundario); font-size: .95rem; line-height: 1.4; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:first-of-type { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 17px 12px; width: 100%; min-height: 220px; background: var(--cor-rosa-suave); border: 1px solid #e8c39e; border-radius: 16px; padding: 24px; text-align: center; box-shadow: var(--sombra-card); }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:first-of-type > :is(p,h2) { width: 100%; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:first-of-type > p { font-size: .9rem; color: var(--cor-texto-secundario); line-height: 1.4; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:first-of-type > p:first-of-type { font-size: .85rem; color: var(--cor-rosa); font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:first-of-type > h2 { font-size: 1.25rem; font-weight: 600; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:first-of-type > img { width: 50px; height: 50px; object-fit: contain; }
-/* A animação original exige dois spans; os botões daqui contêm texto simples. */
-body:has(> main > section > img[alt="Imagem de bluetooth"]) button:not(:has(span))::after { content: none; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) button:not(:has(span)):hover { background-color: #c47e7e; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div { display: grid; grid-template-columns: 40px repeat(3,minmax(0,1fr)); align-items: center; gap: 8px 16px; padding: 18px 24px; background: var(--cor-fundo-card-alt); border: 1px solid var(--cor-dourado-borda); border-radius: 16px; box-shadow: var(--sombra-card); transition: var(--transicao); }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div:hover { transform: translateY(-2px); box-shadow: var(--sombra-card-hover); border-color: var(--cor-rosa); }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > img { grid-row: 1 / 3; width: 40px; height: 40px; object-fit: contain; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > h3 { grid-column: 2 / -1; font-size: 1.05rem; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > p { grid-column: 2 / -1; display: flex; align-items: center; gap: 6px; color: var(--cor-sucesso); font-size: .85rem; font-weight: 700; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > p::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--cor-sucesso); box-shadow: 0 0 0 3px rgb(72 199 116 / 20%); }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > hr { grid-column: 1 / -1; border: 0; border-top: 1px solid var(--cor-dourado-borda); margin: 4px 0; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > div { text-align: center; grid-row: 4; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > div:first-of-type { grid-column: 2; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > div:nth-of-type(2) { grid-column: 3; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > div:nth-of-type(3) { grid-column: 4; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > div > p:first-child { color: var(--cor-rosa); font-size: 1rem; font-weight: 500; }
-body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > div > p:last-child { color: var(--cor-texto-mutado); font-size: .78rem; margin-top: 4px; line-height: 1.4; }
