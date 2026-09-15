@@ -1,0 +1,969 @@
+
+/* =========================================================
+   CONFIGURAÇÕES GERAIS
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fundo: #faf8fc;
+    --branco: #ffffff;
+
+    --roxo: #7c5ac7;
+    --roxo-escuro: #51358c;
+    --roxo-claro: #eee8fa;
+
+    --rosa: #e9a4b8;
+    --rosa-claro: #f9e8ee;
+
+    --verde: #a9c7a0;
+    --verde-claro: #e9f2e7;
+
+    --amarelo: #f1d98b;
+    --amarelo-claro: #faf3d8;
+
+    --texto: #302b38;
+    --texto-secundario: #77717e;
+    --borda: #e8e2ed;
+
+    --sombra: 0 8px 25px rgba(55, 35, 75, 0.08);
+
+    --raio: 20px;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: var(--fundo);
+    color: var(--texto);
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    width: 100%;
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 15px 5%;
+
+    background: var(--branco);
+
+    border-bottom: 1px solid var(--borda);
+}
+
+.logo {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+
+    object-fit: contain;
+}
+
+#dataAtualLogo {
+    font-size: 14px;
+    color: var(--texto-secundario);
+}
+
+#cumprimentoUser {
+    margin-left: auto;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    color: var(--roxo-escuro);
+}
+
+
+/* =========================================================
+   INTRODUÇÃO
+========================================================= */
+
+body > h3,
+body > h2,
+body > p {
+    width: min(900px, 90%);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body > h3 {
+    margin-top: 45px;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    color: var(--roxo);
+}
+
+body > h2 {
+    margin-top: 8px;
+
+    font-size: clamp(26px, 4vw, 40px);
+    line-height: 1.15;
+
+    color: var(--texto);
+}
+
+body > p {
+    margin-top: 15px;
+    margin-bottom: 30px;
+
+    max-width: 650px;
+    margin-left: max(5%, calc((100% - 900px) / 2));
+
+    font-size: 16px;
+    color: var(--texto-secundario);
+}
+
+
+/* =========================================================
+   CARD DA FASE ATUAL
+========================================================= */
+
+#faseAtual {
+    width: min(900px, 90%);
+    margin: 0 auto 35px;
+
+    position: relative;
+
+    padding: 28px;
+
+    background: var(--roxo-claro);
+
+    border: 1px solid #e2d8f3;
+    border-radius: var(--raio);
+
+    box-shadow: var(--sombra);
+}
+
+#faseAtual h3 {
+    margin-bottom: 5px;
+
+    font-size: 12px;
+    letter-spacing: 1.5px;
+
+    color: var(--roxo-escuro);
+}
+
+#tituloFaseAtual {
+    display: block;
+
+    margin-bottom: 20px;
+
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+
+    color: var(--texto);
+}
+
+#maisFase {
+    padding: 11px 18px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: var(--roxo);
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+#maisFase:hover {
+    background: var(--roxo-escuro);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DIA DO CICLO
+========================================================= */
+
+#diaCiclo {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 100px;
+    height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--branco);
+
+    box-shadow: 0 5px 20px rgba(80, 50, 100, 0.08);
+}
+
+#diaCiclo img {
+    display: none;
+}
+
+#diaCiclo span {
+    font-size: 27px;
+    font-weight: 700;
+
+    color: var(--roxo-escuro);
+}
+
+#diaCiclo p {
+    margin: 0;
+
+    font-size: 10px;
+    text-transform: uppercase;
+
+    color: var(--texto-secundario);
+}
+
+
+/* =========================================================
+   CALENDÁRIO
+========================================================= */
+
+.calendar-card {
+    width: min(900px, 90%);
+
+    margin: 0 auto 35px;
+
+    padding: clamp(18px, 4vw, 32px);
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+
+    box-shadow: var(--sombra);
+}
+
+
+/* Cabeçalho */
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.calendar-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: clamp(20px, 3vw, 28px);
+}
+
+.calendar-header h1 i {
+    width: 24px;
+    height: 24px;
+
+    color: var(--roxo);
+}
+
+
+/* Navegação */
+
+.navigation {
+    display: flex;
+    gap: 8px;
+}
+
+.navigation button {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+
+    background: var(--branco);
+
+    color: var(--texto);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.navigation button:hover {
+    background: var(--roxo-claro);
+    color: var(--roxo-escuro);
+}
+
+.navigation svg {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* =========================================================
+   DIAS DA SEMANA
+========================================================= */
+
+.weekdays {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    margin-bottom: 8px;
+}
+
+.weekdays span {
+    text-align: center;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    color: var(--texto-secundario);
+}
+
+
+/* =========================================================
+   GRID DO CALENDÁRIO
+========================================================= */
+
+.calendar {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 5px;
+}
+
+
+/*
+   Os elementos criados pelo JavaScript
+   podem receber esta classe.
+*/
+
+.calendar > div,
+.calendar > button {
+    min-height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 12px;
+
+    background: transparent;
+
+    font-size: 14px;
+    color: var(--texto);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.calendar > div:hover,
+.calendar > button:hover {
+    background: var(--roxo-claro);
+}
+
+
+/* =========================================================
+   LEGENDA
+========================================================= */
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 18px 25px;
+
+    margin-top: 25px;
+    padding-top: 20px;
+
+    border-top: 1px solid var(--borda);
+}
+
+.legend > div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    font-size: 13px;
+    color: var(--texto-secundario);
+}
+
+.legend i {
+    width: 15px;
+    height: 15px;
+}
+
+.legend > div:nth-child(1) i {
+    color: var(--rosa);
+}
+
+.legend > div:nth-child(2) i {
+    color: var(--verde);
+}
+
+.legend > div:nth-child(3) i {
+    color: var(--amarelo);
+}
+
+
+/* Bolinhas da legenda */
+
+.legend span {
+    width: 10px;
+    height: 10px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+}
+
+.menstruacao {
+    background: var(--rosa);
+}
+
+.fertil {
+    background: var(--verde);
+}
+
+.ovulacao {
+    background: var(--amarelo);
+}
+
+.hoje {
+    background: var(--roxo);
+}
+
+
+/* =========================================================
+   REGISTRO EMOCIONAL
+========================================================= */
+
+.emocional {
+    width: min(900px, 90%);
+
+    margin: 0 auto 60px;
+
+    padding: clamp(20px, 4vw, 32px);
+
+    background: var(--branco);
+
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+
+    box-shadow: var(--sombra);
+}
+
+.emocional h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+    font-size: 12px;
+    letter-spacing: 1.5px;
+
+    color: var(--roxo);
+}
+
+.emocional h4 svg {
+    width: 17px;
+    height: 17px;
+}
+
+.emocional h2 {
+    margin-bottom: 25px;
+
+    font-size: clamp(20px, 3vw, 27px);
+}
+
+
+/* =========================================================
+   HUMORES
+========================================================= */
+
+.humores {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+}
+
+.humor {
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border: 1px solid var(--borda);
+    border-radius: 15px;
+
+    background: var(--branco);
+
+    color: var(--texto);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.humor:hover {
+    border-color: var(--roxo);
+    background: var(--roxo-claro);
+
+    transform: translateY(-2px);
+}
+
+.humorIcon,
+.humor-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--roxo-claro);
+
+    color: var(--roxo);
+}
+
+.humorIcon svg,
+.humor-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+.humor > span:last-child {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CAMPO DE OBSERVAÇÃO
+========================================================= */
+
+.emocional label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#registroEmocional {
+    width: 100%;
+    min-height: 120px;
+
+    padding: 15px;
+
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+
+    background: #fcfbfd;
+
+    color: var(--texto);
+
+    font-family: inherit;
+    font-size: 14px;
+
+    resize: vertical;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+#registroEmocional:focus {
+    border-color: var(--roxo);
+
+    box-shadow: 0 0 0 3px rgba(124, 90, 199, 0.12);
+}
+
+
+/* =========================================================
+   BOTÃO SALVAR
+========================================================= */
+
+#salvarRegistro {
+    width: 100%;
+
+    margin-top: 15px;
+    padding: 14px 20px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: var(--roxo);
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+#salvarRegistro:hover {
+    background: var(--roxo-escuro);
+}
+
+
+/* =========================================================
+   TABLETS
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .header {
+        padding: 12px 4%;
+    }
+
+    body > h3,
+    body > h2,
+    body > p {
+        width: 90%;
+    }
+
+    body > h3 {
+        margin-top: 30px;
+    }
+
+    #faseAtual {
+        padding: 24px;
+    }
+
+    #diaCiclo {
+        position: static;
+
+        width: 80px;
+        height: 80px;
+
+        margin-top: 20px;
+    }
+
+    #faseAtual {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .calendar > div,
+    .calendar > button {
+        min-height: 48px;
+    }
+
+    .humores {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   CELULARES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .header {
+        min-height: 60px;
+    }
+
+    .logo {
+        gap: 10px;
+    }
+
+    .logo img {
+        width: 35px;
+        height: 35px;
+    }
+
+    #dataAtualLogo {
+        font-size: 11px;
+    }
+
+    #cumprimentoUser {
+        font-size: 12px;
+    }
+
+
+    /* Introdução */
+
+    body > h3 {
+        margin-top: 25px;
+
+        font-size: 10px;
+    }
+
+    body > h2 {
+        font-size: 26px;
+    }
+
+    body > p {
+        font-size: 14px;
+    }
+
+
+    /* Fase */
+
+    #faseAtual {
+        padding: 20px;
+
+        border-radius: 16px;
+    }
+
+    #tituloFaseAtual {
+        font-size: 23px;
+    }
+
+    #maisFase {
+        width: 100%;
+    }
+
+    #diaCiclo {
+        width: 70px;
+        height: 70px;
+
+        margin-top: 18px;
+    }
+
+    #diaCiclo span {
+        font-size: 21px;
+    }
+
+
+    /* Calendário */
+
+    .calendar-card {
+        width: 94%;
+
+        padding: 16px;
+
+        border-radius: 16px;
+    }
+
+    .calendar-header {
+        margin-bottom: 18px;
+    }
+
+    .calendar-header h1 {
+        font-size: 20px;
+    }
+
+    .calendar-header h1 i {
+        width: 19px;
+        height: 19px;
+    }
+
+    .navigation button {
+        width: 34px;
+        height: 34px;
+    }
+
+    .weekdays span {
+        font-size: 9px;
+    }
+
+    .calendar {
+        gap: 2px;
+    }
+
+    .calendar > div,
+    .calendar > button {
+        min-height: 42px;
+
+        border-radius: 8px;
+
+        font-size: 12px;
+    }
+
+
+    /* Legenda */
+
+    .legend {
+        gap: 12px;
+
+        margin-top: 18px;
+    }
+
+    .legend > div {
+        font-size: 11px;
+    }
+
+
+    /* Registro emocional */
+
+    .emocional {
+        width: 94%;
+
+        padding: 20px 16px;
+
+        border-radius: 16px;
+    }
+
+    .emocional h2 {
+        font-size: 21px;
+    }
+
+    .humores {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 8px;
+    }
+
+    .humor {
+        min-height: 90px;
+    }
+
+    .humorIcon,
+    .humor-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .humor > span:last-child {
+        font-size: 12px;
+    }
+
+    #registroEmocional {
+        min-height: 110px;
+
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================================
+   TELAS MUITO PEQUENAS
+========================================================= */
+
+@media (max-width: 350px) {
+
+    .calendar-card {
+        padding: 12px;
+    }
+
+    .calendar > div,
+    .calendar > button {
+        min-height: 36px;
+
+        font-size: 11px;
+    }
+
+    .weekdays span {
+        font-size: 8px;
+    }
+
+    .humores {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE
+========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(124, 90, 199, 0.35);
+    outline-offset: 2px;
+}
+
+
+/* Reduz animações para usuários que preferem menos movimento */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+
+.farmacias {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.farmacias-header span {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.farmacias-header h2 {
+    margin: 8px 0;
+}
+
+.farmacias-header p {
+    margin-bottom: 20px;
+}
+
+#map {
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+}

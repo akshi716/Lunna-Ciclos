@@ -2,10 +2,14 @@
 <html lang="pt-br">
 
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Início | Lunna</title>
+    <link rel="stylesheet" href="/Style/style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link  rel="stylesheet" 
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 </head>
 
@@ -322,39 +326,40 @@
 
         </div>
 
-        <div class="farmacias">
-
-            <div class="mapa-farmacias">
-
-                <img src="../img/mapa.webp" alt="Mapa com farmácias próximas em Brasília">
-
-                <span class="localizacao">
-                    Brasília - DF
-                </span>
-
-            </div>
-
-            <div class="textoFarmacias">
-
-                <span class="etiqueta">
-                    ⌖ Por perto
-                </span>
-
-                <h2>
-                    Farmácias próximas
-                </h2>
-
+        <section class="farmacias">
+            <div class="farmacias-header">
+                <span>ENCONTRE UMA FARMÁCIA</span>
+                <h2>Farmácias próximas</h2>
                 <p>
-                    Encontre cuidados e itens essenciais
-                    no seu caminho.
+                    Encontre farmácias perto de você.
                 </p>
-
-                <a href="#" class="botaoFarmacias">
-                    Encontrar por perto
-                    <span>›</span>
-                </a>
-
             </div>
+
+            <div id="map"></div>
+        </section>
+
+
+        <div class="textoFarmacias">
+
+            <span class="etiqueta">
+                ⌖ Por perto
+            </span>
+
+            <h2>
+                Farmácias próximas
+            </h2>
+
+            <p>
+                Encontre cuidados e itens essenciais
+                no seu caminho.
+            </p>
+
+            <a href="#" class="botaoFarmacias">
+                Encontrar por perto
+                <span>›</span>
+            </a>
+
+        </div>
 
         </div>
 
@@ -393,6 +398,8 @@
         </div>
 
     </section>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script src="/Script/index.js"></script>
     <script>

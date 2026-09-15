@@ -147,3 +147,6 @@ nextMonthButton.addEventListener("click", () => {
 
 // Cria o calendário assim que a página é carregada
 generateCalendar();
+
+
+

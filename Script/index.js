@@ -147,3 +147,13 @@ nextMonthButton.addEventListener("click", () => {
 
 // Cria o calendário assim que a página é carregada
 generateCalendar();
+
+
+const map = L.map("map").setView([-15.7942, -47.8822], 13);
+
+L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+        attribution: '&copy; OpenStreetMap contributors'
+    }
+).addTo(map);
