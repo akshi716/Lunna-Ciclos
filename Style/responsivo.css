@@ -1,69 +1,39 @@
-/* ---- Responsivo ---- */
-@media (max-width: 640px) {
-    .cardDispositivo {
-        flex-wrap: wrap;
-        padding: 16px;
-        gap: 12px;
-    }
-
-    .infoDispositivo {
-        border-left: none;
-        border-top: 1px solid #f0ddc0;
-        padding: 10px 0 0;
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-around;
-    }
+/* Complementos responsivos para o HTML da principal.
+   Os breakpoints originais também acompanham os estilos de cada página. */
+@media (max-width: 900px) {
+  .inicio, .secaoSaude { grid-template-columns: minmax(0, 1fr); }
+  .listaEtapas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-
-/* ===== Responsividade ===== */
-@media (max-width: 640px) {
-    body {
-        padding: 20px 12px;
-    }
-
-    .paginas {
-        margin: 0; /* Em celulares, centraliza naturalmente */
-    }
-
-    .cardDispositivo {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-    }
-
-    .infoPrincipal {
-        min-width: auto;
-    }
-
-    .infoDispositivo {
-        border-left: none;
-        border-top: 1px solid #f0ddc0;
-        padding-left: 0;
-        padding-top: 12px;
-        width: 100%;
-    }
-}
-
-/* ==========================================================================
-   7. RESPONSIVIDADE (MOBILE)
-   ========================================================================== */
 @media (max-width: 600px) {
-  .topo, .perfil-topo, .historico-topo, .sus {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .btn-editar, .adicionar {
-    width: 100%;
-  }
-
-  .logo-area {
-    margin-bottom: 8px;
-  }
-
-  .estatisticas {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  body:has(.calendar-card) { padding: 20px 12px; }
+  .calendar-card, .emocional, .secaoDispositivo, .resumoSaude, .farmacias, .secaoSeguranca, #faseAtual { padding: 18px 14px; }
+  .calendar-header { align-items: flex-start; }
+  .calendar-header h1 { font-size: 1.25rem; }
+  .calendar, .weekdays { gap: 3px; }
+  .calendar-day { min-height: 38px; }
+  .humores { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .listaEtapas { grid-template-columns: minmax(0,1fr); }
+  .etapaConexao { display: flex; gap: 12px; align-items: center; }
+  .icone-etapa { flex-shrink: 0; margin-bottom: 0; }
+  .secaoSeguranca { flex-direction: column; align-items: flex-start; }
+  body:has(> .pagina) { padding: 16px 12px; }
+  .pagina .card { padding: 20px 16px; }
+  .pagina .estatisticas { gap: 12px; padding: 12px; grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .pagina .estatistica { min-width: 0; padding: 12px 4px; }
+  .pagina .estatistica strong { font-size: 1.6rem; }
+  .pagina .barra-navegacao { flex-wrap: wrap; gap: 12px; padding: 0; }
+  .pagina .perfil-info { min-width: 0; gap: 12px; }
+  .pagina .perfil-info > div:last-child { min-width: 0; }
+  .pagina .sus { gap: 12px; }
+  body:has(#titulo-login) section { padding: 24px 18px; }
+  body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px 8px; padding: 20px 14px; }
+  body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > img { grid-row: 1; grid-column: 1 / -1; justify-self: center; }
+  body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > :is(h3,p) { grid-column: 1 / -1; text-align: center; justify-content: center; }
+  body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > div { grid-row: auto; min-width: 0; overflow-wrap: anywhere; }
+  body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > div:first-of-type { grid-column: 1; }
+  body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > div:nth-of-type(2) { grid-column: 2; }
+  body:has(> main > section > img[alt="Imagem de bluetooth"]) main > section:not(:first-of-type) > div > div:nth-of-type(3) { grid-column: 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }

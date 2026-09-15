@@ -1,0 +1,61 @@
+/* Navegação compartilhada. A lateral não altera o tema das páginas. */
+body.com-menu.com-menu {
+    --largura-menu: 220px;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 32px 32px 32px calc(var(--largura-menu) + 32px);
+}
+.sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 100;
+    width: var(--largura-menu, 220px);
+    height: 100dvh;
+    overflow-y: auto;
+    padding: 30px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background: #fff;
+    border-right: 1px solid #f0ddc0;
+    color: #6b5544;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.5;
+}
+.sidebar-logo { display: flex; justify-content: center; align-items: center; text-decoration: none; color: #c47e7e; }
+.sidebar-logo img { display: block; width: 144px; height: 44px; }
+.sidebar .menu { display: flex; flex-direction: column; gap: 6px; }
+.sidebar .menu-item { display: flex; align-items: center; gap: 12px; min-height: 46px; padding: 12px; border-radius: 12px; text-decoration: none; color: #6b5544; font-size: .95rem; font-weight: 500; transition: background-color .2s, color .2s; }
+.sidebar .menu-item:hover { background: #f7f2eb; color: #b64343; }
+.sidebar .menu-item.active { background: #d88f8f; color: #fff; }
+.sidebar .icon { width: 22px; height: 22px; flex-shrink: 0; }
+.sidebar .menu-item:last-child { margin-top: 18px; }
+.header > .logo > a > img { width: 144px; height: 44px; display: block; }
+.pagina .avatar img { width: 100%; height: 100%; padding: 10px; object-fit: contain; }
+.pagina .avatar-mini img { padding: 5px; object-fit: contain; }
+#diaCiclo > img { display: block; width: 64px; height: 64px; margin: auto; }
+.mapa-farmacias > img { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; }
+.icone-etapa img { width: 28px; height: 28px; object-fit: contain; }
+.icone-etapa:has(img) { background: #fffaf3; }
+.calendar-header .link-acao, .link-acao { display: inline-flex; align-items: center; justify-content: center; padding: 10px 14px; border-radius: 10px; background: #d88f8f; color: #fff; text-decoration: none; font-size: .95rem; }
+.link-acao:hover { background: #c47e7e; }
+.textoDispositivo .link-acao { margin-top: 16px; }
+.pagina-chat { max-width: 800px; margin: 40px auto; padding: 32px; display: grid; justify-items: start; gap: 24px; background: #fff; border: 1px solid #eee5d9; border-radius: 20px; }
+.recurso-indisponivel { font-size: .8rem; color: #8c7f7f; }
+body:has(#titulo-login) .aviso-login { margin: 16px 0 0; font-size: .85rem; color: #6b5544; line-height: 1.5; }
+@media (max-width: 1000px) {
+    body.com-menu .inicio, body.com-menu .secaoSaude { grid-template-columns: minmax(0, 1fr); }
+    body.com-menu .listaEtapas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+    body.com-menu.com-menu { --largura-menu: 64px; padding: 20px 12px 20px calc(var(--largura-menu) + 12px); }
+    .sidebar { padding: 20px 8px; gap: 24px; }
+    .sidebar-logo img { display: none; }
+    .sidebar-logo::after { content: '✦'; font-size: 30px; line-height: 44px; }
+    .sidebar .menu-item { justify-content: center; padding: 12px 8px; }
+    .sidebar .menu-item > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    body.com-menu .listaEtapas { grid-template-columns: minmax(0,1fr); }
+    .pagina-chat { padding: 20px 16px; margin: 0; }
+    .sidebar .menu-item:last-child { margin-top: 8px; }
+}

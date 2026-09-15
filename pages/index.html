@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Início | Lunna</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" async onload="window.lucide?.createIcons()"></script>
     <link rel="stylesheet" href="../Style/style.css">
 
 
 
 
     <link rel="stylesheet" href="../Style/responsivo.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
     <link rel="stylesheet" href="../Style/menu.css">
     <script src="../Script/menu.js" defer></script>
 </head>
@@ -23,7 +22,7 @@
 
         <div class="logo">
             <a href="index.html">
-                <img src="#" alt="logo">
+                <img src="../img/logo.svg" alt="Lunna" width="144" height="44">
             </a>
             <span id="dataAtualLogo"></span>
 
@@ -43,9 +42,7 @@
                         </h1>
                     </div>
 
-                    <button type="button">
-                        Ler o ciclo
-                    </button>
+                    <a class="link-acao" href="calendario.html">Ler o ciclo</a>
 
                     <div class="navigation">
 
@@ -53,12 +50,12 @@
                      funcionamento se mantenha caso seja usado a forma de
                      submit do formulário -->
 
-                        <button id="previousMonth" type="button"><i data-lucide="chevron-left"></i></button>
+                        <button id="previousMonth" type="button" aria-label="Mês anterior"><i data-lucide="chevron-left"></i></button>
 
                         <span id="month"></span>
                         <span id="year"></span>
 
-                        <button id="nextMonth" type="button"><i data-lucide="chevron-right"></i></button>
+                        <button id="nextMonth" type="button" aria-label="Próximo mês"><i data-lucide="chevron-right"></i></button>
                     </div>
 
                 </div>
@@ -178,6 +175,7 @@
                     Configure seu dispositivo em poucos passos
                     e deixe seus sinais mais próximos de você.
                 </p>
+                <a class="link-acao" href="dispositivo.html">Ver dispositivos</a>
 
             </div>
 
@@ -187,9 +185,7 @@
 
             <div class="etapaConexao">
 
-                <div class="icone-etapa">
-                    ✓
-                </div>
+                <div class="icone-etapa"><img src="../img/bluetooth.jpg.svg" alt="" width="28" height="28"></div>
 
                 <div class="textoEtapa">
                     <h3>Ative o Bluetooth</h3>
@@ -200,9 +196,7 @@
 
             <div class="etapaConexao">
 
-                <div class="icone-etapa">
-                    ✓
-                </div>
+                <div class="icone-etapa"><img src="../img/celular.jpg.svg" alt="" width="28" height="28"></div>
 
                 <div class="textoEtapa">
                     <h3>Abra o aplicativo</h3>
@@ -213,9 +207,7 @@
 
             <div class="etapaConexao">
 
-                <div class="icone-etapa">
-                    ✓
-                </div>
+                <div class="icone-etapa"><img src="../img/qrcode.jpg.svg" alt="" width="28" height="28"></div>
 
                 <div class="textoEtapa">
                     <h3>Escaneie o código</h3>
@@ -226,9 +218,7 @@
 
             <div class="etapaConexao">
 
-                <div class="icone-etapa">
-                    ✓
-                </div>
+                <div class="icone-etapa"><img src="../img/pareamento.jpg.svg" alt="" width="28" height="28"></div>
 
                 <div class="textoEtapa">
                     <h3>Aguarde o pareamento</h3>
@@ -239,10 +229,7 @@
 
             <div class="etapaConexao etapaFinal">
 
-                <div class="icone-etapa">
-                    <span>5</span>
-                    <span>✓</span>
-                </div>
+                <div class="icone-etapa"><img src="../img/confirmacao.jpg.svg" alt="" width="28" height="28"></div>
 
                 <div class="textoEtapa">
                     <h3>Conexão concluída</h3>
@@ -272,7 +259,7 @@
             <div class="lista-saude">
 
                 <!-- EXAMES -->
-                <a href="exames.html" class="card-saude">
+                <a href="perfil.html#tituloExames" class="card-saude">
 
                     <div class="texto-card">
 
@@ -321,7 +308,7 @@
 
             <div class="mapa-farmacias">
 
-                <img src="../img/mapa.webp" alt="Mapa com farmácias próximas em Brasília">
+                <img src="../img/localizacao.svg" alt="Ilustração de localização de farmácias" width="600" height="200">
 
                 <span class="localizacao">
                     Brasília - DF
@@ -344,7 +331,7 @@
                     no seu caminho.
                 </p>
 
-                <a href="#" class="botaoFarmacias">
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=farm%C3%A1cias+Bras%C3%ADlia+DF" class="botaoFarmacias" target="_blank" rel="noopener noreferrer">
                     Encontrar por perto
                     <span>›</span>
                 </a>
@@ -381,9 +368,7 @@
 
         <div class="acaoSeguranca">
 
-            <a href="#">
-                <p>Sua segurança, nossa prioridade!</p>
-            </a>
+            <p>Sua segurança, nossa prioridade!</p>
 
         </div>
 
@@ -391,7 +376,7 @@
 
     <script src="../Script/index.js"></script>
     <script>
-        lucide.createIcons();
+        window.lucide?.createIcons();
     </script>
 
 </body>
