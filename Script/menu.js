@@ -1,3 +1,4 @@
+
 (() => {
     const raiz = new URL("../", document.currentScript.src);
 

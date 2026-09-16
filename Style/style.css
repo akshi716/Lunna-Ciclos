@@ -1117,3 +1117,114 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .cadeado { display: inline-flex; }
 .perfil-topo, .historico-topo, .sus { flex-wrap: wrap; gap: 16px; }
 .pagina-chat { width: 100%; max-width: 680px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+
+/* Estilos das funcionalidades incorporadas do GitHub. */
+.farmacias-header span {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.farmacias-header h2 {
+    margin: 8px 0;
+}
+
+.farmacias-header p {
+    margin-bottom: 20px;
+}
+
+#map {
+
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+
+}
+
+#dataAtualLogo {
+    font-size: 13px;
+    color: #777;
+}
+
+#cumprimentoUser {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#faseAtual.menstruacao {
+    background-color: #f8dfe5;
+    color: #6e3345;
+
+    border-color: #efb9c6;
+}
+
+#faseAtual.menstruacao h3 {
+    color: #9c5368;
+}
+
+#faseAtual.menstruacao #maisFase {
+    color: #8c4057;
+}
+
+#faseAtual.folicular {
+    background-color: #e4f1e7;
+    color: #355c3d;
+
+    border-color: #c6dfcc;
+}
+
+#faseAtual.folicular h3 {
+    color: #4f8059;
+}
+
+#faseAtual.folicular #maisFase {
+    color: #3f7049;
+}
+
+#faseAtual.ovulacao {
+    background-color: #f8edc9;
+    color: #725b1d;
+
+    border-color: #eadb9d;
+}
+
+#faseAtual.ovulacao h3 {
+    color: #94772b;
+}
+
+#faseAtual.ovulacao #maisFase {
+    color: #80661f;
+}
+
+.calendar-day.menstruacao {
+    background-color: #f3c5d2;
+
+    color: #6f3147;
+
+    font-weight: bold;
+}
+
+.calendar-day.fertil {
+    background-color: #d9eedf;
+
+    color: #386044;
+}
+
+.calendar-day.ovulacao {
+    background-color: #f5df9d;
+
+    color: #725b1d;
+
+    font-weight: bold;
+}
+
+.calendar-day.selecionado {
+    outline: 3px solid #8d6b7d;
+    outline-offset: 2px;
+}
+
+.humor.selecionado {
+    border: 2px solid #8d6b7d;
+
+    background-color: #f7eef2;
+}

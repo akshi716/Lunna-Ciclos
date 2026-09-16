@@ -2,11 +2,18 @@
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Início | Lunna</title>
+
+    <link rel="stylesheet" href="/Style/style.css">
+    <link  rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
     <script src="https://unpkg.com/lucide@latest" async onload="window.lucide?.createIcons()"></script>
     <link rel="stylesheet" href="../Style/style.css">
+
 
 
 
@@ -303,6 +310,12 @@
 
         </div>
 
+
+        <section class="farmacias">
+            <div class="farmacias-header">
+                <span>ENCONTRE UMA FARMÁCIA</span>
+                <h2>Farmácias próximas</h2>
+
         <div class="farmacias">
 
             <div class="mapa-farmacias">
@@ -325,17 +338,24 @@
                     Farmácias próximas
                 </h2>
 
+
                 <p>
-                    Encontre cuidados e itens essenciais
-                    no seu caminho.
+                    Encontre farmácias perto de você.
                 </p>
+
 
                 <a href="https://www.google.com/maps/search/?api=1&amp;query=farm%C3%A1cias+Bras%C3%ADlia+DF" class="botaoFarmacias" target="_blank" rel="noopener noreferrer">
                     Encontrar por perto
                     <span>›</span>
                 </a>
 
+
             </div>
+
+            <div id="map"></div>
+        </section>
+
+
 
         </div>
 
@@ -373,7 +393,12 @@
 
     </section>
 
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
     <script src="../Script/index.js"></script>
+
     <script>
         window.lucide?.createIcons();
     </script>
