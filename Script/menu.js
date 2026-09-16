@@ -2,12 +2,12 @@
     const raiz = new URL("../", document.currentScript.src);
 
     const itens = [
-        {texto:"Início", caminho:"index.html"},
-        {texto:"Calendário", caminho:"calendario.html"},
-        {texto:"Dispositivo", caminho:"dispositivo.html"},
-        {texto:"Perfil", caminho:"perfil.html"},
-        {texto:"Login", caminho:"login.html"},
-        {texto:"Chat Lunna", caminho:"chatIa.html"},
+        {texto:"Início", caminho:"index.html", icone:"house"},
+        {texto:"Calendário", caminho:"calendario.html", icone:"calendar"},
+        {texto:"Dispositivo", caminho:"dispositivo.html", icone:"smartphone"},
+        {texto:"Perfil", caminho:"perfil.html", icone:"user"},
+        {texto:"Login", caminho:"login.html", icone:"log-in"},
+        {texto:"Chat Lunna", caminho:"chatIA.html", icone:"message-circle"},
 
     ];
     function enderecoPagina (caminho) {
@@ -34,7 +34,8 @@
                 ${itens.map(item => `
                     <a class="lunna-link"
                        href="${enderecoPagina(item.caminho)}">
-                        ${item.texto}
+                        <i class="lunna-icone" data-lucide="${item.icone}" aria-hidden="true"></i>
+                        <span>${item.texto}</span>
                     </a>
                 `).join("")}
             </nav>
@@ -84,6 +85,7 @@
         if (document.getElementById("menuLunna")) return;
 
         const menu = criarMenu();
+        window.lucide?.createIcons();
 
         atualizarLinkAtivo(menu);
 

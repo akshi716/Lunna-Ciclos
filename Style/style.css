@@ -961,7 +961,9 @@ body.com-menu {
 }
 
 #menuLunna .lunna-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     padding: 12px 14px;
     border-radius: 10px;
 
@@ -971,6 +973,12 @@ body.com-menu {
     font-weight: 500;
 
     transition: background-color 0.2s, color 0.2s;
+}
+
+#menuLunna .lunna-icone {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
 #menuLunna .lunna-link:hover {
