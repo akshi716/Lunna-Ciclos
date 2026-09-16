@@ -1,19 +1,29 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendario</title>
+
+
     <!-- biblioteca de icones -->
     <!-- chama uma biblioteca de icones -->
     <link rel="stylesheet" href="../Style/style.css">
     <script src="https://unpkg.com/lucide@latest" async onload="window.lucide?.createIcons()"></script>
     <link rel="stylesheet" href="../Style/responsivo.css">
-    <link rel="stylesheet" href="../Style/menu.css">
+    <script src="../Script/menu.js" defer></script>
 </head>
-<body>
+<body class="pagina-calendario">
+
 
 <div class="header">
+
 
     <div class="logo">
         <a href="index.html">
@@ -21,45 +31,70 @@
         </a>
         <span id="dataAtualLogo"></span>
 
+
         <span id="cumprimentoUser"></span>
 
+
     </div>
+
+
+
 
 </div>
 <h3> ESPAÇO DE AUTOCUIDADO </h3>
 
+
 <h2>Seu ciclo, no seu ritmo</h2>
+
 
 <p>
     Acompanhe as fases e reconheça os sinais
     do seu corpo com mais clareza.
 </p>
 
-<div id="faseAtual">
+
+<div id="faseAtual" class="fase-atual">
+
 
     <h3>FASE ATUAL</h3>
 
+
     <span id="tituloFaseAtual">Fase folicular</span>
+
+
+
 
     <button id="maisFase">Entender esta fase </button>
 
-    <div id="diaCiclo">
+
+    <div id="diaCiclo" class="dia-ciclo">
+
 
         <img src="../img/ciclo.svg" alt="" width="64" height="64">
 
+
         <span></span>
+
 
         <p>dia do ciclo</p>
 
+
     </div>
+
 
 </div>
 
+
 <main class="calendar-card">
+
 
     <div class="calendar-header">
 
+
         <div>
+
+
+
 
             <h1>
                 <span><i data-lucide="calendar"></i></span>
@@ -68,17 +103,22 @@
             </h1>
         </div>
 
+
         <div class="navigation">
+
 
             <!-- adicionar o type button ao botão faz com que seu
                  funcionamento se mantenha caso seja usado a forma de
                  submit do formulário -->
 
+
             <button id="previousMonth" type="button" aria-label="Mês anterior"><i data-lucide="chevron-left"></i></button>
             <button id="nextMonth" type="button" aria-label="Próximo mês"><i data-lucide="chevron-right"></i></button>
         </div>
 
+
     </div>
+
 
     <div class="weekdays">
         <span>SEG</span>
@@ -90,60 +130,79 @@
         <span>DOM</span>
     </div>
 
+
     <div id="calendar" class="calendar">
         <!-- Os dias serão criados pelo JavaScript -->
     </div>
 
+
     <div class="legend">
+
 
         <div>
             <span class="menstruacao"></span>
+
 
             <i data-lucide="droplet"></i>
             Menstruação
         </div>
 
+
         <div>
             <span class="fertil"></span>
+
 
             <i data-lucide="sprout"></i>
             Fase Fértil
         </div>
 
+
         <div>
+
 
             <span class="ovulacao"></span>
 
+
             <i data-lucide="sun"></i>
+
 
             Ovulação
         </div>
+
 
         <div>
             <span class="hoje"></span>
             Hoje
         </div>
 
+
     </div>
+
 
 </main>
 
+
 <section class="registro-ciclo">
 
+
     <h2>Registre seu ciclo</h2>
+
 
     <label for="ultimaMenstruacao">
         Primeiro dia da sua última menstruação
     </label>
+
 
     <input
         type="date"
         id="ultimaMenstruacao"
     >
 
+
     <label for="tamanhoCiclo">
         Duração média do seu ciclo
     </label>
+
 
     <input
         type="number"
@@ -152,46 +211,65 @@
         max="45"
         value="28"
     >
+
+
     <button type="button" id="salvarCiclo">
         Salvar ciclo
     </button>
+
+
 </section>
 
-<main class="emocional">
+
+
+
+<section class="emocional">
+
+
     <h4>
+
+
         <!-- adicionando icone da biblioteca chamada no head -->
+
 
         <i data-lucide="sparkles"></i>
         REGISTRO EMOCIONAL
     </h4>
 
+
     <h2>Como você está se sentindo hoje?</h2>
+
 
     <div class="humores">
 
+
         <button type="button" class="humor" data-humor="feliz">
-            <span class="humorIcon">
+            <span class="humor-icon">
                 <i data-lucide="sun"></i>
             </span>
             <span>Feliz</span>
         </button>
 
+
         <!-- data- guarda a informação de forma mais organizada
 no html -->
 
+
         <button type="button" class="humor" data-humor="calma">
-            <span class="humorIcon">
+            <span class="humor-icon">
                 <i data-lucide="smile"></i>
             </span>
             <span>Calma</span>
         </button>
 
+
         <button type="button" class="humor" data-humor="ansiosa">
-            <span class="humorIcon">
+            <span class="humor-icon">
                 <i data-lucide="wind"></i>
             </span>
             <span>Ansiosa</span>
         </button>
+
 
         <button type="button" class="humor" data-humor="irritada">
             <span class="humor-icon">
@@ -200,20 +278,32 @@ no html -->
             <span>Irritada</span>
         </button>
 
+
     </div>
-    <label>Adicionar observações</label>
-    <input type="textearea" placeholder="Escreva aqui como você está se sentindo..." id="registroEmocional">
+    <label for="registroEmocional">Adicionar observações</label>
+    <textarea placeholder="Escreva aqui como você está se sentindo..." id="registroEmocional" rows="4"></textarea>
+
 
     <button id="salvarRegistro">Salvar registro</button>
 
-</main>
+
+</section>
+
+
+
 
 <script>
     window.lucide?.createIcons();
 </script>
 
 
-<script src="../Script/calendario.js"></script>
+<script src="../Script/index.js"></script>
+
+<script  src="https://unpkg.com/lucide@latest" async onload="window.lucide?.createIcons()"></script>
 <script src="../Script/menu.js"></script>
+
+
 </body>
+
+
 </html>

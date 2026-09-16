@@ -1,100 +1,146 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dispositivos</title>
+    <title>Dispositivo</title>
     <link rel="stylesheet" href="../Style/style.css">
     <link rel="stylesheet" href="../Style/responsivo.css">
-    <link rel="stylesheet" href="../Style/menu.css">
-    <script src="https://unpkg.com/lucide@latest" async onload="window.lucide?.createIcons()"></script>
-    <script src="../Script/menu.js" defer></script>
 </head>
 <body>
-   
-    <main>
-        <h1>Seus Dispositivos</h1>
+    <main class="paginas">
 
-        <p>Tecnologia que fica perto de você com transparência em cada detalhe.</p>
 
-        <section>
-           
-            <img src="../img/conexao.jpg.svg" alt="Imagem de bluetooth">
+        <!-- ===== Coluna 1 ===== -->
+        <section class="coluna-dispositivos">
 
-            <p>Conectado agora</p>
 
-            <h2>Seu Lunna está por perto</h2>
+            <h1>Seus Dispositivos</h1>
+            <div class="cardStatus">
+                <img src="../img/conexao.jpg.svg" alt="Imagem de bluetooth">
+                <p class="statusConectado">Conectado agora</p>
+                <h2>Seu Lunna está por perto</h2>
+                <p>
+                    Última sincronização há 2 minutos. Seus sinais estão sendo
+                    acompanhados com segurança.
+                </p>
 
-            <p>
-                Última sincronização há 2 minutos. Seus sinais estão sendo
-                acompanhados com segurança.
-            </p>
 
-            <button>Sincronizar agora </button>
+                <div class="botoesStatus">
+                  <button class="botao-animado"><span>Sincronizar agora</span><span>Sincronizando</span></button>
+                   <button class="botao-animado"><span>Parear outro</span><span>Pareando outro</span></button>
+                </div>
+            </div>
 
-            <button>Parear outro</button>
 
-        </section>
-
-        <section>
-
-            <div>
+            <div class="cardDispositivo">
                 <img src="../img/relogio.jpg.svg" alt="Imagem dispositivo conectado">
 
-                <h3>Pulseira Lunna</h3>
 
-                <p>Online</p>
-
-                <hr>
-
-                <div>
-                    <p>7 dias</p>
-                    <p>Bateria restante</p>
-                </div>
-               
-                <div>
-                    <p>Estável</p>
-                    <p>Bluetooth</p>
+                <div class="infoPrincipal">
+                    <h3>Pulseira Lunna</h3>
+                    <p class="statusOnline">Online</p>
                 </div>
 
 
-                <div>
-                    <p>Ativo</p>
-                    <p>Botão SOS</p>
+                <div class="infoDispositivo">
+                    <p class="valor">BATERIA</p>
+                    <p class="rotulo">7 dias</p>
+                </div>
+
+
+                <div class="infoDispositivo">
+                    <p class="valor">BLUETOOTH</p>
+                    <p class="rotulo">Estável</p>
+                </div>
+
+
+                <div class="infoDispositivo">
+                    <p class="valor">SOS</p>
+                    <p class="rotulo">Ativo</p>
                 </div>
             </div>
 
-        </section>
 
-        <section>
-
-            <div>
-
+            <div class="cardDispositivo">
                 <img src="../img/sensor.jpg.svg" alt="Imagem sensor">
 
-                <h3>Sensor pélvico</h3>
 
-                <p>Sincronizado</p>
-
-                <hr>
-
-                <div>
-                    <p>Pronto</p>
-                    <p>Diagnóstico local</p>
+                <div class="infoPrincipal">
+                    <h3>Sensor pélvico</h3>
+                    <p class="statusOnline">Sincronizado</p>
                 </div>
 
-                <div>
-                    <p>Ativo</p>
-                    <p>Terapia térmica</p>
+
+                <div class="infoDispositivo">
+                    <p class="valor">DIAGNOSTICO</p>
+                    <p class="rotulo">Pronto</p>
                 </div>
 
-                <div>
-                    <p>100%</p>
-                    <p>Carregamento</p>
+
+                <div class="infoDispositivo">
+                    <p class="valor">TERAPIA</p>
+                    <p class="rotulo">Ativo</p>
+                </div>
+
+
+                <div class="infoDispositivo">
+                    <p class="valor">CARGA</p>
+                    <p class="rotulo">100%</p>
                 </div>
             </div>
 
+
         </section>
+
+
+        <!-- ===== Coluna 2 ===== -->
+        <section class="coluna-conexao">
+            <h1 class="tituloDispositivo">Como conectar seu Lunna ✦</h1>
+
+
+            <div class="etapa">
+                <h3>1</h3>
+                <img src="../img/bluetooth.jpg.svg" alt="Imagem de bluetooth">
+                <p>Ative o Bluetooth do seu celular.</p>
+            </div>
+
+
+            <div class="etapa">
+                <h3>2</h3>
+                <img src="../img/celular.jpg.svg" alt="Imagem de celular">
+                <p>Abra o aplicativo Lunna.</p>
+            </div>
+
+
+            <div class="etapa">
+                <h3>3</h3>
+                <img src="../img/qrcode.jpg.svg" alt="Imagem de QRCode">
+                <p>Digite ou escaneie o código.</p>
+            </div>
+
+
+            <div class="etapa">
+                <h3>4</h3>
+                <img src="../img/pareamento.jpg.svg" alt="Imagem de pareamento">
+                <p>Aguarde o pareamento seguro.</p>
+            </div>
+
+
+            <div class="etapa">
+                <h3>5</h3>
+                <img src="../img/confirmacao.jpg.svg" alt="Imagem de confirmação">
+                <p>Pronto! Seu dispositivo estará conectado.</p>
+            </div>
+        </section>
+
+
     </main>
 </body>
+
+<script  src="https://unpkg.com/lucide@latest" async onload="window.lucide?.createIcons()"></script>
+<script src="../Script/menu.js"></script>
+
 </html>

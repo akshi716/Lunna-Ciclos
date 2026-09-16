@@ -23,7 +23,7 @@
            href="${enderecoPagina("index.html")}"
                aria-label="Lunna — ir para o início">
                 <img
-                    src="${new URL("../img/logo.svg", raiz).href}"
+                    src="${new URL("img/logo.svg", raiz).href}"
                     alt="Lunna"
                     width="144"
                     height="44"
