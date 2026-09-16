@@ -1,3 +1,4 @@
+
 .farmacias {
     width: 100%;
     max-width: 900px;
@@ -215,24 +216,7 @@ body > p {
 }
 
 
-/* =====================================================
-   FASE LÚTEA
-===================================================== */
 
-#faseAtual.lutea {
-    background-color: #e8e1f2;
-    color: #51416b;
-
-    border-color: #d2c5e3;
-}
-
-#faseAtual.lutea h3 {
-    color: #70588e;
-}
-
-#faseAtual.lutea #maisFase {
-    color: #624a80;
-}
 
 
 /* =====================================================
@@ -1014,5 +998,10 @@ body > p {
 /* Quando clicar */
 
 #salvarCiclo:active {
+ 
     transform: scale(0.98);
+
+
 }
+
+

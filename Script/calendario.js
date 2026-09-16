@@ -149,4 +149,72 @@ nextMonthButton.addEventListener("click", () => {
 generateCalendar();
 
 
+/*capturando os elemtos html e guardadando os dentro de 
+variaveis constantes*/
 
+const campoUltimenstruacao =
+    document.getElementById("ultimoMenstruacao");
+
+
+const campoTamanhoCiclo =
+    document.getElementById("tamanhoCiclo");
+
+const salvarCiclo =
+    document.getElementById("salvarCiclo");
+
+
+/* Agora crio um evento para salvar os dados de
+registroapos o click */
+
+
+salvarCiclo.addEventListener("clck", function () {
+
+    console.log(campoUltimenstruacao.value);
+
+    console.log(campoTamanhoCiclo.value);
+
+
+});
+
+/*Tranformando os dados obtidos de Ultima Menstruacao realmente em um dado do
+tipo data contendo dentro dele mês, dia, semana*/
+
+
+const dataUltimaMenstruacao =
+
+    new Date(campoUltimenstruacao.value);
+
+
+function calcularDiaDoCiclo(dataInicio) {
+
+    const hoje = new Date();
+
+    const diferenca = hoje.getTime() -
+        dataInicio.getTime();
+
+    const milisegundosPorDia =
+        1000 * 60 * 60 * 24;
+const diasPassados = math.floor(
+    diferenca / milisssegundosPorDia
+
+);
+return diasPassados + 1;
+
+}
+
+function determinarFase(diaDoCiclo) {
+
+    if (diaDoCiclo >= 1 && diaDoCiclo <= 5) {
+        return "menstruacao";
+    }
+
+    if (diaDoCiclo >= 6 && diaDoCiclo <= 13) {
+        return "folicular";
+    }
+
+    if (diaDoCiclo === 14) {
+        return "ovulacao";
+    }
+
+    return "indefinida";
+}
