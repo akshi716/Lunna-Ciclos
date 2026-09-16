@@ -39,7 +39,7 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
     --shadow-md: 0 8px 24px rgba(123, 94, 167, 0.08);
 
-
+     --lunna-menu-largura: 240px;
 }
 
 * {
@@ -928,3 +928,73 @@ footer p {
     flex-direction: column;
     gap: 30px;
 }
+
+/* Reserva espaço sem modificar os elementos do conteúdo. */
+body.com-menu {
+    padding-left: calc(var(--lunna-menu-largura) + 20px);
+}
+
+#menuLunna {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+
+    width: var(--lunna-menu-largura);
+    padding: 28px 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+
+    overflow-y: auto;
+    background-color: #fff8ec;
+    border-right: 1px solid var(--cor-dourado-borda, #d4a574);
+}
+
+#menuLunna .lunna-marca {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#menuLunna .lunna-marca img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+#menuLunna .lunna-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#menuLunna .lunna-link {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 10px;
+
+    color: var(--cor-texto-secundario, #6b5544);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#menuLunna .lunna-link:hover {
+    background-color: #f7e8df;
+}
+
+#menuLunna .lunna-link[aria-current] {
+    background-color: var(--cor-primaria, #d88f8f);
+    color: #fff;
+}
+
+#menuLunna a:focus-visible {
+    outline: 3px solid var(--cor-primaria-escura, #b85151);
+    outline-offset: 3px;
+}
+
