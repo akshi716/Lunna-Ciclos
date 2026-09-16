@@ -8,15 +8,19 @@
 
     <!-- biblioteca de icones -->
     <!-- chama uma biblioteca de icones -->
-    <link rel="stylesheet" href="/Style/style.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../Style/style.css">
+    <script src="https://unpkg.com/lucide@latest" async onload="window.lucide?.createIcons()"></script>
+    <link rel="stylesheet" href="../Style/responsivo.css">
+    <link rel="stylesheet" href="../Style/menu.css">
+    <script src="../Script/menu.js" defer></script>
 </head>
+<body>
 
 <div class="header">
 
     <div class="logo">
         <a href="index.html">
-            <img src="#" alt="logo">
+            <img src="../img/logo.svg" alt="Lunna" width="144" height="44">
         </a>
         <span id="dataAtualLogo"></span>
 
@@ -46,7 +50,7 @@
 
     <div id="diaCiclo">
 
-        <img src="#" alt="efeitoDia">
+        <img src="../img/ciclo.svg" alt="" width="64" height="64">
 
         <span></span>
 
@@ -76,8 +80,8 @@
                  funcionamento se mantenha caso seja usado a forma de
                  submit do formulário -->
 
-            <button id="previousMonth" type="button"><i data-lucide="chevron-left"></i></button>
-            <button id="nextMonth" type="button"><i data-lucide="chevron-right"></i></button>
+            <button id="previousMonth" type="button" aria-label="Mês anterior"><i data-lucide="chevron-left"></i></button>
+            <button id="nextMonth" type="button" aria-label="Próximo mês"><i data-lucide="chevron-right"></i></button>
         </div>
 
     </div>
@@ -129,6 +133,38 @@
     </div>
 
 </main>
+
+<section class="registro-ciclo">
+
+    <h2>Registre seu ciclo</h2>
+
+    <label for="ultimaMenstruacao">
+        Primeiro dia da sua última menstruação
+    </label>
+
+    <input
+        type="date"
+        id="ultimaMenstruacao"
+    >
+
+    <label for="tamanhoCiclo">
+        Duração média do seu ciclo
+    </label>
+
+    <input
+        type="number"
+        id="tamanhoCiclo"
+        min="20"
+        max="45"
+        value="28"
+    >
+
+    <button type="button" id="salvarCiclo">
+        Salvar ciclo
+    </button>
+
+</section>
+
 
 <main class="emocional">
 
@@ -185,10 +221,10 @@ no html -->
 
 
 <script>
-    lucide.createIcons();
+    window.lucide?.createIcons();
 </script>
 
-<script src="/Script/index.js"></script>
+<script src="../Script/index.js"></script>
 
 </body>
 
