@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendario</title>
-
     <!-- biblioteca de icones -->
     <!-- chama uma biblioteca de icones -->
     <link rel="stylesheet" href="../Style/style.css">
@@ -28,7 +26,6 @@
 
     </div>
 
-
 </div>
 <h3> ESPAÇO DE AUTOCUIDADO </h3>
 
@@ -44,7 +41,6 @@
     <h3>FASE ATUAL</h3>
 
     <span id="tituloFaseAtual">Fase folicular</span>
-
 
     <button id="maisFase">Entender esta fase </button>
 
@@ -65,7 +61,6 @@
     <div class="calendar-header">
 
         <div>
-
 
             <h1>
                 <span><i data-lucide="calendar"></i></span>
@@ -134,10 +129,37 @@
 
 </main>
 
+<section class="registro-ciclo">
+
+    <h2>Registre seu ciclo</h2>
+
+    <label for="ultimaMenstruacao">
+        Primeiro dia da sua última menstruação
+    </label>
+
+    <input
+        type="date"
+        id="ultimaMenstruacao"
+    >
+
+    <label for="tamanhoCiclo">
+        Duração média do seu ciclo
+    </label>
+
+    <input
+        type="number"
+        id="tamanhoCiclo"
+        min="20"
+        max="45"
+        value="28"
+    >
+    <button type="button" id="salvarCiclo">
+        Salvar ciclo
+    </button>
+</section>
+
 <main class="emocional">
-
     <h4>
-
         <!-- adicionando icone da biblioteca chamada no head -->
 
         <i data-lucide="sparkles"></i>
@@ -155,7 +177,7 @@
             <span>Feliz</span>
         </button>
 
-        <!-- data- guarda a informação de forma mais organizada 
+        <!-- data- guarda a informação de forma mais organizada
 no html -->
 
         <button type="button" class="humor" data-humor="calma">
@@ -187,13 +209,12 @@ no html -->
 
 </main>
 
-
 <script>
     window.lucide?.createIcons();
 </script>
 
-<script src="../Script/index.js"></script>
 
+<script src="../Script/calendario.js"></script>
+<script src="../Script/menu.js"></script>
 </body>
-
 </html>
