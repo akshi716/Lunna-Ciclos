@@ -1,0 +1,183 @@
+/* Menu lateral compartilhado */
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ===== Menu lateral ===== */
+.sidebar {
+    width: var(--lunna-menu-largura);
+    flex-shrink: 0;
+    background-color: var(--cor-fundo-card-alt);
+    border-right: 1px solid var(--cor-dourado-borda);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--cor-texto-secundario);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transicao);
+}
+
+/* Estilo para os ícones do Google Fonts */
+.material-symbols-outlined {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    user-select: none;
+    transition: var(--transicao);
+}
+
+.menu-item:hover {
+    background-color: #f7f2eb;
+    color: #d89797;
+}
+
+/* Item Ativo (Destaque) */
+.menu-item.active {
+    background-color: var(--cor-primaria);
+    color: #ffffff;
+}
+
+.menu-item.active .icon {
+    color: #ffffff;
+}
+
+/* ===== Conteúdo principal ===== */
+.main-content {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Reserva espaço sem modificar os elementos do conteúdo. */
+body.com-menu {
+    padding-left: calc(var(--lunna-menu-largura) + 20px);
+}
+
+#menuLunna {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+
+    width: var(--lunna-menu-largura);
+    padding: 28px 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+
+    overflow-y: auto;
+    background-color: #fff8ec;
+    border-right: 1px solid var(--cor-dourado-borda, #d4a574);
+}
+
+#menuLunna .lunna-marca {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#menuLunna .lunna-marca img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+#menuLunna .lunna-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#menuLunna .lunna-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
+
+    color: var(--cor-texto-secundario, #6b5544);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#menuLunna .lunna-icone {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+#menuLunna .lunna-link:hover {
+    background-color: #f7e8df;
+}
+
+#menuLunna .lunna-link[aria-current] {
+    background-color: var(--cor-primaria, #d88f8f);
+    color: #fff;
+}
+
+#menuLunna a:focus-visible {
+    outline: 3px solid var(--cor-primaria-escura, #b85151);
+    outline-offset: 3px;
+}
+
+
+
+@media (max-width: 600px) {
+    :root {
+        --lunna-menu-largura: 132px;
+    }
+
+    #menuLunna {
+        padding: 20px 8px;
+        gap: 20px;
+    }
+
+    #menuLunna .lunna-link {
+        padding: 10px 8px;
+        font-size: 0.85rem;
+        overflow-wrap: anywhere;
+    }
+}
+
+@media (max-width: 600px) {
+    body.com-menu {
+        padding-left: calc(var(--lunna-menu-largura) + 12px);
+    }
+
+    #menuLunna .lunna-link {
+        gap: 6px;
+    }
+}

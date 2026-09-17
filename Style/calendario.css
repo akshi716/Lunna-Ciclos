@@ -1,0 +1,1055 @@
+.navigation button,
+.calendar-day,
+.humor,
+#maisFase,
+#salvarCiclo,
+#salvarRegistro {
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    cursor: pointer;
+    background-color: var(--cor-primaria);
+    user-select: none;
+    touch-action: manipulation;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 0 4px 12px rgba(211, 78, 78, 0.3);
+    transition: var(--transicao);
+}
+
+.navigation button:hover,
+.calendar-day:hover,
+.humor:hover,
+#maisFase:hover,
+#salvarCiclo:hover,
+#salvarRegistro:hover {
+    box-shadow: 0 6px 16px rgba(211, 78, 78, 0.4);
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--fonte-titulos);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #c47e7e;
+    padding: 0 8px;
+}
+
+/* Calendário e registro de humor, também utilizados na página inicial. */
+.header,
+.pagina-calendario>.calendar-card,
+.pagina-calendario>.emocional,
+.registro-ciclo,
+.fase-atual {
+    width: 100%;
+    max-width: 1100px;
+    min-width: 0;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.logo {
+    flex-wrap: wrap;
+}
+
+.calendar-card,
+.emocional,
+.registro-ciclo,
+.fase-atual {
+    padding: 24px;
+    border: 1px solid var(--cor-dourado-borda);
+    border-radius: 16px;
+    background: var(--cor-fundo-card-alt);
+    box-shadow: var(--sombra-card);
+}
+
+/* Calendário e registro emocional */
+.calendar-header,
+.navigation,
+.legend,
+.legend>div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.calendar-header {
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.calendar-header h1 {
+    font-family: var(--fonte-titulos);
+    font-size: 1.4rem;
+}
+
+.navigation button {
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.weekdays,
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+}
+
+.weekdays {
+    margin-bottom: 8px;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--cor-texto-secundario);
+}
+
+.calendar-day {
+    min-width: 0;
+    min-height: 38px;
+    padding: 6px 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--cor-texto);
+    box-shadow: none;
+}
+
+.calendar-day:hover {
+    background: var(--cor-rosa-suave);
+    box-shadow: none;
+}
+
+.calendar-day.empty {
+    visibility: hidden;
+}
+
+.calendar-day.today,
+.hoje {
+    outline: 2px solid var(--cor-primaria-escura);
+    outline-offset: -2px;
+}
+
+.legend {
+    margin-top: 18px;
+    font-size: 0.75rem;
+    gap: 12px;
+}
+
+.legend>div>span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.menstruacao {
+    background: #efb0b0;
+}
+
+.fertil {
+    background: #d3e5c4;
+}
+
+.ovulacao {
+    background: #f5d395;
+}
+
+.emocional,
+.registro-ciclo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.emocional h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cor-rosa);
+    font-size: 0.8rem;
+}
+
+.emocional h2 {
+    font-family: var(--fonte-titulos);
+    font-size: 1.5rem;
+}
+
+.humores {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.humor {
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 8px;
+    border-radius: 12px;
+    color: var(--cor-texto);
+    background: var(--cor-rosa-suave);
+    box-shadow: none;
+}
+
+.humor-icon {
+    display: inline-flex;
+    color: var(--cor-rosa);
+}
+
+.fase-atual {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.dia-ciclo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.registro-ciclo input,
+.emocional textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--cor-dourado-borda);
+    border-radius: 10px;
+    background: #fffdfa;
+    color: var(--cor-texto);
+    font: inherit;
+}
+
+.emocional textarea {
+    resize: vertical;
+}
+
+
+#dataAtualLogo {
+    font-size: 13px;
+    color: #777;
+}
+
+#cumprimentoUser {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#faseAtual.menstruacao {
+    background-color: #f8dfe5;
+    color: #6e3345;
+
+    border-color: #efb9c6;
+}
+
+#faseAtual.menstruacao h3 {
+    color: #9c5368;
+}
+
+#faseAtual.menstruacao #maisFase {
+    color: #8c4057;
+}
+
+#faseAtual.folicular {
+    background-color: #e4f1e7;
+    color: #355c3d;
+
+    border-color: #c6dfcc;
+}
+
+#faseAtual.folicular h3 {
+    color: #4f8059;
+}
+
+#faseAtual.folicular #maisFase {
+    color: #3f7049;
+}
+
+#faseAtual.ovulacao {
+    background-color: #f8edc9;
+    color: #725b1d;
+
+    border-color: #eadb9d;
+}
+
+#faseAtual.ovulacao h3 {
+    color: #94772b;
+}
+
+#faseAtual.ovulacao #maisFase {
+    color: #80661f;
+}
+
+.calendar-day.menstruacao {
+    background-color: #f3c5d2;
+
+    color: #6f3147;
+
+    font-weight: bold;
+}
+
+.calendar-day.fertil {
+    background-color: #d9eedf;
+
+    color: #386044;
+}
+
+.calendar-day.ovulacao {
+    background-color: #f5df9d;
+
+    color: #725b1d;
+
+    font-weight: bold;
+}
+
+.calendar-day.selecionado {
+    outline: 3px solid #8d6b7d;
+    outline-offset: 2px;
+}
+
+.humor.selecionado {
+    border: 2px solid #8d6b7d;
+
+    background-color: #f7eef2;
+}
+
+:root {
+    --cor-titulo: #c47e7e;
+    --cor-texto: #4a2c2a;
+    --cor-texto-secundario: #6b5544;
+    --cor-fundo: whitesmoke;
+    --cor-fundo-card: #ffffff;
+
+
+    --cor-primaria: #e48282;
+    --cor-primaria-escura: #a65c5c;
+    --cor-rosa: #d62b67;
+    --cor-dourado-borda: #d9b38b;
+
+
+    /* Cores do ciclo */
+    --cor-menstruacao: #8b3232;
+    --cor-fertil: #2d473a;
+    --cor-ovulacao: #af812a;
+    --cor-hoje: #6e1c39;
+
+
+    --fonte-titulos: Cambria, Georgia, serif;
+    --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
+    --radius-lg: 25px;
+    --radius-md: 14px;
+
+
+    --sombra-card: 0 4px 12px rgba(182, 67, 67, 0.08);
+    --sombra-card-hover: 0 8px 20px rgba(182, 67, 67, 0.15);
+    --transicao: all 0.25s ease;
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    max-width: 1300px;
+    /* Expandido para suportar o layout lado a lado */
+    margin: 0 auto;
+    padding: 32px 16px 60px;
+}
+
+
+/* ===== Cabeçalho ===== */
+.header {
+    display: flex;
+    align-items: center;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.logo img {
+    display: block;
+}
+
+
+#dataAtualLogo {
+    font-size: 0.8rem;
+    color: var(--cor-texto-secundario);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+#cumprimentoUser {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    margin-left: auto;
+}
+
+
+/* ===== Títulos ===== */
+h3 {
+    font-family: var(--fonte-titulos);
+    color: var(--cor-titulo);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+
+h2 {
+    font-family: var(--fonte-titulos);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--cor-primaria-escura);
+    margin-bottom: 8px;
+}
+
+
+p {
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto-secundario);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+
+/* ===== Card Fase Atual ===== */
+#faseAtual {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    background: linear-gradient(to right, #d89797cf, #cf5d5de1);
+    padding: 28px 32px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 20px rgba(197, 91, 91, 0.25);
+}
+
+
+#faseAtual h3 {
+    color: #fff;
+    opacity: 0.9;
+    font-size: 0.8rem;
+}
+
+
+#tituloFaseAtual {
+    font-family: var(--fonte-titulos);
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: block;
+}
+
+
+#diaCiclo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+
+#diaCiclo img {
+    flex-shrink: 0;
+}
+
+
+#diaCiclo span {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+}
+
+
+#diaCiclo p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0;
+}
+
+
+#maisFase {
+    margin-left: auto;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao);
+    white-space: nowrap;
+}
+
+
+#maisFase:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+
+#maisFase:active {
+    transform: scale(0.97);
+}
+
+
+#maisFase:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+
+/* ===== Layout Principal  ===== */
+.conteudo-principal {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+
+.calendar-card {
+    flex: 1.2;
+}
+
+
+.cards-laterais {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* ===== Card do Calendário ===== */
+.calendar-card {
+    width: 400px;
+    height: 700px;
+    background-color: #fff;
+    border: 1px solid #ddc8b2;
+    border-radius: var(--radius-lg);
+    padding: 27px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    box-shadow: var(--sombra-card);
+}
+
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+
+.calendar-header h1 {
+    font-family: var(--fonte-titulos);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cor-primaria-escura);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.navigation {
+    display: flex;
+    gap: 8px;
+}
+
+
+.navigation button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    background-color: var(--cor-fundo-card);
+    color: var(--cor-primaria);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transicao);
+}
+
+
+.navigation button svg,
+.navigation button i {
+    width: 15px;
+    height: 15px;
+}
+
+
+.navigation button:hover {
+    background-color: #fdf0e6;
+    border-color: var(--cor-primaria);
+}
+
+
+.navigation button:focus-visible {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 2px;
+}
+
+
+/* ===== Grade de dias ===== */
+.weekdays,
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+
+.weekdays span {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #000000;
+}
+
+
+.calendar>* {
+    background-color: #e9c6c679;
+    border-radius: 5px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--cor-texto);
+    cursor: pointer;
+    transition: var(--transicao);
+    border: none;
+}
+
+
+.calendar .menstruacao {
+    background-color: var(--cor-menstruacao);
+    color: #fff;
+    font-weight: 600;
+}
+
+
+.calendar .fertil {
+    background-color: var(--cor-fertil);
+    color: #fff;
+    font-weight: 600;
+}
+
+
+.calendar .ovulacao {
+    background-color: var(--cor-ovulacao);
+    color: #fff;
+    font-weight: 600;
+}
+
+
+.calendar .hoje {
+    border: 2px solid var(--cor-hoje);
+    font-weight: 700;
+    color: var(--cor-hoje);
+}
+
+
+.calendar .empty {
+    cursor: default;
+    background: none;
+}
+
+
+/* ===== Legenda ===== */
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+    padding-top: 16px;
+    border-top: 1px solid #f0ddc0;
+}
+
+
+.legend>div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--cor-texto-secundario);
+}
+
+
+.legend>div svg,
+.legend>div i {
+    width: 15px;
+    height: 15px;
+}
+
+
+.legend span.menstruacao,
+.legend span.fertil,
+.legend span.ovulacao,
+.legend span.hoje {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+
+.legend span.menstruacao {
+    background-color: var(--cor-menstruacao);
+}
+
+
+.legend span.fertil {
+    background-color: var(--cor-fertil);
+}
+
+
+.legend span.ovulacao {
+    background-color: var(--cor-ovulacao);
+}
+
+
+.legend span.hoje {
+    background-color: transparent;
+    border: 2px solid var(--cor-hoje);
+}
+
+
+/* ===== Registrar ciclo ===== */
+.registro-ciclo {
+    width: 600px;
+    height: 308px;
+    background-color: #fff;
+    border: 1px solid #ddc8b2;
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: var(--sombra-card);
+}
+
+
+.registro-ciclo label {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 0.90rem;
+    font-weight: 500;
+    color: var(--cor-texto);
+    margin-top: 10px;
+}
+
+
+.registro-ciclo input {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+    color: var(--cor-texto);
+    padding: 10px 14px;
+    border: 1px solid var(--cor-dourado-borda);
+    border-radius: var(--radius-md);
+    background-color: #ffffff;
+    margin-top: 4px;
+}
+
+
+.registro-ciclo input:focus-visible {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 1px;
+}
+
+
+#salvarCiclo {
+    align-self: flex-start;
+    margin-top: 18px;
+    color: #fff;
+    background-color: #d88f8f;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 11px 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+
+#salvarCiclo:hover {
+    background-color: #dd8484;
+}
+
+
+#salvarCiclo:focus-visible {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 2px;
+}
+
+
+/* ===== Registro emocional ===== */
+.emocional {
+    width: 600px;
+    height: 370px;
+    background-color: #fff;
+    border: 1px solid #ddc8b2;
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: var(--sombra-card);
+}
+
+
+.emocional h4 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--fonte-titulos);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--cor-titulo);
+}
+
+
+.emocional h4 svg,
+.emocional h4 i {
+    width: 16px;
+    height: 16px;
+}
+
+
+.humores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 12px;
+    margin: 14px 0 10px;
+}
+
+
+.humor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 10px;
+    background-color: #e9c6c679;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: var(--fonte-principal);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    transition: var(--transicao);
+}
+
+
+.humor:hover {
+    border-color: #dd8484;
+    transform: translateY(-2px);
+}
+
+
+.humor.selecionado,
+.humor[aria-pressed="true"] {
+    background-color: var(--cor-primaria);
+    border-color: #ddc8b2;
+    color: #fff;
+}
+
+
+.humorIcon,
+.humor-icon {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--cor-primaria);
+}
+
+
+.humor.selecionado .humorIcon,
+.humor[aria-pressed="true"] .humorIcon {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+}
+
+
+.humorIcon svg,
+.humorIcon i,
+.humor-icon svg,
+.humor-icon i {
+    width: 22px;
+    height: 22px;
+}
+
+
+.emocional label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+    margin-top: 6px;
+}
+
+
+.emocional input[type="textearea"],
+.emocional input#registroEmocional {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+    color: var(--cor-texto);
+    padding: 12px 14px;
+    border: 1px solid #ddc8b2;
+    border-radius: var(--radius-md);
+    background-color: #fff;
+    margin-top: 6px;
+    min-height: 44px;
+}
+
+
+.emocional input:focus-visible {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 1px;
+}
+
+
+#salvarRegistro {
+    align-self: flex-start;
+    margin-top: 16px;
+    color: #fff;
+    background-color: #d88f8f;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 11px 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+
+#salvarRegistro:hover {
+    background-color: #dd8484;
+}
+
+
+#salvarRegistro:focus-visible {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+    .calendar-card,
+    .emocional,
+    .registro-ciclo,
+    .fase-atual {
+        padding: 12px;
+    }
+
+    .weekdays {
+        font-size: 0.6rem;
+        gap: 2px;
+    }
+
+    .calendar {
+        gap: 2px;
+    }
+
+    .calendar-day {
+        min-height: 30px;
+        font-size: 0.75rem;
+    }
+
+    .humores {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .conteudo-principal {
+        flex-direction: column;
+    }
+
+    .calendar-card,
+    .cards-laterais {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 20px 12px 40px;
+        gap: 18px;
+    }
+
+    #faseAtual,
+    .calendar-card,
+    .registro-ciclo,
+    .emocional {
+        padding: 20px;
+    }
+
+    #diaCiclo {
+        justify-content: flex-start;
+    }
+
+    #maisFase {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .calendar-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .humores {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

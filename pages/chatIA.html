@@ -1,20 +1,95 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat | Lunna</title>
+    <title>Lunna - Assistente de IA</title>
     <link rel="stylesheet" href="../Style/style.css">
-    <link rel="stylesheet" href="../Style/responsivo.css">
+    <link rel="stylesheet" href="../Style/chatIA.css">
+    <link rel="stylesheet" href="../Style/menu.css">
     <script src="https://unpkg.com/lucide@latest" async onload="window.lucide?.createIcons()"></script>
-    <script src="../Script/menu.js" defer></script>
 </head>
+
+
 <body>
-    <main class="pagina-chat">
-        <img src="../img/logo.svg" alt="Lunna" width="160" height="48">
-        <h1>Chat Lunna</h1>
-        <p>Em breve, este será seu espaço de conversa. O chat ainda não está disponível.</p>
-        <a href="index.html" class="link-acao">Voltar ao início</a>
+    <!-- Botão que abre o chatbot -->
+    <button id="btnChat" type="button" class="botao-chat">
+        🌙
+    </button>
+
+
+    <!-- Chatbot -->
+    <main class="chatbot">
+        <!-- Cabeçalho -->
+        <header class="chatbot-header">
+            <div class="chatbot-identidade">
+
+
+                <div class="logo-lunna">
+                    🌙
+                </div>
+
+
+                <div>
+                    <h3>Lunna</h3>
+                    <p>Seu assistente de bem-estar</p>
+                </div>
+            </div>
+
+
+            <div class="chatbot-acoes">
+                <button id="btnFechar" type="button">
+                    ×
+                </button>
+            </div>
+        </header>
+
+
+        <!-- Área das mensagens -->
+        <section class="chatbot-mensagens">
+            <div class="mensagem mensagem-lunna">
+                <div class="mensagem-icone">
+                    🌙
+                </div>
+
+
+                <div class="mensagem-conteudo">
+                    <p>
+                        Olá! Que bom conversar com você.  Como você está se sentindo hoje?
+                    </p>
+
+
+
+
+                    <p>
+                        Eu sou a Lunna, sua assistente de bem-estar.
+                        Como posso ajudar?
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Área de envio -->
+        <section class="chatbot-input">
+            <textarea
+                id="btnMensagem"
+                placeholder="Digite sua mensagem..."
+                rows="1">
+            </textarea>
+
+
+            <button
+                id="btnEnviar"
+                type="button">
+                ➤
+            </button>
+        </section>
     </main>
+
+
+    <script src="../Script/chatIA.js"></script>
+    <script src="../Script/menu.js"></script>
+
 </body>
 </html>

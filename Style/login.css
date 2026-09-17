@@ -1,0 +1,229 @@
+.login-card button {
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    cursor: pointer;
+    background-color: var(--cor-primaria);
+    user-select: none;
+    touch-action: manipulation;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 0 4px 12px rgba(211, 78, 78, 0.3);
+    transition: var(--transicao);
+}
+
+.login-card button:hover {
+    box-shadow: 0 6px 16px rgba(211, 78, 78, 0.4);
+}
+
+
+/* Página de login */
+/* ===== Header ===== */
+.login-topo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.login-topo div[aria-label="Logo Lunna"] {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cor-primaria-escura);
+    margin-bottom: 4px;
+}
+
+.login-topo h1 {
+    font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    color: var(--cor-texto);
+}
+
+.login-topo h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    color: #c47e7e;
+}
+
+
+.login-topo p {
+    font-size: 0.95rem;
+    color: var(--cor-texto-mutado);
+    max-width: 320px;
+}
+
+/* ===== Card de login ===== */
+.login-card {
+    width: 100%;
+    background-color: #f3f3f3d5;
+    border: 1px solid #eee5d9;
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: var(--sombra-card);
+    text-align: left;
+}
+
+.login-card h2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    text-align: center;
+    color: var(--cor-texto);
+    margin-bottom: 9px;
+}
+
+.login-card>p {
+    font-size: 0.85rem;
+    color: var(--cor-texto-mutado);
+    margin-bottom: 20px;
+}
+
+/* ===== Formulário ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+form>div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid#eee5d9;
+    border-radius: 10px;
+    background-color: #fffdfa;
+    font-size: 0.95rem;
+    color: var(--cor-texto);
+    transition: var(--transicao);
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #f8c2c2;
+    box-shadow: 0 0 0 3px rgba(253, 172, 172, 0.2);
+}
+
+input::placeholder {
+    color: #c9bcbc;
+}
+
+/* ---- Linha "Lembrar de mim" ---- */
+form>div:has(input[type="checkbox"]) {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #f3f3f3d5;
+}
+
+form>div:has(input[type="checkbox"]) label {
+    font-weight: 400;
+    color: var(--cor-texto-mutado);
+    margin-right: auto;
+}
+
+form>div:has(input[type="checkbox"]) a {
+    font-size: 0.82rem;
+    color: #b64343;
+    text-decoration: none;
+}
+
+form>div:has(input[type="checkbox"]) a:hover {
+    text-decoration: underline;
+}
+
+/* ---- Botão ---- */
+button[type="submit"] {
+    margin-top: 4px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #d88f8f;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+button[type="submit"]:hover {
+    background-color: #dd8484;
+}
+
+/* ===== Elementos fora do card ===== */
+main>div[aria-hidden="true"] {
+    font-size: 1.2rem;
+    color: var(--cor-rosa);
+}
+
+main>p {
+    font-size: 0.9rem;
+    color: var(--cor-texto-mutado);
+}
+
+main>p a {
+    color: #b64343;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+main>p a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Footer ===== */
+footer {
+    margin-top: 8px;
+}
+
+footer p {
+    font-size: 0.75rem;
+    color: var(--cor-texto-mutado);
+}
+
+
+.pagina-login {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.login-topo {
+    text-align: center;
+}
+
+
+@media (max-width: 600px) {
+    .login-card {
+        padding: 12px;
+    }
+}

@@ -1,29 +1,65 @@
+// ======================================================
+// ELEMENTOS DO CALENDÁRIO
+// ======================================================
+
 // Pega o elemento que mostra o mês
 const monthElement = document.getElementById("month");
-
 
 // Pega o elemento que mostra o ano
 const yearElement = document.getElementById("year");
 
-
 // Pega a área onde os dias serão criados
 const calendarElement = document.getElementById("calendar");
 
-
 // Pega o botão de mês anterior
-const previousMonthButton = document.getElementById("previousMonth");
-
+const previousMonthButton =
+    document.getElementById("previousMonth");
 
 // Pega o botão de próximo mês
-const nextMonthButton = document.getElementById("nextMonth");
+const nextMonthButton =
+    document.getElementById("nextMonth");
 
 
+// ======================================================
+// ELEMENTOS DO REGISTRO DO CICLO
+// ======================================================
+
+// Pega o campo da última menstruação
+const campoUltimaMenstruacao =
+    document.getElementById("ultimaMenstruacao");
+
+// Pega o campo da duração do ciclo
+const campoTamanhoCiclo =
+    document.getElementById("tamanhoCiclo");
+
+// Pega o botão de salvar
+const salvarCiclo =
+    document.getElementById("salvarCiclo");
 
 
-// Guarda a data que estamos visualizando
+// ======================================================
+// ELEMENTOS DA FASE ATUAL
+// ======================================================
+
+// Pega o card que mostra a fase atual
+const faseAtualElement =
+    document.getElementById("faseAtual");
+
+// Pega o título da fase
+const tituloFaseAtual =
+    document.getElementById("tituloFaseAtual");
+
+// Pega o elemento que mostra o dia do ciclo
+const numeroDiaCiclo =
+    document.getElementById("numeroDiaCiclo");
+
+
+// ======================================================
+// CONFIGURAÇÕES
+// ======================================================
+
+// Guarda o mês que estamos visualizando
 let currentDate = new Date();
-
-
 
 
 // Lista com os nomes dos meses
@@ -43,231 +79,709 @@ const months = [
 ];
 
 
+// ======================================================
+// FUNÇÃO PARA CALCULAR DIFERENÇA ENTRE DATAS
+// ======================================================
+
+function calcularDiferencaEmDias(dataInicial, dataFinal) {
+
+    // Cria uma cópia da data inicial
+    const inicio = new Date(dataInicial);
+
+    // Cria uma cópia da data final
+    const fim = new Date(dataFinal);
 
 
-// Função que cria o calendário
+    // Coloca as duas datas no início do dia
+    inicio.setHours(0, 0, 0, 0);
+    fim.setHours(0, 0, 0, 0);
+
+
+    // Calcula a diferença em milissegundos
+    const diferenca =
+        fim.getTime() - inicio.getTime();
+
+
+    // Quantidade de milissegundos existentes em um dia
+    const milissegundosPorDia =
+        1000 * 60 * 60 * 24;
+
+
+    // Converte milissegundos para dias
+    return Math.round(
+        diferenca / milissegundosPorDia
+    );
+}
+
+
+// ======================================================
+// CALCULAR O DIA DO CICLO
+// ======================================================
+
+function calcularDiaDoCiclo(dataInicio) {
+
+    // Pega a data de hoje
+    const hoje = new Date();
+
+
+    // Calcula quantos dias passaram desde o início
+    const diasPassados =
+        calcularDiferencaEmDias(
+            dataInicio,
+            hoje
+        );
+
+
+    // O primeiro dia da menstruação é o dia 1
+    return diasPassados + 1;
+}
+
+
+// ======================================================
+// DETERMINAR A FASE DO CICLO
+// ======================================================
+
+function determinarFase(diaDoCiclo, tamanhoCiclo) {
+
+    // --------------------------------------------------
+    // MENSTRUAÇÃO
+    // --------------------------------------------------
+
+    if (
+        diaDoCiclo >= 1 &&
+        diaDoCiclo <= 5
+    ) {
+        return "menstruacao";
+    }
+
+
+    // --------------------------------------------------
+    // OVULAÇÃO ESTIMADA
+    // --------------------------------------------------
+
+    // Estimativa simplificada:
+    // ovulação aproximadamente 14 dias antes
+    // da próxima menstruação
+
+    const diaOvulacao =
+        tamanhoCiclo - 14;
+
+
+    if (diaDoCiclo === diaOvulacao) {
+        return "ovulacao";
+    }
+
+
+    // --------------------------------------------------
+    // PERÍODO FÉRTIL
+    // --------------------------------------------------
+
+    const inicioPeriodoFertil =
+        diaOvulacao - 5;
+
+    const fimPeriodoFertil =
+        diaOvulacao + 1;
+
+
+    if (
+        diaDoCiclo >= inicioPeriodoFertil &&
+        diaDoCiclo <= fimPeriodoFertil
+    ) {
+        return "fertil";
+    }
+
+
+    // --------------------------------------------------
+    // FASE FOLICULAR
+    // --------------------------------------------------
+
+    if (
+        diaDoCiclo > 5 &&
+        diaDoCiclo < inicioPeriodoFertil
+    ) {
+        return "folicular";
+    }
+
+
+    // --------------------------------------------------
+    // FASE LÚTEA
+    // --------------------------------------------------
+
+    if (
+        diaDoCiclo > fimPeriodoFertil &&
+        diaDoCiclo <= tamanhoCiclo
+    ) {
+        return "lutea";
+    }
+
+
+    // Caso não se encaixe em nenhuma fase
+    return "indefinida";
+}
+
+
+// ======================================================
+// ATUALIZAR CARD DA FASE
+// ======================================================
+
+function atualizarTemaFase(fase) {
+
+    // Verifica se o elemento existe
+    if (!faseAtualElement) {
+        return;
+    }
+
+
+    // Remove as classes antigas
+    faseAtualElement.classList.remove(
+        "menstruacao",
+        "folicular",
+        "ovulacao",
+        "lutea",
+        "fertil"
+    );
+
+
+    // Adiciona a classe correspondente à fase
+    faseAtualElement.classList.add(fase);
+
+
+    // --------------------------------------------------
+    // MENSTRUAÇÃO
+    // --------------------------------------------------
+
+    if (fase === "menstruacao") {
+
+        tituloFaseAtual.textContent =
+            "Fase menstrual";
+
+        return;
+    }
+
+
+    // --------------------------------------------------
+    // FASE FOLICULAR
+    // --------------------------------------------------
+
+    if (fase === "folicular") {
+
+        tituloFaseAtual.textContent =
+            "Fase folicular";
+
+        return;
+    }
+
+
+    // --------------------------------------------------
+    // OVULAÇÃO
+    // --------------------------------------------------
+
+    if (fase === "ovulacao") {
+
+        tituloFaseAtual.textContent =
+            "Ovulação";
+
+        return;
+    }
+
+
+    // --------------------------------------------------
+    // FASE FÉRTIL
+    // --------------------------------------------------
+
+    if (fase === "fertil") {
+
+        tituloFaseAtual.textContent =
+            "Período fértil";
+
+        return;
+    }
+
+
+    // --------------------------------------------------
+    // FASE LÚTEA
+    // --------------------------------------------------
+
+    if (fase === "lutea") {
+
+        tituloFaseAtual.textContent =
+            "Fase lútea";
+
+        return;
+    }
+
+
+    // --------------------------------------------------
+    // INDEFINIDA
+    // --------------------------------------------------
+
+    tituloFaseAtual.textContent =
+        "Fase não identificada";
+}
+
+
+// ======================================================
+// VERIFICAR SE O USUÁRIO JÁ CADASTROU O CICLO
+// ======================================================
+
+function obterDadosDoCiclo() {
+
+    // Pega a data informada no input
+    const valorData =
+        campoUltimaMenstruacao.value;
+
+
+    // Pega a duração informada
+    const valorTamanho =
+        campoTamanhoCiclo.value;
+
+
+    // Se não houver data, retorna null
+    if (!valorData) {
+        return null;
+    }
+
+
+    // Converte o tamanho do ciclo para número
+    const tamanhoCiclo =
+        Number(valorTamanho);
+
+
+    // Verifica se o tamanho é válido
+    if (
+        !tamanhoCiclo ||
+        tamanhoCiclo < 20 ||
+        tamanhoCiclo > 45
+    ) {
+        return null;
+    }
+
+
+    // Converte a data para objeto Date
+    const dataInicio =
+        new Date(valorData + "T00:00:00");
+
+
+    // Retorna os dados organizados
+    return {
+        dataInicio: dataInicio,
+        tamanhoCiclo: tamanhoCiclo
+    };
+}
+
+
+// ======================================================
+// CALCULAR DIA DO CICLO PARA UMA DATA ESPECÍFICA
+// ======================================================
+
+function calcularDiaDoCicloParaData(
+    data,
+    dataInicio,
+    tamanhoCiclo
+) {
+
+    // Calcula quantos dias existem entre as datas
+    const diasDesdeInicio =
+        calcularDiferencaEmDias(
+            dataInicio,
+            data
+        );
+
+
+    // Se a data for antes do início
+    if (diasDesdeInicio < 0) {
+        return null;
+    }
+
+
+    // Descobre em qual dia do ciclo estamos
+    const diaDoCiclo =
+        (diasDesdeInicio % tamanhoCiclo) + 1;
+
+
+    return diaDoCiclo;
+}
+
+
+// ======================================================
+// CRIAR O CALENDÁRIO
+// ======================================================
+
 function generateCalendar() {
 
-
-    // Limpa o calendário antes de criar novamente
+    // Limpa os dias existentes
     calendarElement.innerHTML = "";
 
 
+    // Pega o mês que está sendo visualizado
+    const month =
+        currentDate.getMonth();
 
 
-    // Pega o mês atual
-    const month = currentDate.getMonth();
+    // Pega o ano que está sendo visualizado
+    const year =
+        currentDate.getFullYear();
 
 
-    // Pega o ano atual
-    const year = currentDate.getFullYear();
+    // Mostra o nome do mês
+    monthElement.textContent =
+        months[month];
 
 
+    // Mostra o ano
+    yearElement.textContent =
+        year;
 
 
-    // Mostra o mês no HTML
-    monthElement.textContent = months[month];
+    // --------------------------------------------------
+    // PRIMEIRO DIA DO MÊS
+    // --------------------------------------------------
+
+    const firstDay =
+        new Date(year, month, 1);
 
 
-    // Mostra o ano no HTML
-    yearElement.textContent = year;
+    // --------------------------------------------------
+    // QUANTIDADE DE DIAS DO MÊS
+    // --------------------------------------------------
+
+    const daysInMonth =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
 
 
+    // --------------------------------------------------
+    // DIA DA SEMANA
+    // --------------------------------------------------
+
+    let firstDayOfWeek =
+        firstDay.getDay();
 
 
-    // Cria uma data representando o primeiro dia do mês
-    const firstDay = new Date(year, month, 1);
+    // JavaScript:
+    //
+    // domingo = 0
+    // segunda = 1
+    // terça = 2
+    // ...
+    //
+    // Como nosso calendário começa na segunda,
+    // transformamos domingo em 7.
 
-
-
-
-    // Descobre quantos dias existem nesse mês
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-
-
-
-    // Descobre em qual dia da semana o mês começa
-    let firstDayOfWeek = firstDay.getDay();
-
-
-
-
-    // Ajusta domingo para ser o último dia da semana
     if (firstDayOfWeek === 0) {
         firstDayOfWeek = 7;
     }
 
 
+    // --------------------------------------------------
+    // ESPAÇOS VAZIOS
+    // --------------------------------------------------
+
+    for (
+        let i = 1;
+        i < firstDayOfWeek;
+        i++
+    ) {
+
+        // Cria uma div vazia
+        const emptyDay =
+            document.createElement("div");
 
 
-    // Cria os espaços vazios antes do primeiro dia
-    for (let i = 1; i < firstDayOfWeek; i++) {
+        // Adiciona classes
+        emptyDay.classList.add(
+            "calendar-day",
+            "empty"
+        );
 
 
-        const emptyDay = document.createElement("div");
-
-
-        emptyDay.classList.add("calendar-day", "empty");
-
-
-        calendarElement.appendChild(emptyDay);
+        // Coloca no calendário
+        calendarElement.appendChild(
+            emptyDay
+        );
     }
 
 
+    // --------------------------------------------------
+    // DADOS DO CICLO
+    // --------------------------------------------------
+
+    const dadosCiclo =
+        obterDadosDoCiclo();
 
 
-    // Cria cada dia do mês
-    for (let day = 1; day <= daysInMonth; day++) {
+    // --------------------------------------------------
+    // CRIAR CADA DIA
+    // --------------------------------------------------
+
+    for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ) {
+
+        // Cria o botão
+        const dayElement =
+            document.createElement("button");
 
 
-        // Cria um botão para representar o dia
-        const dayElement = document.createElement("button");
-
-
-        // Define o tipo do botão
+        // Define o tipo
         dayElement.type = "button";
 
 
-        // Adiciona a classe do dia
-        dayElement.classList.add("calendar-day");
+        // Adiciona a classe principal
+        dayElement.classList.add(
+            "calendar-day"
+        );
 
 
-        // Coloca o número do dia dentro do botão
+        // Mostra o número do dia
         dayElement.textContent = day;
 
 
+        // --------------------------------------------------
+        // CRIA A DATA DESSE DIA
+        // --------------------------------------------------
+
+        const dataDoDia =
+            new Date(
+                year,
+                month,
+                day
+            );
 
 
-        // Pega a data atual
-        const today = new Date();
+        // --------------------------------------------------
+        // VERIFICAR SE É HOJE
+        // --------------------------------------------------
+
+        const today =
+            new Date();
 
 
-
-
-        // Verifica se o dia criado é hoje
         if (
             day === today.getDate() &&
             month === today.getMonth() &&
             year === today.getFullYear()
         ) {
 
-
-            // Marca o dia como "today"
-            dayElement.classList.add("today");
+            dayElement.classList.add(
+                "today"
+            );
         }
 
 
+        // --------------------------------------------------
+        // CALENDÁRIO DO CICLO
+        // --------------------------------------------------
+
+        if (dadosCiclo) {
+
+            const diaDoCiclo =
+                calcularDiaDoCicloParaData(
+                    dataDoDia,
+                    dadosCiclo.dataInicio,
+                    dadosCiclo.tamanhoCiclo
+                );
 
 
-        // Adiciona o botão ao calendário
-        calendarElement.appendChild(dayElement);
+            // Se a data pertence a um ciclo válido
+            if (diaDoCiclo !== null) {
+
+                const fase =
+                    determinarFase(
+                        diaDoCiclo,
+                        dadosCiclo.tamanhoCiclo
+                    );
+
+
+                // Adiciona a classe da fase
+                dayElement.classList.add(
+                    fase
+                );
+
+
+                // Guarda o dia do ciclo no HTML
+                dayElement.dataset.diaCiclo =
+                    diaDoCiclo;
+
+
+                // Guarda a fase no HTML
+                dayElement.dataset.fase =
+                    fase;
+            }
+        }
+
+
+        // --------------------------------------------------
+        // ADICIONA O DIA AO CALENDÁRIO
+        // --------------------------------------------------
+
+        calendarElement.appendChild(
+            dayElement
+        );
     }
 }
 
 
+// ======================================================
+// BOTÃO MÊS ANTERIOR
+// ======================================================
+
+previousMonthButton.addEventListener(
+    "click",
+    function () {
+
+        // Diminui um mês
+        currentDate.setMonth(
+            currentDate.getMonth() - 1
+        );
 
 
-// Quando clicar em "mês anterior"
-previousMonthButton.addEventListener("click", () => {
-
-
-    // Volta um mês
-    currentDate.setMonth(currentDate.getMonth() - 1);
-
-
-    // Recria o calendário
-    generateCalendar();
-});
-
-
-
-
-// Quando clicar em "próximo mês"
-nextMonthButton.addEventListener("click", () => {
-
-
-    // Avança um mês
-    currentDate.setMonth(currentDate.getMonth() + 1);
-
-
-    // Recria o calendário
-    generateCalendar();
-});
-
-
-
-
-// Cria o calendário assim que a página é carregada
-generateCalendar();
-
-
-/*capturando os elemtos html e guardadando os dentro de
-variaveis constantes*/
-
-const campoUltimenstruacao =
-    document.getElementById("ultimoMenstruacao");
-
-
-const campoTamanhoCiclo =
-    document.getElementById("tamanhoCiclo");
-
-const salvarCiclo =
-    document.getElementById("salvarCiclo");
-
-
-/* Agora crio um evento para salvar os dados de
-registroapos o click */
-
-
-salvarCiclo.addEventListener("clck", function () {
-
-    console.log(campoUltimenstruacao.value);
-
-    console.log(campoTamanhoCiclo.value);
-
-
-});
-
-/*Tranformando os dados obtidos de Ultima Menstruacao realmente em um dado do
-tipo data contendo dentro dele mês, dia, semana*/
-
-
-const dataUltimaMenstruacao =
-
-    new Date(campoUltimenstruacao.value);
-
-
-function calcularDiaDoCiclo(dataInicio) {
-
-    const hoje = new Date();
-
-    const diferenca = hoje.getTime() -
-        dataInicio.getTime();
-
-    const milisegundosPorDia =
-        1000 * 60 * 60 * 24;
-const diasPassados = math.floor(
-    diferenca / milisssegundosPorDia
-
+        // Recria o calendário
+        generateCalendar();
+    }
 );
-return diasPassados + 1;
 
-}
 
-function determinarFase(diaDoCiclo) {
+// ======================================================
+// BOTÃO PRÓXIMO MÊS
+// ======================================================
 
-    if (diaDoCiclo >= 1 && diaDoCiclo <= 5) {
-        return "menstruacao";
+nextMonthButton.addEventListener(
+    "click",
+    function () {
+
+        // Aumenta um mês
+        currentDate.setMonth(
+            currentDate.getMonth() + 1
+        );
+
+
+        // Recria o calendário
+        generateCalendar();
     }
+);
 
-    if (diaDoCiclo >= 6 && diaDoCiclo <= 13) {
-        return "folicular";
+
+// ======================================================
+// SALVAR CICLO
+// ======================================================
+
+salvarCiclo.addEventListener(
+    "click",
+    function () {
+
+        // Verifica se a data foi preenchida
+        if (!campoUltimaMenstruacao.value) {
+
+            alert(
+                "Informe o primeiro dia da sua última menstruação."
+            );
+
+            return;
+        }
+
+
+        // Pega o tamanho do ciclo
+        const tamanhoCiclo =
+            Number(
+                campoTamanhoCiclo.value
+            );
+
+
+        // Verifica o tamanho
+        if (
+            tamanhoCiclo < 20 ||
+            tamanhoCiclo > 45
+        ) {
+
+            alert(
+                "A duração do ciclo deve estar entre 20 e 45 dias."
+            );
+
+            return;
+        }
+
+
+        // Cria a data
+        const dataUltimaMenstruacao =
+            new Date(
+                campoUltimaMenstruacao.value +
+                "T00:00:00"
+            );
+
+
+        // Calcula o dia atual
+        const diaDoCiclo =
+            calcularDiaDoCiclo(
+                dataUltimaMenstruacao
+            );
+
+
+        // Calcula a fase
+        const fase =
+            determinarFase(
+                diaDoCiclo,
+                tamanhoCiclo
+            );
+
+
+        // Mostra no console
+        console.log(
+            "Última menstruação:",
+            dataUltimaMenstruacao
+        );
+
+        console.log(
+            "Tamanho do ciclo:",
+            tamanhoCiclo
+        );
+
+        console.log(
+            "Dia do ciclo:",
+            diaDoCiclo
+        );
+
+        console.log(
+            "Fase atual:",
+            fase
+        );
+
+
+        // Atualiza o card
+        atualizarTemaFase(
+            fase
+        );
+
+
+        // Mostra o dia do ciclo
+        if (diaCicloElement) {
+
+            diaCicloElement.textContent =
+                `Dia ${diaDoCiclo} do ciclo`;
+        }
+
+
+        // Recria o calendário
+        generateCalendar();
+
+
+        // Volta o calendário para o mês atual
+        currentDate = new Date();
+
+
+        // Recria novamente
+        generateCalendar();
     }
+);
 
-    if (diaDoCiclo === 14) {
-        return "ovulacao";
-    }
 
-    return "indefinida";
-}
+// ======================================================
+// INICIALIZAÇÃO
+// ======================================================
+
+// Cria o calendário quando a página abre

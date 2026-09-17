@@ -1,0 +1,310 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+
+/* BOTÃO FLUTUANTE */
+.botao-chat {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background-color: #d88f8f;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+
+
+
+
+
+
+
+/* CHATBOT */
+.chatbot {
+    display: none;
+    position: fixed;
+    right: 25px;
+    bottom: 100px;
+    width: 380px;
+    height: 550px;
+    background-color: #fffafa;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 999;
+}
+
+
+
+
+.chatbot.aberto {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* CABEÇALHO */
+.chatbot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+    background-color:#d88f8f;
+    color: white;
+}
+
+
+.chatbot-identidade {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+
+.logo-lunna {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#d88f8f;
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+
+
+
+.chatbot-identidade h3 {
+    font-size: 17px;
+}
+
+
+
+
+.chatbot-identidade p {
+    margin-top: 3px;
+    font-size: 12px;
+    opacity: 0.85;
+}
+
+
+
+
+.chatbot-acoes button {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+
+
+/* MENSAGENS */
+
+
+
+
+.chatbot-mensagens {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+
+.mensagem {
+    display: flex;
+    max-width: 85%;
+    gap: 8px;
+}
+
+
+
+
+.mensagem-conteudo {
+    padding: 12px 15px;
+    border-radius: 15px;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+
+
+
+.mensagem-conteudo p + p {
+    margin-top: 7px;
+}
+
+
+
+
+
+
+
+
+/* Mensagem da Lunna */
+
+
+
+
+.mensagem-lunna {
+    align-self: flex-start;
+}
+
+
+
+
+.mensagem-lunna .mensagem-conteudo {
+    background-color: #e7828247;
+    color: #000000;
+    border-bottom-left-radius: 4px;
+}
+
+
+
+
+.mensagem-icone {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d88f8f;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+
+
+
+/* Mensagem do usuário */
+
+
+
+
+.mensagem-usuario {
+    align-self: flex-end;
+}
+
+
+
+
+.mensagem-usuario .mensagem-conteudo {
+    background-color:#ca7878;;
+    color: #000000;
+    border-bottom-right-radius: 4px;
+}
+
+
+
+
+/* ÁREA DE INPUT */
+
+
+
+
+.chatbot-input {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #eadfea;
+}
+
+
+
+
+.chatbot-input textarea {
+    flex: 1;
+    resize: none;
+    min-height: 42px;
+    max-height: 100px;
+    padding: 12px;
+    border:none;
+    border-radius: 15px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+
+
+
+.chatbot-input textarea:focus {
+    border-color: #d88f8f;
+}
+
+
+
+
+.chatbot-input button {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background-color: #d88f8f;
+    color: white;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+
+
+
+/* RESPONSIVIDADE */
+
+
+
+
+@media (max-width: 500px) {
+
+
+
+
+    .chatbot {
+        right: 10px;
+        bottom: 85px;
+        width: calc(100% - 20px);
+        height: 70vh;
+    }
+
+
+
+
+    .botao-chat {
+        right: 15px;
+        bottom: 15px;
+    }
+
+
+
+
+}

@@ -1,0 +1,222 @@
+/* Página inicial */
+.secaoDispositivo,
+.secaoSaude,
+.secaoSeguranca {
+    width: 100%;
+    max-width: 1100px;
+    min-width: 0;
+}
+
+.inicio,
+.secaoSaude {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.secaoDispositivo,
+.resumoSaude,
+.farmacias,
+.secaoSeguranca {
+    padding: 24px;
+    border: 1px solid var(--cor-dourado-borda);
+    border-radius: 16px;
+    background: var(--cor-fundo-card-alt);
+    box-shadow: var(--sombra-card);
+}
+
+.link-acao,
+.botaoFarmacias {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cor-rosa);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link-acao:hover,
+.botaoFarmacias:hover {
+    text-decoration: underline;
+}
+
+/* Seções da página inicial */
+.secaoDispositivo,
+.resumoSaude,
+.textoDispositivo,
+.textoFarmacias,
+.textoSeguranca,
+.lista-saude {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.introDispositivo {
+    width: 100%;
+}
+
+.etiqueta {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--cor-rosa);
+}
+
+.listaEtapas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.etapaConexao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--cor-rosa-suave);
+    text-align: center;
+}
+
+.etapaFinal {
+    background: #e8efdf;
+}
+
+.icone-etapa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+}
+
+.icone-etapa img {
+    max-width: 100%;
+}
+
+.textoEtapa h3 {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+}
+
+.textoEtapa p,
+.texto-card p {
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario);
+}
+
+.tituloSecao h2 {
+    font-family: var(--fonte-titulos);
+}
+
+.card-saude {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+    color: var(--cor-texto);
+    text-decoration: none;
+    background: var(--cor-rosa-suave);
+    border-radius: 12px;
+}
+
+.card-saude:hover {
+    background: #f5dfd5;
+}
+
+.texto-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.seta-card {
+    font-size: 1.5rem;
+    color: var(--cor-rosa);
+}
+
+.farmacias {
+    overflow: hidden;
+}
+
+.mapa-farmacias {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.mapa-farmacias img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.localizacao {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 6px 10px;
+    background: #fffdfa;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+.secaoSeguranca {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.acaoSeguranca {
+    color: var(--cor-rosa);
+    font-weight: 600;
+}
+
+
+.farmacias-header span {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.farmacias-header h2 {
+    margin: 8px 0;
+}
+
+.farmacias-header p {
+    margin-bottom: 20px;
+}
+
+#map {
+
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+
+}
+
+
+@media (max-width: 1000px) {
+    .inicio,
+    .secaoSaude {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .secaoDispositivo,
+    .resumoSaude,
+    .farmacias,
+    .secaoSeguranca {
+        padding: 12px;
+    }
+
+    .secaoSeguranca {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

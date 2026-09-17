@@ -1,0 +1,354 @@
+/* Página de dispositivos */
+.paginas {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.coluna-conexao,
+.coluna-dispositivos {
+    width: 100%;
+    border-radius: 20px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.coluna-conexao {
+    max-width: 480px;
+}
+
+.coluna-dispositivos {
+    max-width: 580px;
+}
+
+/* ===== Títulos ===== */
+.tituloDispositivo,
+.coluna-dispositivos h1 {
+    font-family: var(--fonte-titulos);
+    font-size: 1.8rem;
+    color: #c47e7e;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.coluna-dispositivos .subtitulo {
+    font-size: 0.95rem;
+    color: var(--cor-texto-secundario);
+    text-align: center;
+    margin-top: -10px;
+}
+
+/* ===== Etapa de Conexão ===== */
+.etapa {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--cor-rosa-suave);
+    border: 1px solid #e8c39e;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--sombra-card);
+    transition: var(--transicao);
+}
+
+.etapa:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-card-hover);
+}
+
+.etapa h3 {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background-color: var(--cor-primaria);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.etapa img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.etapa p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* ===== Cards e Status ===== */
+.cardStatus {
+    width: 100%;
+    min-height: 220px;
+    background-color: var(--cor-rosa-suave);
+    border: 1px solid #e8c39e;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 17px;
+    box-shadow: var(--sombra-card);
+}
+
+.cardStatus img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.statusConectado {
+    font-size: 0.85rem;
+    color: var(--cor-rosa);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.cardStatus h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.cardStatus p {
+    font-size: 0.9rem;
+    color: var(--cor-texto-secundario);
+    line-height: 1.4;
+}
+
+.botoesStatus {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 8px;
+    width: 100%;
+}
+
+/* ===== Botão ===== */
+.botao-animado {
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    cursor: pointer;
+    background-color: var(--cor-primaria);
+    user-select: none;
+    touch-action: manipulation;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 0 4px 12px rgba(211, 78, 78, 0.3);
+    transition: var(--transicao);
+}
+
+.botao-animado:hover {
+    box-shadow: 0 6px 16px rgba(211, 78, 78, 0.4);
+}
+
+.botao-animado span:first-child {
+    position: relative;
+    transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 10;
+}
+
+.botao-animado span:last-child {
+    color: var(--cor-primaria);
+    display: block;
+    position: absolute;
+    bottom: 0;
+    transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 100;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateY(225%) translateX(-50%);
+    white-space: nowrap;
+}
+
+.botao-animado::after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    transform-origin: bottom center;
+    transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    transform: skewY(9.3deg) scaleY(0);
+    z-index: 50;
+}
+
+.botao-animado:hover::after {
+    transform: skewY(9.3deg) scaleY(2);
+}
+
+.botao-animado:hover span:last-child {
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 1;
+    transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+}
+
+/* ===== Card de Dispositivo Individual ===== */
+.cardDispositivo {
+    width: 100%;
+    background-color: var(--cor-fundo-card-alt);
+    border: 1px solid var(--cor-dourado-borda);
+    border-radius: 16px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--sombra-card);
+    transition: var(--transicao);
+}
+
+.cardDispositivo:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-card-hover);
+    border-color: var(--cor-rosa);
+}
+
+/* ---- Ícone com fundo próprio ---- */
+.iconeDispositivo {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(253, 172, 172, 0.12);
+    /* tom suave da cor-rosa */
+    border-radius: 10px;
+    transition: var(--transicao);
+}
+
+.cardDispositivo:hover .iconeDispositivo {
+    background-color: rgba(253, 172, 172, 0.2);
+}
+
+.cardDispositivo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* ---- Nome + status ---- */
+.infoPrincipal {
+    flex-shrink: 0;
+    min-width: 130px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cardDispositivo h3 {
+    font-size: 1.05rem;
+    color: var(--cor-texto);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.statusOnline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--cor-sucesso);
+    font-weight: 700;
+}
+
+.statusOnline::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--cor-sucesso);
+    box-shadow: 0 0 0 3px rgba(72, 199, 116, 0.2);
+}
+
+/* ---- Bloco de dado (valor + rótulo) ---- */
+.infoDispositivo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 4px 1px;
+    text-align: center;
+}
+
+.infoDispositivo .valor {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--cor-rosa);
+}
+
+.infoDispositivo .rotulo {
+    font-size: 0.78rem;
+    color: var(--cor-texto-mutado);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+
+@media (max-width: 1000px) {
+    .cardDispositivo {
+        flex-wrap: wrap;
+    }
+
+    .coluna-conexao,
+    .coluna-dispositivos {
+        padding: 20px;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .coluna-conexao,
+    .coluna-dispositivos {
+        padding: 12px;
+    }
+
+    .etapa {
+        flex-wrap: wrap;
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .cardDispositivo {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .infoPrincipal {
+        min-width: 0;
+    }
+
+    .infoDispositivo {
+        flex-basis: 70px;
+    }
+}
