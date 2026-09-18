@@ -60,6 +60,7 @@ const numeroDiaCiclo =
 
 // Guarda o mês que estamos visualizando
 let currentDate = new Date();
+currentDate.setDate(1);
 
 
 // Lista com os nomes dos meses
@@ -118,22 +119,14 @@ function calcularDiferencaEmDias(dataInicial, dataFinal) {
 // CALCULAR O DIA DO CICLO
 // ======================================================
 
-function calcularDiaDoCiclo(dataInicio) {
+function calcularDiaDoCiclo(dataInicio, tamanhoCiclo) {
 
     // Pega a data de hoje
     const hoje = new Date();
 
 
-    // Calcula quantos dias passaram desde o início
-    const diasPassados =
-        calcularDiferencaEmDias(
-            dataInicio,
-            hoje
-        );
-
-
-    // O primeiro dia da menstruação é o dia 1
-    return diasPassados + 1;
+    // Usa o mesmo cálculo cíclico dos dias exibidos no calendário.
+    return calcularDiaDoCicloParaData(hoje, dataInicio, tamanhoCiclo);
 }
 
 
@@ -238,7 +231,8 @@ function atualizarTemaFase(fase) {
         "folicular",
         "ovulacao",
         "lutea",
-        "fertil"
+        "fertil",
+        "indefinida"
     );
 
 
@@ -349,7 +343,7 @@ function obterDadosDoCiclo() {
 
     // Verifica se o tamanho é válido
     if (
-        !tamanhoCiclo ||
+        !Number.isInteger(tamanhoCiclo) ||
         tamanhoCiclo < 20 ||
         tamanhoCiclo > 45
     ) {
@@ -360,6 +354,13 @@ function obterDadosDoCiclo() {
     // Converte a data para objeto Date
     const dataInicio =
         new Date(valorData + "T00:00:00");
+
+    if (
+        Number.isNaN(dataInicio.getTime()) ||
+        calcularDiferencaEmDias(dataInicio, new Date()) < 0
+    ) {
+        return null;
+    }
 
 
     // Retorna os dados organizados
@@ -558,19 +559,20 @@ function generateCalendar() {
         // VERIFICAR SE É HOJE
         // --------------------------------------------------
 
-        const today =
+        const hoje =
             new Date();
 
 
         if (
-            day === today.getDate() &&
-            month === today.getMonth() &&
-            year === today.getFullYear()
+            day === hoje.getDate() &&
+            month === hoje.getMonth() &&
+            year === hoje.getFullYear()
         ) {
 
             dayElement.classList.add(
-                "today"
+                "hoje"
             );
+            dayElement.setAttribute("aria-current", "date");
         }
 
 
@@ -695,12 +697,13 @@ salvarCiclo.addEventListener(
 
         // Verifica o tamanho
         if (
+            !Number.isInteger(tamanhoCiclo) ||
             tamanhoCiclo < 20 ||
             tamanhoCiclo > 45
         ) {
 
             alert(
-                "A duração do ciclo deve estar entre 20 e 45 dias."
+                "A duração do ciclo deve ser um número inteiro entre 20 e 45 dias."
             );
 
             return;
@@ -714,11 +717,17 @@ salvarCiclo.addEventListener(
                 "T00:00:00"
             );
 
+        if (!obterDadosDoCiclo()) {
+            alert("Informe uma data válida que não esteja no futuro.");
+            return;
+        }
+
 
         // Calcula o dia atual
         const diaDoCiclo =
             calcularDiaDoCiclo(
-                dataUltimaMenstruacao
+                dataUltimaMenstruacao,
+                tamanhoCiclo
             );
 
 
@@ -759,19 +768,15 @@ salvarCiclo.addEventListener(
 
 
         // Mostra o dia do ciclo
-        if (diaCicloElement) {
+        if (numeroDiaCiclo) {
 
-            diaCicloElement.textContent =
-                `Dia ${diaDoCiclo} do ciclo`;
+            numeroDiaCiclo.textContent = diaDoCiclo;
         }
-
-
-        // Recria o calendário
-        generateCalendar();
 
 
         // Volta o calendário para o mês atual
         currentDate = new Date();
+        currentDate.setDate(1);
 
 
         // Recria novamente
@@ -780,8 +785,27 @@ salvarCiclo.addEventListener(
 );
 
 
-// ======================================================
-// INICIALIZAÇÃO
-// ======================================================
+generateCalendar();
 
-// Cria o calendário quando a página abre
+// Mantém o destaque correto após a meia-noite ou ao retornar à aba.
+function atualizarDestaqueDeHoje() {
+    const hoje = new Date();
+    const mesAtualVisivel =
+        currentDate.getMonth() === hoje.getMonth() &&
+        currentDate.getFullYear() === hoje.getFullYear();
+
+    calendarElement.querySelectorAll("button.calendar-day").forEach(function (dia) {
+        const ehHoje = mesAtualVisivel && Number(dia.textContent) === hoje.getDate();
+        dia.classList.toggle("hoje", ehHoje);
+
+        if (ehHoje) {
+            dia.setAttribute("aria-current", "date");
+        } else {
+            dia.removeAttribute("aria-current");
+        }
+    });
+}
+
+setInterval(atualizarDestaqueDeHoje, 1000);
+window.addEventListener("focus", atualizarDestaqueDeHoje);
+document.addEventListener("visibilitychange", atualizarDestaqueDeHoje);
