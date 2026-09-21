@@ -173,6 +173,49 @@
     transform: scale(0.98);
 }
 
+/* Edição do perfil */
+#modalPerfil {
+    width: min(420px, calc(100% - 32px));
+    max-height: calc(100dvh - 32px);
+    margin: auto;
+    padding: 24px;
+    border: none;
+    border-radius: var(--radius-lg);
+    background: var(--card-bg);
+    color: var(--cor-texto);
+    box-shadow: var(--shadow-md);
+}
+
+#modalPerfil::backdrop {
+    background: rgba(74, 44, 42, 0.4);
+}
+
+#formPerfil {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#formPerfil h2 {
+    margin-bottom: 8px;
+}
+
+#formPerfil input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d88f8f;
+    border-radius: var(--radius-md);
+    font: inherit;
+}
+
+.acoes-edicao-perfil {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 12px;
+}
+
 /* --- Estatísticas --- */
 .estatisticas {
     display: grid;
@@ -232,6 +275,62 @@
 }
 
 /* --- Histórico e Exames --- */
+.exame-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 320px;
+    min-width: 0;
+}
+
+.exame-upload label {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.exame-upload span {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+#inputExame {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 6px;
+    border: 1px solid #d88f8f;
+    border-radius: 12px;
+    background-color: #fff7f7;
+    color: #704747;
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+#inputExame::file-selector-button {
+    margin-right: 10px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #d88f8f;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#inputExame:hover::file-selector-button {
+    background-color: #b96a6a;
+}
+
+#inputExame:focus-visible {
+    outline: 2px solid #995252;
+    outline-offset: 3px;
+}
+
 .historico-titulo {
     font-size: 0.80rem;
     color: #ad7a7ae1;

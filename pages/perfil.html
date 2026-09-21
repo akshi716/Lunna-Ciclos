@@ -36,7 +36,7 @@
 
 
     <h2 class="titulo-principal">Meu perfil de saúde</h2>
-    <a href="#" class="voltar"> ← &nbsp; Voltar ao início </a>
+    <a href="../pages/index.html" class="voltar"> ← &nbsp; Voltar ao início </a>
 
 
 
@@ -141,9 +141,11 @@
 
 
 
-          <button class="adicionar" id="adicionarExame" type="button">
-            Adicionar &nbsp;＋
-          </button>
+          <div class="exame-upload" id="adicionarExame">
+            <label for="inputExame">Adicionar exame</label>
+            <input type="file" id="inputExame" accept=".pdf,.jpg,.jpeg,.png" aria-describedby="formatosExame" />
+            <span id="formatosExame">PDF, JPG ou PNG</span>
+          </div>
         </div>
 
 
@@ -155,10 +157,33 @@
     </section>
   </main>
 
+  <dialog id="modalPerfil" aria-labelledby="tituloEditarPerfil">
+    <form id="formPerfil">
+      <h2 id="tituloEditarPerfil">Editar perfil</h2>
+
+      <label for="nomePerfil">Nome</label>
+      <input id="nomePerfil" name="nome" type="text" autocomplete="name" required autofocus />
+
+      <label for="idadePerfil">Idade (anos)</label>
+      <input id="idadePerfil" name="idade" type="number" min="0" step="1" />
+
+      <label for="pesoPerfil">Peso (kg)</label>
+      <input id="pesoPerfil" name="peso" type="number" min="0.1" step="0.1" />
+
+      <label for="alturaPerfil">Altura (m)</label>
+      <input id="alturaPerfil" name="altura" type="number" min="0.01" step="0.01" placeholder="1,65" />
+
+      <div class="acoes-edicao-perfil">
+        <button class="btn-editar" id="cancelarEdicao" type="button">Cancelar</button>
+        <button class="btn-editar" type="submit">Salvar</button>
+      </div>
+    </form>
+  </dialog>
 
 
 
-  <script src="perfil.js"></script>
+
+  <script src="../Script/perfil.js"></script>
 
 
   <script src="https://unpkg.com/lucide@latest" async onload="window.lucide?.createIcons()"></script>
