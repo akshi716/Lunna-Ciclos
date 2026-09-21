@@ -28,10 +28,11 @@
 /* Perfil*/
 .pagina {
     width: 100%;
-    max-width: 900px;
+    max-width: 1040px;
     display: flex;
     flex-direction: column;
     gap: 30px;
+    margin-inline: auto;
 }
 
 .topo {
@@ -105,7 +106,8 @@
 }
 
 .card {
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(212, 165, 116, 0.38);
     border-radius: var(--radius-lg);
     padding: 38px;
     box-shadow: var(--shadow-md);
@@ -179,7 +181,7 @@
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 26px;
     padding: 16px;
-    background: #ddc5c5e1;
+    background: #f4dedd;
     border-radius: 12px;
 }
 
@@ -206,7 +208,7 @@
 
 /* --- Cartão do SUS --- */
 .sus {
-    background: #ddc5c5e1;
+    background: #c47e7e;
     padding: 16px;
     border-radius: 12px;
     display: flex;
@@ -228,7 +230,7 @@
     font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: var(--text-color);
+    color: #fff;
 }
 
 /* --- Histórico e Exames --- */
@@ -298,6 +300,62 @@
 #cumprimentoUser {
     font-size: 14px;
     font-weight: 600;
+}
+
+.pagina-perfil-body { justify-content: center; }
+
+/* Modal de edição do perfil */
+.modal-perfil {
+    width: min(92vw, 520px);
+    margin: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 18px;
+    background: #fffdfa;
+    color: var(--cor-texto);
+    box-shadow: 0 24px 70px rgba(74, 44, 42, 0.28);
+}
+
+.modal-perfil::backdrop { background: rgba(74, 44, 42, 0.42); }
+
+.modal-perfil form { padding: 28px; }
+
+.modal-perfil__cabecalho {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.modal-perfil h2 { color: var(--cor-primaria-escura); }
+
+.fechar-modal {
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--cor-rosa-suave);
+    color: var(--cor-rosa);
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.campos-perfil {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.campos-perfil label { display: grid; gap: 6px; }
+.campos-perfil input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--cor-dourado-borda);
+    border-radius: 10px;
+    color: var(--cor-texto);
+    background: #fff;
 }
 
 

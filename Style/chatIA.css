@@ -59,6 +59,38 @@ body {
     flex-direction: column;
 }
 
+/* A tela de chat ocupa a área principal do aplicativo, em vez de abrir como pop-up. */
+body.com-menu .botao-chat { display: none; }
+
+body.com-menu .chatbot,
+body.com-menu .chatbot.aberto {
+    display: flex;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(100%, 760px);
+    height: min(680px, calc(100vh - 100px));
+    min-height: 520px;
+    margin: auto;
+    border: 1px solid var(--cor-dourado-borda);
+    background: rgba(255, 253, 249, 0.96);
+    box-shadow: var(--sombra-card-hover);
+}
+
+body.com-menu .chatbot-header {
+    background: linear-gradient(120deg, var(--cor-primaria), #c47e7e);
+}
+
+body.com-menu .chatbot-acoes { display: none; }
+
+body.com-menu .chatbot-input {
+    background: #fffdfa;
+}
+
+body.com-menu .chatbot-input textarea {
+    border: 1px solid #eadfea;
+}
+
 
 /* CABEÇALHO */
 .chatbot-header {

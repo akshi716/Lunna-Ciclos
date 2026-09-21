@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="../Style/style.css">
     <link rel="stylesheet" href="../Style/login.css">
     <link rel="stylesheet" href="../Style/menu.css">
+    <link rel="stylesheet" href="../Style/responsivo.css">
 </head>
 
 
 
 
-<body>
+<body class="pagina-login-body">
     <main class="pagina-login">
         <header class="login-topo">
             <div aria-label="Logo Lunna">
@@ -38,7 +39,7 @@
 
         <section class="login-card" aria-labelledby="titulo-login">
             <h2 id="titulo-login">Entrar na sua conta</h2>
-            <form action="#" method="post">
+            <form id="login-form" action="#" method="post">
 
 
 
@@ -57,12 +58,12 @@
 
 
                 <div>
-                    <label for="senha">Senha</label>
+                    <label for="password">Senha</label>
 
 
 
 
-                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha"
+                    <input type="password" id="password" name="password" placeholder="Digite sua senha"
                         autocomplete="current-password" minlength="6" required>
                 </div>
 
@@ -70,7 +71,7 @@
 
 
                 <div>
-                    <input type="checkbox" id="lembrar" name="lembrar">
+                    <input type="checkbox" id="lembrar" name="remember">
 
 
 
@@ -82,7 +83,7 @@
 
 
 
-                    <a href="#recuperar-senha">
+                    <a id="forgot-link" href="#recuperar-senha">
                         Esqueci minha senha
                     </a>
                 </div>
@@ -95,8 +96,9 @@
         </section>
         <p>
             Ainda não tem uma conta?
-            <a href="#criar-conta">Criar conta</a>
+            <a id="create-link" href="#criar-conta">Criar conta</a>
         </p>
+        <p class="mensagem-login" id="message" aria-live="polite"></p>
 
 
 
@@ -109,7 +111,7 @@
 
 
 
-    <script src="login.js"></script>
+    <script src="../Script/login.js"></script>
 
     <script src="https://unpkg.com/lucide@latest" async onload="window.lucide?.createIcons()"></script>
     <script src="../Script/menu.js"></script>

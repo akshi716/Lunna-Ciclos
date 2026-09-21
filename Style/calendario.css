@@ -43,16 +43,41 @@
 
 body {
     font-family: var(--fonte-principal);
-    background-color: var(--cor-fundo);
+    background: linear-gradient(145deg, #fff9f4 0%, #f9eee9 55%, #f5e8e8 100%);
     color: var(--cor-texto);
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 15px;
-    max-width: 1300px; /* Expandido para suportar o layout lado a lado */
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
     padding: 32px 16px 60px;
 }
+
+body.pagina-calendario {
+    align-items: center;
+}
+
+.calendario-cabecalho {
+    width: min(100%, 1120px);
+    display: grid;
+    gap: 8px;
+}
+
+.calendario-grade {
+    width: min(100%, 1120px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+    grid-template-areas:
+        "calendario registro"
+        "calendario emocional";
+    align-items: start;
+    gap: 24px;
+}
+
+.calendario-grade .calendar-card { grid-area: calendario; max-width: none; }
+.calendario-grade .registro-ciclo { grid-area: registro; width: 100%; }
+.calendario-grade .emocional { grid-area: emocional; width: 100%; }
 
 
 /* ===== Cabeçalho ===== */
@@ -178,6 +203,7 @@ p {
 
 
 #maisFase {
+    display: inline-block;
     margin-left: auto;
     color: #fff;
     background-color: rgba(255, 255, 255, 0.22);
@@ -189,6 +215,7 @@ p {
     cursor: pointer;
     transition: var(--transicao);
     white-space: nowrap;
+    text-decoration: none;
 }
 
 
@@ -231,8 +258,10 @@ p {
 
 /* ===== Card do Calendário ===== */
 .calendar-card {
-    width: 400px;
-    height: 700px;
+    width: 100%;
+    max-width: 640px;
+    min-height: 0;
+    height: auto;
     background-color: #fff;
     border: 1px solid #ddc8b2;
     border-radius: var(--radius-lg);
@@ -433,8 +462,9 @@ p {
 
 /* ===== Registrar ciclo ===== */
 .registro-ciclo {
-    width: 600px;
-    height: 308px;
+    width: min(100%, 640px);
+    min-height: 0;
+    height: auto;
     background-color: #fff;
     border: 1px solid #ddc8b2;
     border-radius: var(--radius-lg);
@@ -501,8 +531,9 @@ p {
 
 /* ===== Registro emocional ===== */
 .emocional {
-    width: 600px;
-    height: 370px;
+    width: min(100%, 640px);
+    min-height: 0;
+    height: auto;
     background-color: #fff;
     border: 1px solid #ddc8b2;
     border-radius: var(--radius-lg);
@@ -657,6 +688,7 @@ p {
 
 /* ===== Responsividade ===== */
 @media (max-width: 900px) {
+    .calendario-grade { grid-template-columns: 1fr; grid-template-areas: "calendario" "registro" "emocional"; }
     .conteudo-principal {
         flex-direction: column;
     }

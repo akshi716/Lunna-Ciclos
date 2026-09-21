@@ -57,12 +57,46 @@ body {
     padding: 32px 16px;
     font-family: var(--fonte-principal, 'Segoe UI', system-ui, -apple-system, sans-serif);
     color: var(--cor-texto, #333);
-    background-color: #fff8f1;
+    background: linear-gradient(145deg, #fff9f4 0%, #f9eee9 55%, #f5e8e8 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     gap: 24px;
+}
+
+/* Superfícies compartilhadas: mantém a paleta suave do perfil em todas as telas. */
+body.com-menu {
+    align-items: stretch;
+}
+
+body.com-menu .pagina,
+body.com-menu .paginas,
+body.com-menu .secaoDispositivo,
+body.com-menu .secaoSaude,
+body.com-menu .secaoSeguranca,
+body.com-menu .header,
+body.pagina-calendario > h2,
+body.pagina-calendario > h3,
+body.pagina-calendario > p,
+body.pagina-calendario > section,
+body.pagina-calendario > main {
+    width: min(100%, 1120px);
+}
+
+body.pagina-calendario {
+    align-items: center;
+}
+
+/* Com o menu fixo, o conteúdo continua centralizado na área disponível. */
+body.com-menu > .pagina,
+body.com-menu > .paginas,
+body.com-menu > .header,
+body.com-menu > .secaoDispositivo,
+body.com-menu > .secaoSaude,
+body.com-menu > .secaoSeguranca,
+body.com-menu > .chatbot {
+    margin-inline: auto;
 }
 
 

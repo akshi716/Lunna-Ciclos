@@ -64,7 +64,7 @@
 /* ===== Card de login ===== */
 .login-card {
     width: 100%;
-    background-color: #f3f3f3d5;
+    background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid #eee5d9;
     border-radius: 16px;
     padding: 28px 24px;
@@ -198,6 +198,12 @@ main>p a:hover {
     text-decoration: underline;
 }
 
+.mensagem-login {
+    min-height: 1.35em;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
 /* ===== Footer ===== */
 footer {
     margin-top: 8px;
@@ -211,11 +217,16 @@ footer p {
 
 .pagina-login {
     width: 100%;
-    max-width: 440px;
+    max-width: 560px;
+    min-height: calc(100vh - 96px);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 24px;
+    margin-inline: auto;
 }
+
+.pagina-login-body { justify-content: center; }
 
 .login-topo {
     text-align: center;

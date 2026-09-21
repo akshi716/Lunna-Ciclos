@@ -21,9 +21,10 @@
     <link rel="stylesheet" href="../Style/calendario.css">
     <link rel="stylesheet" href="../Style/inicio.css">
     <link rel="stylesheet" href="../Style/menu.css">
+    <link rel="stylesheet" href="../Style/responsivo.css">
 </head>
 
-<body>
+<body class="pagina-inicio">
 
     <div class="header">
 
@@ -35,6 +36,18 @@
 
             <span id="cumprimentoUser"></span>
         </div>
+
+        <section id="faseAtual" class="hero-inicio" aria-label="Resumo do ciclo atual">
+            <h3>CICLO ATUAL · HOJE</h3>
+            <span id="tituloFaseAtual">Seu espaço de autocuidado para entender seu ciclo</span>
+            <p class="hero-descricao">Observe seu corpo com mais gentileza. A Lunna reúne seus sinais, rotinas e lembretes em um só lugar.</p>
+            <div id="diaCiclo" class="dia-ciclo">
+                <img src="../img/ciclo.svg" alt="" width="64" height="64">
+                <span id="numeroDiaCiclo">—</span>
+                <p>dia do ciclo</p>
+            </div>
+            <a id="maisFase" href="calendario.html">Observar meu ritmo</a>
+        </section>
 
         <main class="inicio">
 
@@ -49,7 +62,6 @@
                         </h1>
                     </div>
 
-                    <a class="link-acao" href="calendario.html">Ler o ciclo</a>
 
                     <div class="navigation">
 
@@ -113,7 +125,7 @@
 
             </div>
 
-            <div class="emocional">
+            <section class="emocional">
 
                 <h4>
                     <!-- adicionando icone da biblioteca chamada no head -->
@@ -157,7 +169,10 @@
 
                 </div>
 
-            </div>
+                <label class="rotulo-observacao" for="registroEmocionalInicio">Adicionar observações</label>
+                <textarea id="registroEmocionalInicio" class="observacao-emocional" rows="4" placeholder="Escreva aqui como você está se sentindo..."></textarea>
+
+            </section>
 
         </main>
 

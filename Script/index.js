@@ -148,6 +148,13 @@ nextMonthButton.addEventListener("click", () => {
 // Cria o calendário assim que a página é carregada
 generateCalendar();
 
+// Mantém o resumo do dia alinhado ao dia exibido no calendário.
+const numeroDiaAtual = document.getElementById("numeroDiaCiclo");
+
+if (numeroDiaAtual) {
+    numeroDiaAtual.textContent = new Date().getDate();
+}
+
 
 const map = L.map("map").setView([-15.7942, -47.8822], 13);
 

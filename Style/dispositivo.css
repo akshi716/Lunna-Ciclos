@@ -1,17 +1,28 @@
 /* Página de dispositivos */
 .paginas {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(340px, 0.8fr);
+    align-items: start;
+    gap: 24px;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.pagina-dispositivo-body {
+    justify-content: center;
+}
+
+.pagina-dispositivo-body .paginas {
+    margin: auto;
 }
 
 .coluna-conexao,
 .coluna-dispositivos {
     width: 100%;
+    background: rgba(255, 253, 249, 0.88);
+    border: 1px solid var(--cor-dourado-borda);
+    box-shadow: var(--sombra-card);
     border-radius: 20px;
     padding: 35px;
     display: flex;
@@ -21,11 +32,11 @@
 }
 
 .coluna-conexao {
-    max-width: 480px;
+    max-width: none;
 }
 
 .coluna-dispositivos {
-    max-width: 580px;
+    max-width: none;
 }
 
 /* ===== Títulos ===== */
@@ -316,6 +327,8 @@
 
 
 @media (max-width: 1000px) {
+    .paginas { grid-template-columns: 1fr; }
+
     .cardDispositivo {
         flex-wrap: wrap;
     }

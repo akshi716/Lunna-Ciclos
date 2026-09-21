@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="../Style/style.css">
     <link rel="stylesheet" href="../Style/perfil.css">
     <link rel="stylesheet" href="../Style/menu.css">
+    <link rel="stylesheet" href="../Style/responsivo.css">
 </head>
 
 
 
 
-<body>
+<body class="pagina-perfil-body">
   <main class="pagina">
     <header class="topo">
 
@@ -158,7 +159,26 @@
 
 
 
-  <script src="perfil.js"></script>
+  <dialog class="modal-perfil" id="modalPerfil" aria-labelledby="titulo-modal-perfil">
+    <form id="formPerfil" method="dialog">
+      <div class="modal-perfil__cabecalho">
+        <div>
+          <p class="label">Dados pessoais</p>
+          <h2 id="titulo-modal-perfil">Editar perfil</h2>
+        </div>
+        <button class="fechar-modal" id="cancelarEdicao" type="button" aria-label="Fechar edição">×</button>
+      </div>
+      <div class="campos-perfil">
+        <label for="nomePerfil">Nome<input id="nomePerfil" name="nome" required></label>
+        <label for="idadePerfil">Idade<input id="idadePerfil" name="idade" type="number" min="0" max="120"></label>
+        <label for="pesoPerfil">Peso (kg)<input id="pesoPerfil" name="peso" type="number" min="0" step="0.1"></label>
+        <label for="alturaPerfil">Altura (m)<input id="alturaPerfil" name="altura" type="number" min="0" step="0.01"></label>
+      </div>
+      <button class="btn-editar" type="submit">Salvar alterações</button>
+    </form>
+  </dialog>
+
+  <script src="../Script/perfil.js"></script>
 
 
   <script src="https://unpkg.com/lucide@latest" async onload="window.lucide?.createIcons()"></script>
