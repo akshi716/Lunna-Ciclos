@@ -55,3 +55,175 @@
     .campos-perfil { grid-template-columns: 1fr; }
     .modal-perfil form { padding: 20px; }
 }
+
+/* Regras transferidas de Style/calendario.css. */
+@media (max-width: 1100px) {
+    .calendario-grade {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "calendario" "registro" "emocional";
+    }
+}
+
+@media (max-width: 600px) {
+    .calendario-grade > * { padding: 20px; }
+    .calendario-grade .humores { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .calendario-grade #salvarCiclo,
+    .calendario-grade #salvarRegistro { width: 100%; }
+}
+
+@media (max-width: 900px) {
+    .calendario-grade { grid-template-columns: 1fr; grid-template-areas: "calendario" "registro" "emocional"; }
+    .conteudo-principal {
+        flex-direction: column;
+    }
+
+
+    .calendar-card,
+    .cards-laterais {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    body.pagina-inicio,
+    body.pagina-calendario {
+        padding: 20px 12px 40px;
+        gap: 18px;
+    }
+
+
+    #faseAtual,
+    .calendar-card,
+    .registro-ciclo,
+    .emocional {
+        padding: 20px;
+    }
+
+
+    #diaCiclo {
+        justify-content: flex-start;
+    }
+
+
+    #maisFase {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+
+    .calendar-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .humores {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Regras transferidas de Style/inicio.css. */
+@media (max-width: 1000px) {
+    .inicio,
+    .secaoSaude {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .secaoDispositivo,
+    .resumoSaude,
+    .farmacias,
+    .secaoSeguranca {
+        padding: 12px;
+    }
+
+    .secaoSeguranca {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 1000px) {
+    .pagina-inicio .inicio { grid-template-columns: 1fr; }
+    .pagina-inicio .listaEtapas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+    .pagina-inicio #faseAtual { min-height: 0; padding: 28px 24px; }
+    .pagina-inicio #tituloFaseAtual { font-size: 1.85rem; }
+    .pagina-inicio .calendar-card, .pagina-inicio .emocional { padding: 20px; }
+    .pagina-inicio .secaoDispositivo, .pagina-inicio .secaoSeguranca { padding: 22px; }
+    .pagina-inicio .listaEtapas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Ajustes de telas menores para início e calendário. */
+@media (max-width: 1100px) {
+    .pagina-inicio .inicio {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pagina-inicio .inicio > *,
+    .pagina-calendario .calendario-grade > * {
+        min-width: 0;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 760px) {
+    body.pagina-inicio.com-menu,
+    body.pagina-calendario.com-menu {
+        padding: 88px 14px 28px;
+        gap: 20px;
+    }
+
+    .pagina-inicio .logo,
+    .pagina-calendario .logo {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .pagina-inicio #cumprimentoUser,
+    .pagina-calendario #cumprimentoUser {
+        margin-left: 0;
+    }
+
+    .pagina-inicio .calendar-header h1 {
+        font-size: 1.25rem;
+    }
+
+    .pagina-inicio .navigation,
+    .pagina-calendario .navigation {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .pagina-inicio .weekdays,
+    .pagina-inicio .calendar,
+    .pagina-calendario .weekdays,
+    .pagina-calendario .calendar {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    .pagina-inicio .calendar > *,
+    .pagina-calendario .calendar > * {
+        min-width: 0;
+    }
+
+    .pagina-inicio .calendar-card,
+    .pagina-inicio .emocional,
+    .pagina-calendario .calendario-grade > * {
+        padding: 18px;
+    }
+
+    .pagina-inicio .humores,
+    .pagina-calendario .humores {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pagina-inicio .observacao-emocional {
+        flex: none;
+    }
+}

@@ -229,26 +229,9 @@
 
 
 
-@media (max-width: 1000px) {
-    .inicio,
-    .secaoSaude {
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
 
-@media (max-width: 600px) {
-    .secaoDispositivo,
-    .resumoSaude,
-    .farmacias,
-    .secaoSeguranca {
-        padding: 12px;
-    }
 
-    .secaoSeguranca {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
+
 
 /* Painel inicial: inspirado na hierarquia do layout de referência. */
 .pagina-inicio {
@@ -343,6 +326,7 @@
 .pagina-inicio .inicio {
     grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
     gap: 28px;
+    align-items: stretch;
 }
 
 .pagina-inicio .calendar-card,
@@ -361,11 +345,15 @@
 .pagina-inicio .calendar-header h1 { font-size: 1.65rem; }
 
 .pagina-inicio .emocional {
-    align-self: start;
+    align-self: stretch;
     padding: 30px;
     border-radius: 22px;
     gap: 14px;
-    
+}
+
+.pagina-inicio .emocional .humores {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 8px 0;
 }
 
 .pagina-inicio .rotulo-observacao {
@@ -376,6 +364,7 @@
 }
 
 .pagina-inicio .observacao-emocional {
+    flex: 1;
     width: 100%;
     min-height: 112px;
     padding: 12px 14px;
@@ -405,16 +394,3 @@
 .pagina-inicio .secaoSaude { gap: 28px; }
 .pagina-inicio .resumoSaude,
 .pagina-inicio .farmacias { border-radius: 22px; }
-
-@media (max-width: 1000px) {
-    .pagina-inicio .inicio { grid-template-columns: 1fr; }
-    .pagina-inicio .listaEtapas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-
-@media (max-width: 600px) {
-    .pagina-inicio #faseAtual { min-height: 0; padding: 28px 24px; }
-    .pagina-inicio #tituloFaseAtual { font-size: 1.85rem; }
-    .pagina-inicio .calendar-card, .pagina-inicio .emocional { padding: 20px; }
-    .pagina-inicio .secaoDispositivo, .pagina-inicio .secaoSeguranca { padding: 22px; }
-    .pagina-inicio .listaEtapas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
