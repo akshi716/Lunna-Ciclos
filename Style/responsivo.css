@@ -1,7 +1,6 @@
 /* Ajustes responsivos compartilhados. Carregado por todas as páginas da aplicação. */
 
 @media (max-width: 900px) {
-    body.com-menu { padding-left: calc(var(--lunna-menu-largura) + 16px); }
     .inicio, .secaoSaude { grid-template-columns: minmax(0, 1fr); }
     .inicio .calendar-card, .inicio .emocional { max-width: none; min-height: 0; }
     .paginas { align-items: stretch; }
@@ -11,17 +10,7 @@
 @media (max-width: 760px) {
     body, body.com-menu { padding: 88px 14px 28px; gap: 18px; }
 
-    #menuLunna {
-        right: 0; bottom: auto; width: 100%; height: 70px; padding: 9px 12px;
-        flex-direction: row; align-items: center; gap: 12px; overflow: hidden;
-        border-right: 0; border-bottom: 1px solid var(--cor-dourado-borda);
-        box-shadow: 0 3px 14px rgba(74, 44, 42, 0.08);
-    }
-    #menuLunna .lunna-marca img { width: 92px; height: auto; }
-    #menuLunna .lunna-links { flex: 1; flex-direction: row; gap: 4px; overflow-x: auto; scrollbar-width: none; }
-    #menuLunna .lunna-links::-webkit-scrollbar { display: none; }
-    #menuLunna .lunna-link { flex: 0 0 auto; padding: 8px 9px; font-size: 0.76rem; gap: 5px; white-space: nowrap; }
-    #menuLunna .lunna-icone { width: 17px; height: 17px; }
+
 
     .pagina, .conteudo { gap: 20px; }
     .card, .secaoDispositivo, .resumoSaude, .farmacias, .secaoSeguranca { padding: 18px; }
@@ -42,9 +31,6 @@
 }
 
 @media (max-width: 440px) {
-    #menuLunna .lunna-marca img { width: 72px; }
-    #menuLunna .lunna-link { padding: 8px; }
-    #menuLunna .lunna-link span { display: none; }
     .titulo-principal, body.pagina-calendario > h2 { font-size: 1.55rem; }
     .estatisticas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 8px; }
     .weekdays, .calendar { gap: 4px; }
@@ -226,4 +212,9 @@
     .pagina-inicio .observacao-emocional {
         flex: none;
     }
+}
+
+@media (max-width: 760px) {
+    #abrirMenuLunna { top: 14px; left: 14px; }
+    #menuLunna[open] { padding: 16px; gap: 20px; }
 }
