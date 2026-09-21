@@ -170,7 +170,9 @@
                 </div>
 
                 <label class="rotulo-observacao" for="registroEmocionalInicio">Adicionar observações</label>
-                <textarea id="registroEmocionalInicio" class="observacao-emocional" rows="4" placeholder="Escreva aqui como você está se sentindo..."></textarea>
+                <textarea id="registroEmocionalInicio" class="observacao-emocional" rows="3" placeholder="Escreva aqui como você está se sentindo..."></textarea>
+                <button id="enviarRegistroInicio" type="button">Enviar</button>
+                <p id="statusRegistroInicio" role="status" aria-live="polite"></p>
 
             </section>
 
@@ -376,6 +378,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 
+    <script src="../Script/calendario.js"></script>
     <script src="../Script/index.js"></script>
 
     <script>
