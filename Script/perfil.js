@@ -35,7 +35,19 @@ if (!usuarioAtual) {
 
   function atualizarTela() {
     document.getElementById('userName').textContent = perfil.nome || 'Seu nome';
-    document.getElementById('cumprimentoUser').textContent = perfil.nome ? `Olá, ${perfil.nome}!` : 'Bem-vinda ao seu espaço';
+
+    // Formatação para o nome do usuario ficar destacado 
+    const cumprimento = document.getElementById('cumprimentoUser');
+
+    if (perfil.nome) {
+      const nome = document.createElement('strong');
+      nome.textContent = perfil.nome;
+
+      cumprimento.replaceChildren('Olá, ', nome, '!');
+    } else {
+      cumprimento.textContent = 'Bem-vinda ao seu espaço';
+    }
+
     document.getElementById('userEmail').textContent = perfil.email;
     atualizarDado('idadeUsuario', perfil.idade);
     atualizarDado('pesoUsuario', perfil.peso);
