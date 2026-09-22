@@ -19,7 +19,7 @@
     --cor-ovulacao: #af812a;
     --cor-hoje: #6e1c39;
 
-
+    
     --fonte-titulos: Cambria, Georgia, serif;
     --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
@@ -751,3 +751,24 @@ p {
     outline: 2px solid var(--cor-primaria);
     outline-offset: 2px;
 }
+
+
+.icone-ciclo {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    color: #c47e7e;
+}
+
+.menstruacao .icone-ciclo{
+    color: var(--cor-menstruacao);
+}
+
+.fertil .icone-ciclo{
+    color:var(--cor-fertil);
+}
+
+.ovulacao .icone-ciclo{
+    color:var(--cor-ovulacao);
+}
+
