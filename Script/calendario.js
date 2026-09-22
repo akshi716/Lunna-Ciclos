@@ -318,16 +318,28 @@ function atualizarTemaFase(fase) {
 // VERIFICAR SE O USUÁRIO JÁ CADASTROU O CICLO
 // ======================================================
 
+const chaveCiclo = "lunna.ciclo";
+
+function lerCicloSalvo() {
+    try {
+        const dados = JSON.parse(localStorage.getItem(chaveCiclo));
+        return dados && typeof dados === "object" ? dados : {};
+    } catch {
+        return {};
+    }
+}
+
 function obterDadosDoCiclo() {
+    const salvo = lerCicloSalvo();
 
     // Pega a data informada no input
     const valorData =
-        campoUltimaMenstruacao.value;
+        campoUltimaMenstruacao ? campoUltimaMenstruacao.value : salvo.data;
 
 
     // Pega a duração informada
     const valorTamanho =
-        campoTamanhoCiclo.value;
+        campoTamanhoCiclo ? campoTamanhoCiclo.value : salvo.tamanho;
 
 
     // Se não houver data, retorna null
@@ -673,7 +685,7 @@ nextMonthButton.addEventListener(
 // SALVAR CICLO
 // ======================================================
 
-salvarCiclo.addEventListener(
+salvarCiclo?.addEventListener(
     "click",
     function () {
 
@@ -722,6 +734,16 @@ salvarCiclo.addEventListener(
             return;
         }
 
+
+        try {
+            localStorage.setItem(chaveCiclo, JSON.stringify({
+                data: campoUltimaMenstruacao.value,
+                tamanho: tamanhoCiclo
+            }));
+        } catch {
+            alert("Não foi possível salvar o ciclo neste navegador. Tente novamente.");
+            return;
+        }
 
         // Calcula o dia atual
         const diaDoCiclo =
@@ -785,7 +807,26 @@ salvarCiclo.addEventListener(
 );
 
 
-generateCalendar();
+function carregarCicloSalvo() {
+    const salvo = lerCicloSalvo();
+    if (campoUltimaMenstruacao) campoUltimaMenstruacao.value = salvo.data || "";
+    if (campoTamanhoCiclo) campoTamanhoCiclo.value = salvo.tamanho || 28;
+    const dados = obterDadosDoCiclo();
+    if (dados) {
+        const dia = calcularDiaDoCiclo(dados.dataInicio, dados.tamanhoCiclo);
+        atualizarTemaFase(determinarFase(dia, dados.tamanhoCiclo));
+        if (numeroDiaCiclo) numeroDiaCiclo.textContent = dia;
+    } else {
+        if (tituloFaseAtual) tituloFaseAtual.textContent = "Registre seu ciclo para visualizar a fase";
+        if (numeroDiaCiclo) numeroDiaCiclo.textContent = "—";
+    }
+    generateCalendar();
+}
+
+carregarCicloSalvo();
+window.addEventListener("storage", (evento) => {
+    if (evento.key === chaveCiclo || evento.key === null) carregarCicloSalvo();
+});
 
 // Mantém o destaque correto após a meia-noite ou ao retornar à aba.
 function atualizarDestaqueDeHoje() {

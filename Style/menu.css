@@ -78,18 +78,24 @@
 
 /* Reserva espaço sem modificar os elementos do conteúdo. */
 body.com-menu {
-    padding-left: calc(var(--lunna-menu-largura) + 20px);
+    padding: 88px 24px 40px;
 }
 
-#menuLunna {
+#menuLunna[open] {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 1000;
 
-    width: var(--lunna-menu-largura);
-    padding: 28px 16px;
+    width: min(300px, calc(100vw - 32px));
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 20px 16px;
+    border: none;
+    color: var(--cor-texto);
 
     display: flex;
     flex-direction: column;
@@ -155,29 +161,37 @@ body.com-menu {
 
 
 
-@media (max-width: 600px) {
-    :root {
-        --lunna-menu-largura: 132px;
-    }
 
-    #menuLunna {
-        padding: 20px 8px;
-        gap: 20px;
-    }
+#menuLunna:not([open]) { display: none; }
+#menuLunna::backdrop { background: rgba(40, 25, 25, 0.4); }
+body.menu-aberto { overflow: hidden; }
 
-    #menuLunna .lunna-link {
-        padding: 10px 8px;
-        font-size: 0.85rem;
-        overflow-wrap: anywhere;
-    }
+#abrirMenuLunna,
+#menuLunna .lunna-fechar {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #ddc8b2;
+    border-radius: 12px;
+    background: #fff8ec;
+    color: var(--cor-texto);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
 }
 
-@media (max-width: 600px) {
-    body.com-menu {
-        padding-left: calc(var(--lunna-menu-largura) + 12px);
-    }
+#abrirMenuLunna {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 1100;
+    box-shadow: 0 3px 12px rgba(74, 44, 42, 0.12);
+}
 
-    #menuLunna .lunna-link {
-        gap: 6px;
-    }
+#menuLunna .lunna-fechar { align-self: flex-end; flex-shrink: 0; }
+#abrirMenuLunna:hover,
+#menuLunna .lunna-fechar:hover { background: #f7e8df; }
+#abrirMenuLunna:focus-visible,
+#menuLunna .lunna-fechar:focus-visible {
+    outline: 3px solid var(--cor-primaria-escura);
+    outline-offset: 3px;
 }

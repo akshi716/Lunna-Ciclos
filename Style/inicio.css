@@ -364,9 +364,10 @@
 }
 
 .pagina-inicio .observacao-emocional {
-    flex: 1;
+    flex: none;
     width: 100%;
-    min-height: 112px;
+    min-height: 88px;
+    height: 88px;
     padding: 12px 14px;
     resize: vertical;
     border: 1px solid #ddc8b2;
@@ -380,6 +381,31 @@
 .pagina-inicio .observacao-emocional:focus {
     outline: 2px solid var(--cor-primaria);
     outline-offset: 2px;
+}
+
+.pagina-inicio #enviarRegistroInicio {
+    align-self: flex-end;
+    margin-top: auto;
+    padding: 11px 28px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--cor-primaria-escura);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pagina-inicio #enviarRegistroInicio:hover {
+    background: #874747;
+}
+
+.pagina-inicio #statusRegistroInicio {
+    font-size: 0.85rem;
+}
+
+.pagina-inicio #statusRegistroInicio:empty {
+    display: none;
 }
 
 .pagina-inicio .secaoDispositivo,
