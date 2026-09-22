@@ -1,13 +1,28 @@
 
 (() => {
     const raiz = new URL("../", document.currentScript.src);
+    const CHAVE_SESSAO = "lunna.sessao";
+    const CHAVE_PERFIL = "lunna.perfil";
+
+    function usuarioEstaAutenticado() {
+        try {
+            const sessao = JSON.parse(localStorage.getItem(CHAVE_SESSAO) || "null");
+            const usuarios = JSON.parse(localStorage.getItem("lunna.usuarios") || "[]");
+            return Boolean(sessao?.email) && Array.isArray(usuarios)
+                && usuarios.some(usuario => usuario.email === sessao.email);
+        } catch {
+            return false;
+        }
+    }
 
     const itens = [
         {texto:"Início", caminho:"index.html", icone:"house"},
         {texto:"Calendário", caminho:"calendario.html", icone:"calendar"},
         {texto:"Dispositivo", caminho:"dispositivo.html", icone:"smartphone"},
         {texto:"Perfil", caminho:"perfil.html", icone:"user"},
-        {texto:"Login", caminho:"login.html", icone:"log-in"},
+        usuarioEstaAutenticado()
+            ? {texto:"Sair", caminho:"login.html", icone:"log-out", sair:true}
+            : {texto:"Login", caminho:"login.html", icone:"log-in"},
         {texto:"Chat Lunna", caminho:"chatIA.html", icone:"message-circle"},
 
     ];
@@ -36,6 +51,7 @@
             <nav class="lunna-links" aria-label="Navegação principal">
                 ${itens.map(item => `
                     <a class="lunna-link"
+                       ${item.sair ? 'data-acao="sair"' : ''}
                        href="${enderecoPagina(item.caminho)}">
                         <i class="lunna-icone" data-lucide="${item.icone}" aria-hidden="true"></i>
                         <span>${item.texto}</span>
@@ -71,6 +87,13 @@
         });
         document.body.prepend(abrir, menu);
         document.body.classList.add("com-menu");
+
+        menu.querySelector('[data-acao="sair"]')?.addEventListener("click", evento => {
+            evento.preventDefault();
+            localStorage.removeItem(CHAVE_SESSAO);
+            localStorage.removeItem(CHAVE_PERFIL);
+            window.location.assign(enderecoPagina("login.html"));
+        });
 
         return menu;
     }

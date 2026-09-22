@@ -145,6 +145,34 @@ body.pagina-calendario {
     margin-top: auto;
 }
 
+/* Mantém o card amplo, mas torna a leitura do calendário mais leve. */
+.pagina-calendario .calendar-card {
+    padding: 20px;
+    gap: 16px;
+}
+
+.pagina-calendario .calendar-header h1 { font-size: 1.2rem; }
+
+.pagina-calendario .weekdays,
+.pagina-calendario .calendar {
+    grid-template-columns: repeat(7, 48px);
+    justify-content: center;
+    gap: 7px;
+}
+
+.pagina-calendario .weekdays span { font-size: 0.64rem; }
+.pagina-calendario .calendar > * { font-size: 0.78rem; }
+.pagina-calendario .navigation button { width: 34px; height: 34px; }
+.pagina-calendario .legend { padding-top: 12px; }
+
+@media (max-width: 480px) {
+    .pagina-calendario .weekdays,
+    .pagina-calendario .calendar {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 4px;
+    }
+}
+
 
 /* ===== Cabeçalho ===== */
 .header {

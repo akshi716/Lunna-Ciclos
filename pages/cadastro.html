@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar conta | Lunna</title>
+    <link rel="stylesheet" href="../Style/style.css">
+    <link rel="stylesheet" href="../Style/login.css">
+    <link rel="stylesheet" href="../Style/responsivo.css">
+</head>
+<body class="pagina-login-body">
+    <main class="pagina-login">
+        <header class="login-topo">
+            <div aria-label="Logo Lunna"><h2>Lunna ✦</h2></div>
+            <h1>Comece seu espaço de autocuidado</h1>
+            <p>Crie sua conta para acompanhar seu ciclo com mais carinho.</p>
+        </header>
+        <section class="login-card" aria-labelledby="titulo-cadastro">
+            <h2 id="titulo-cadastro">Criar sua conta</h2>
+            <form id="cadastro-form" novalidate>
+                <div><label for="nome">Nome</label><input type="text" id="nome" name="nome" autocomplete="name" placeholder="Como você prefere ser chamada?" required></div>
+                <div><label for="email">E-mail</label><input type="email" id="email" name="email" autocomplete="email" placeholder="seuemail@exemplo.com" required></div>
+                <div><label for="senha">Senha</label><input type="password" id="senha" name="senha" autocomplete="new-password" minlength="6" placeholder="Crie uma senha" required></div>
+                <div><label for="confirmarSenha">Confirmar senha</label><input type="password" id="confirmarSenha" name="confirmarSenha" autocomplete="new-password" minlength="6" placeholder="Repita sua senha" required></div>
+                <button type="submit">Criar conta</button>
+            </form>
+        </section>
+        <p>Já tem uma conta? <a href="login.html">Entrar</a></p>
+        <p class="mensagem-login" id="message" aria-live="polite"></p>
+        <footer><p>Seus dados ficam salvos somente neste navegador.</p></footer>
+    </main>
+    <script src="../Script/cadastro.js"></script>
+</body>
+</html>

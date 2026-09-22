@@ -218,6 +218,31 @@
     margin-top: 12px;
 }
 
+.acoes-topo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-sair {
+    border: 1px solid var(--cor-dourado-borda);
+    border-radius: var(--radius-md);
+    padding: 8px 14px;
+    background: transparent;
+    color: var(--cor-rosa);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+}
+
+.btn-sair:hover { background: var(--cor-rosa-suave); }
+
+.email-perfil {
+    margin-top: 4px;
+    color: var(--cor-texto-mutado);
+    font-size: 0.82rem;
+}
+
 /* --- Estatísticas --- */
 .estatisticas {
     display: grid;

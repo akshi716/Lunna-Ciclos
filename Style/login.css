@@ -105,6 +105,7 @@ label {
     color: var(--cor-texto);
 }
 
+input[type="text"],
 input[type="email"],
 input[type="password"] {
     width: 100%;
@@ -117,6 +118,7 @@ input[type="password"] {
     transition: var(--transicao);
 }
 
+input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
     outline: none;
@@ -186,6 +188,8 @@ main>div[aria-hidden="true"] {
 main>p {
     font-size: 0.9rem;
     color: var(--cor-texto-mutado);
+        display: flex;
+    justify-content: center;  
 }
 
 main>p a {
@@ -196,22 +200,27 @@ main>p a {
 
 main>p a:hover {
     text-decoration: underline;
+  
 }
 
 .mensagem-login {
     min-height: 1.35em;
     text-align: center;
     font-size: 0.85rem;
+   
 }
 
 /* ===== Footer ===== */
 footer {
-    margin-top: 8px;
+    margin-top: 60px;
+    justify-content: center;
+    display: flex;
 }
 
 footer p {
     font-size: 0.75rem;
     color: var(--cor-texto-mutado);
+    
 }
 
 
