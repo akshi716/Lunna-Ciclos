@@ -210,6 +210,30 @@
     border-radius: 15px;
 }
 
+.status-farmacias {
+    min-height: 1.3em;
+    margin: 0 0 14px;
+    color: var(--cor-texto-secundario);
+    font-size: 0.86rem;
+}
+
+.marcador-farmacia-popular {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 3px solid #fff;
+    border-radius: 50% 50% 50% 0;
+    background: var(--cor-rosa);
+    box-shadow: 0 3px 10px rgba(74, 44, 42, 0.28);
+    color: #fff;
+    font-size: 17px;
+    font-style: normal;
+    transform: rotate(-45deg);
+}
+
+.marcador-farmacia-popular span { transform: rotate(45deg); }
+
 .inicio {
     align-items: start;
 }

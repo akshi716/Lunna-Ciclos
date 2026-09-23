@@ -16,6 +16,13 @@ function lerJson(chave, padrao) {
   catch { return padrao; }
 }
 
+function formatarNome(nome) {
+  return String(nome || '')
+    .trim()
+    .toLocaleLowerCase('pt-BR')
+    .replace(/(^|[\s'-])(\p{L})/gu, (trecho, separador, letra) => `${separador}${letra.toLocaleUpperCase('pt-BR')}`);
+}
+
 const sessao = lerJson(CHAVE_SESSAO, null);
 let usuarios = lerJson(CHAVE_USUARIOS, []);
 let usuarioAtual = Array.isArray(usuarios) ? usuarios.find((usuario) => usuario.email === sessao?.email) : null;
@@ -24,7 +31,7 @@ if (!usuarioAtual) {
   window.location.replace('login.html');
 } else {
   usuarioAtual.perfil = usuarioAtual.perfil || { nome: '', idade: '', peso: '', altura: '', email: usuarioAtual.email };
-  let perfil = { ...usuarioAtual.perfil, email: usuarioAtual.email };
+  let perfil = { ...usuarioAtual.perfil, nome: formatarNome(usuarioAtual.perfil.nome), email: usuarioAtual.email };
 
   function atualizarDado(id, valor) {
     const elemento = document.getElementById(id);
@@ -70,9 +77,13 @@ if (!usuarioAtual) {
 
   botaoCancelar?.addEventListener('click', () => modalPerfil.close());
 
+  campoNome?.addEventListener('blur', () => {
+    campoNome.value = formatarNome(campoNome.value);
+  });
+
   formPerfil?.addEventListener('submit', (evento) => {
     evento.preventDefault();
-    const nome = campoNome.value.trim();
+    const nome = formatarNome(campoNome.value);
     if (!nome) { campoNome.focus(); return; }
 
     perfil = {

@@ -18,10 +18,17 @@ function obterUsuarios() {
   }
 }
 
+function formatarNome(nome) {
+  return String(nome || '')
+    .trim()
+    .toLocaleLowerCase('pt-BR')
+    .replace(/(^|[\s'-])(\p{L})/gu, (trecho, separador, letra) => `${separador}${letra.toLocaleUpperCase('pt-BR')}`);
+}
+
 formCadastro?.addEventListener('submit', (event) => {
   event.preventDefault();
   const dados = new FormData(formCadastro);
-  const nome = String(dados.get('nome') || '').trim();
+  const nome = formatarNome(dados.get('nome'));
   const email = String(dados.get('email') || '').trim().toLowerCase();
   const senha = String(dados.get('senha') || '');
   const confirmarSenha = String(dados.get('confirmarSenha') || '');
