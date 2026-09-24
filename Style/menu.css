@@ -195,3 +195,53 @@ body.menu-aberto { overflow: hidden; }
     outline: 3px solid var(--cor-primaria-escura);
     outline-offset: 3px;
 }
+
+/* ======================================================
+   AJUSTE DO MENU LUNNA NO MOBILE
+   ====================================================== */
+
+#menuLunna {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+}
+
+#menuLunna::backdrop {
+    background: transparent;
+}
+
+
+/* ======================================================
+   MOBILE
+   ====================================================== */
+
+@media (max-width: 500px) {
+
+    #menuLunna {
+        position: fixed;
+
+        top: 10px;
+        left: 10px;
+        bottom: 10px;
+
+        width: 135px;
+        max-width: 135px;
+
+        height: auto;
+
+        margin: 0;
+        padding: 0;
+
+        border: none;
+        border-radius: 20px;
+
+        overflow: hidden;
+    }
+
+
+    #menuLunna::backdrop {
+        background: transparent;
+    }
+}
+
