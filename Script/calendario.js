@@ -850,3 +850,234 @@ function atualizarDestaqueDeHoje() {
 setInterval(atualizarDestaqueDeHoje, 1000);
 window.addEventListener("focus", atualizarDestaqueDeHoje);
 document.addEventListener("visibilitychange", atualizarDestaqueDeHoje);
+
+// ======================================================
+// REGISTRO EMOCIONAL
+// ======================================================
+
+(function () {
+
+    // Pega os botões de humor
+    const botoes = document.querySelectorAll(".humor");
+
+    // Pega o campo de observação
+    const campo =
+        document.getElementById("registroEmocional");
+
+    // Pega o botão de salvar
+    const enviar =
+        document.getElementById("salvarRegistro");
+
+    // Cria uma área para mensagens de status
+    // caso ela ainda não exista no HTML
+    let status =
+        document.getElementById("statusRegistro");
+
+    if (!status) {
+        status = document.createElement("p");
+        status.id = "statusRegistro";
+
+        enviar?.insertAdjacentElement(
+            "afterend",
+            status
+        );
+    }
+
+
+    // Chave usada para guardar os registros
+    const chave = "registrosEmocionais";
+
+
+    // Guarda o humor atualmente selecionado
+    let humor = "";
+
+
+    // ==================================================
+    // DATA DE HOJE
+    // ==================================================
+
+    function dataHoje() {
+
+        const hoje = new Date();
+
+        const ano =
+            hoje.getFullYear();
+
+        const mes =
+            String(hoje.getMonth() + 1)
+                .padStart(2, "0");
+
+        const dia =
+            String(hoje.getDate())
+                .padStart(2, "0");
+
+        return `${ano}-${mes}-${dia}`;
+    }
+
+
+    // ==================================================
+    // LER REGISTROS
+    // ==================================================
+
+    function lerRegistros() {
+
+        const dados =
+            localStorage.getItem(chave);
+
+        // Se não existir nenhum registro,
+        // começa com um objeto vazio
+        if (!dados) {
+            return {};
+        }
+
+        return JSON.parse(dados);
+    }
+
+
+    // ==================================================
+    // SELECIONAR HUMOR
+    // ==================================================
+
+    function selecionar(valor) {
+
+        // Guarda o humor escolhido
+        humor = valor;
+
+        // Passa por todos os botões
+        botoes.forEach(function (botao) {
+
+            // Verifica se esse é o botão selecionado
+            const ativo =
+                botao.dataset.humor === humor;
+
+            // Adiciona ou remove a classe selecionado
+            botao.classList.toggle(
+                "selecionado",
+                ativo
+            );
+
+            // Atualiza acessibilidade
+            botao.setAttribute(
+                "aria-pressed",
+                String(ativo)
+            );
+        });
+    }
+
+
+    // ==================================================
+    // CLIQUE NOS BOTÕES DE HUMOR
+    // ==================================================
+
+    botoes.forEach(function (botao) {
+
+        botao.addEventListener(
+            "click",
+            function () {
+
+                // Seleciona o humor
+                selecionar(
+                    botao.dataset.humor
+                );
+
+                // Limpa mensagem anterior
+                status.textContent = "";
+            }
+        );
+    });
+
+
+    // ==================================================
+    // DIGITAÇÃO DA OBSERVAÇÃO
+    // ==================================================
+
+    campo?.addEventListener(
+        "input",
+        function () {
+
+            // Remove mensagem anterior
+            status.textContent = "";
+        }
+    );
+
+
+    // ==================================================
+    // ESTADO INICIAL
+    // ==================================================
+
+    // Nenhum humor selecionado inicialmente
+    selecionar("");
+
+    // Campo começa vazio
+    if (campo) {
+        campo.value = "";
+    }
+
+
+    // ==================================================
+    // SALVAR REGISTRO
+    // ==================================================
+
+    enviar?.addEventListener(
+        "click",
+        function () {
+
+            // Verifica se um humor foi selecionado
+            if (!humor) {
+
+                status.textContent =
+                    "Selecione como você está se sentindo antes de enviar.";
+
+                // Coloca o foco no primeiro botão
+                botoes[0]?.focus();
+
+                return;
+            }
+
+
+            try {
+
+                // Recupera os registros existentes
+                const registros =
+                    lerRegistros();
+
+
+                // Salva o registro de hoje
+                registros[dataHoje()] = {
+
+                    humor: humor,
+
+                    observacao:
+                        campo.value.trim()
+                };
+
+
+                // Salva novamente no LocalStorage
+                localStorage.setItem(
+                    chave,
+                    JSON.stringify(registros)
+                );
+
+
+                // Limpa o campo
+                campo.value = "";
+
+
+                // Desmarca o humor
+                selecionar("");
+
+
+                // Mostra mensagem de sucesso
+                status.textContent =
+                    "Registro de hoje salvo com sucesso!";
+
+            } catch {
+
+                // Caso aconteça algum erro
+                status.textContent =
+                    "Não foi possível salvar. Tente novamente neste navegador.";
+            }
+        }
+    );
+
+})();

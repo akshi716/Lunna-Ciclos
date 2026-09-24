@@ -63,3 +63,5 @@ formCadastro?.addEventListener('submit', (event) => {
   mostrarMensagemCadastro('Conta criada! Redirecionando para o início...', true);
   window.setTimeout(() => { window.location.href = PAGINA_INICIO_CADASTRO; }, 450);
 });
+
+
