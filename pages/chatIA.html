@@ -13,7 +13,7 @@
 </head>
 
 
-<body>
+<body class="pagina-chat">
     <!-- Botão que abre o chatbot -->
     <button id="btnChat" type="button" class="botao-chat">
         🌙
@@ -48,7 +48,7 @@
 
 
         <!-- Área das mensagens -->
-        <section class="chatbot-mensagens">
+        <section class="chatbot-mensagens" role="log" aria-label="Mensagens da conversa" aria-live="polite">
             <div class="mensagem mensagem-lunna">
                 <div class="mensagem-icone">
                     🌙
@@ -75,14 +75,14 @@
         <!-- Área de envio -->
         <section class="chatbot-input">
             <textarea
-                id="btnMensagem"
+                id="btnMensagem" aria-label="Sua mensagem"
                 placeholder="Digite sua mensagem..."
                 rows="1">
             </textarea>
 
 
             <button
-                id="btnEnviar"
+                id="btnEnviar" aria-label="Enviar mensagem"
                 type="button">
                 ➤
             </button>

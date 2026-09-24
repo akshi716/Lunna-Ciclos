@@ -218,3 +218,95 @@
     #abrirMenuLunna { top: 14px; left: 14px; }
     #menuLunna[open] { padding: 16px; gap: 20px; }
 }
+
+/* Conteúdo flexível sem ocultar transbordamentos. */
+body > *, .pagina > *, .conteudo > *,
+.perfil-info > *, .topo > *, .cardDispositivo > *,
+.coluna-conexao > *, .coluna-dispositivos > * {
+    min-width: 0;
+}
+h1, h2, h3, p, .nome, .email-perfil, .exame-item, .infoPrincipal {
+    overflow-wrap: anywhere;
+}
+input, textarea, select { min-width: 0; max-width: 100%; }
+.emocional textarea { width: 100%; }
+#statusRegistro { font-size: 0.85rem; }
+#statusRegistro:empty { display: none; }
+
+@media (max-width: 1000px) {
+    .paginas { grid-template-columns: minmax(0, 1fr); }
+    .coluna-conexao, .coluna-dispositivos { max-width: none; }
+}
+@media (max-width: 760px) {
+    body.pagina-login-body { padding: 24px 14px; }
+    .pagina-login { min-height: 0; }
+    .pagina-login > p { flex-wrap: wrap; gap: 4px; text-align: center; }
+    .topo, .barra-navegacao { flex-wrap: wrap; gap: 16px; padding-inline: 0; }
+    .perfil-topo, .historico-topo, .sus { gap: 16px; }
+    .perfil-info, .acoes-topo { flex-wrap: wrap; }
+    .exames .exame-item { flex-wrap: wrap; gap: 12px; }
+    .calendar-header h1 { flex-wrap: wrap; }
+    .pagina-inicio .navigation button,
+    .pagina-calendario .navigation button { width: 44px; height: 44px; }
+    .registro-ciclo input, .emocional textarea, .login-card input,
+    .campos-perfil input, #formPerfil input { font-size: 16px; }
+    .pagina-inicio #enviarRegistroInicio { width: 100%; }
+    #maisFase { white-space: normal; }
+    .cardDispositivo .infoPrincipal { min-width: 0; }
+    .cardDispositivo .infoDispositivo { grid-column: 1 / -1; }
+    #modalPerfil, .modal-perfil { overflow-y: auto; max-height: calc(100dvh - 24px); }
+}
+@media (max-width: 380px) {
+    .pagina-inicio .listaEtapas { grid-template-columns: minmax(0, 1fr); }
+    .pagina-inicio .calendar-card,
+    .pagina-calendario .calendario-grade > * { padding: 14px; }
+}
+
+/* O histórico rola dentro do chat; cabeçalho e envio permanecem disponíveis. */
+body.pagina-chat.com-menu {
+    height: 100vh;
+    height: var(--chat-viewport-height, 100dvh);
+    min-height: 0;
+    padding: 80px 24px max(16px, env(safe-area-inset-bottom));
+    gap: 0;
+    overflow: hidden;
+}
+body.pagina-chat.com-menu .chatbot {
+    width: min(100%, 960px);
+    height: 100%;
+    min-height: 0;
+    flex: 1;
+    margin-block: 0;
+}
+.chatbot-header, .chatbot-input { flex-shrink: 0; }
+.chatbot-mensagens { min-height: 0; overscroll-behavior-y: contain; }
+.mensagem, .mensagem-conteudo, .chatbot-identidade { min-width: 0; }
+.mensagem { flex-shrink: 0; }
+.mensagem-conteudo { overflow-wrap: anywhere; }
+.mensagem-usuario .mensagem-conteudo p { white-space: pre-wrap; }
+.logo-lunna, .chatbot-input button { flex-shrink: 0; }
+.chatbot-input textarea {
+    width: 0;
+    min-width: 0;
+    font-size: 16px;
+    line-height: 1.4;
+    overflow-y: auto;
+}
+.chatbot-input button { width: 44px; height: 44px; }
+@media (max-width: 760px) {
+    body.pagina-chat.com-menu {
+        padding: 72px 8px max(8px, env(safe-area-inset-bottom));
+    }
+    body.pagina-chat.com-menu .chatbot { border-radius: 16px; }
+    .chatbot-header { padding: 12px; }
+    .chatbot-mensagens { padding: 12px; gap: 12px; }
+    .mensagem { max-width: 95%; }
+    .mensagem-conteudo { padding: 10px 12px; }
+    .chatbot-input { padding: 10px; gap: 8px; }
+}
+@media (max-height: 500px) {
+    body.pagina-chat.com-menu { padding-top: 64px; padding-bottom: 4px; }
+    .pagina-chat .chatbot-header { padding-block: 6px; }
+    .pagina-chat .chatbot-input { padding-block: 6px; }
+    .pagina-chat .chatbot-input textarea { max-height: 64px; }
+}

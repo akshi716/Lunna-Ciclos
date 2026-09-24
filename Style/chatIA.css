@@ -65,6 +65,7 @@ body.com-menu .botao-chat { display: none; }
 body.com-menu .chatbot,
 body.com-menu .chatbot.aberto {
     display: flex;
+    flex-direction: column;
     position: relative;
     right: auto;
     bottom: auto;

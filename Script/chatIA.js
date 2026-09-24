@@ -94,7 +94,7 @@ btnMensagem.addEventListener("keydown", function (event) {
 
 
 
-    if (event.key === "Enter" && !event.shiftKey) {
+    if (event.key === "Enter" && !event.shiftKey && !event.isComposing) {
 
 
 
@@ -182,6 +182,7 @@ function enviarMensagem() {
 
 
     btnMensagem.value = "";
+    ajustarCampoMensagem();
 
 
 
@@ -753,3 +754,19 @@ function adicionarMensagemLunna(texto) {
 
 
 }
+
+// A área visível encolhe quando o teclado virtual é aberto.
+function ajustarAlturaChat() {
+    const viewport = window.visualViewport;
+    if (!viewport || viewport.scale !== 1) return;
+    document.documentElement.style.setProperty("--chat-viewport-height", viewport.height + "px");
+}
+window.visualViewport?.addEventListener("resize", ajustarAlturaChat);
+window.addEventListener("resize", ajustarAlturaChat);
+ajustarAlturaChat();
+
+function ajustarCampoMensagem() {
+    btnMensagem.style.height = "auto";
+    btnMensagem.style.height = Math.min(btnMensagem.scrollHeight, parseFloat(getComputedStyle(btnMensagem).maxHeight)) + "px";
+}
+btnMensagem.addEventListener("input", ajustarCampoMensagem);
